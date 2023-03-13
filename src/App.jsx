@@ -3,8 +3,8 @@ import Formulaire from "./components/Formulaire";
 function App() {
   return (
     <>
-      <div className="w-screen h-screen bg-slate-500 flex justify-center items-center">
-        <Formulaire/>
+      <div className="flex flex-row w-screen h-screen m-2 mt-1 bg-slate-500">
+        <Formulaire />
       </div>
     </>
   );

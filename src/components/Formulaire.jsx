@@ -10,31 +10,27 @@ import ProgressBar from "./ProgressBar";
 const Formulaire = () => {
     const formik = useFormik({
         initialValues: {
-            FormulairePage1: {
-                nom: '',
-                prenom: '',
-                sexe: '',
-                dateNaissance: '',
-                telephone: '',
-                email: '',
-            },
-            FormulairePage2: {
-                LmdOuClassique: false,
-                TypeDiplome: '',
-                etablissementOrigine: '',
-            },
-            FormulairePage3: {
-                these: '',
-                labo: '',
-                premiereInscription: '',
-                dateEnregistrement: '',
-                codePV: '',
-            },
-            FormulairePage4: {
-                nomDirecteur: '',
-                etablissementDirecteur: '',
-                gradeDirecteur: ''
-            }
+            // FormulairePage1
+            nom: '',
+            prenom: '',
+            sexe: '',
+            dateNaissance: '',
+            telephone: '',
+            email: '',
+            // FormulairePage2
+            LmdOuClassique: false,
+            TypeDiplome: '',
+            etablissementOrigine: '',
+            // FormulairePage3
+            these: '',
+            labo: '',
+            premiereInscription: '',
+            dateEnregistrement: '',
+            codePV: '',
+            // FormulairePage4
+            nomDirecteur: '',
+            etablissementDirecteur: '',
+            gradeDirecteur: ''
         },
         onSubmit: (values) => {
             console.log(values);
@@ -50,7 +46,7 @@ const Formulaire = () => {
     }
 
     return (
-        <div className="w-4/5 h-4/5 bg-white ">
+        <div className="w-3/4 h-3/4 bg-white p-5 justify-center shadow-md rounded-xl">
             <ProgressBar progressValue={((currentPage / totalPageNumber) * 100) + '%'} />
             {currentPage === 1 && <FormulairePage1 formik={formik} handleSuivantEvent={handleSuivantEvent} />}
             {currentPage === 2 && <FormulairePage2 formik={formik} handleSuivantEvent={handleSuivantEvent} handleRetourEvent={handleRetourEvent} />}

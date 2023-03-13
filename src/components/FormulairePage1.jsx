@@ -2,112 +2,119 @@ import React from "react";
 const FormulairePage1 = ({ formik, handleSuivantEvent }) => {
     return (
         <>
-            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-                <h1 className="text-[#03C988] font-medium font-poppins text-lg leading-10">Informations personnelles</h1>
-                <div className="-mx-3 md:flex mb-6">
-                    <div className="md:w-1/2 px-3 mb-6 md:mb-0">
+            <form className="my-2 mb-4 flex flex-col bg-white px-8 pt-6 pb-8">
+                <h1 className="text-lg font-bold leading-10  text-[#03C988]">
+                    Informations personnelles
+                </h1>
+                <div className="-mx-3 mb-6 md:flex">
+                    <div className="mb-6 px-3 md:mb-0 md:w-1/2">
                         <label
-                            className="block uppercase tracking-wide text-xs font-bold mb-2"
+                            className="mb-2 block text-xs font-bold tracking-wide text-[#13005A]"
                             htmlFor="nom"
                         >
                             Nom
                         </label>
                         <input
-                            className="appearance-none block w-full border border-red rounded py-3 px-4 mb-3"
+                            className="mb-3 block w-2/3 appearance-none rounded border border-[#1C82AD] py-2 px-4 outline-none"
                             id="nom"
                             type="text"
-                            value={formik.values.FormulairePage1.nom}
+                            value={formik.values.nom}
                             onChange={formik.handleChange}
                         />
                     </div>
-                    <div className="md:w-1/2 px-3">
+                    <div className="px-3 md:w-1/2">
                         <label
-                            className="block uppercase tracking-wide text-xs font-bold mb-2"
+                            className="mb-2 block text-xs font-bold tracking-wide text-[#13005A]"
                             htmlFor="prenom"
                         >
                             Prenom
                         </label>
                         <input
-                            className="appearance-none block w-full border border-grey-lighter rounded py-3 px-4"
+                            className="block w-2/3 appearance-none rounded border border-[#1C82AD] py-2 px-4 outline-none"
                             id="prenom"
                             type="text"
-                            value={formik.values.FormulairePage1.prenom}
+                            value={formik.values.prenom}
                             onChange={formik.handleChange}
                         />
                     </div>
                 </div>
 
-                <div className="-mx-3 md:flex mb-6">
-                    <div className="md:w-1/2 px-3 mb-6 md:mb-0">
+                <div className="-mx-3 mb-6 md:flex">
+                    <div className="mb-6 px-3 md:mb-0 md:w-1/2">
                         <label
-                            className="block uppercase tracking-wide text-xs font-bold mb-2"
+                            className="mb-2 block text-xs font-bold tracking-wide text-[#13005A]"
                             htmlFor="sexe"
                         >
                             Sexe
                         </label>
                         <select
-                            class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded"
+                            className="block w-2/3 appearance-none rounded border border-[#1C82AD] py-2 px-4 pr-8 outline-none"
                             id="sexe"
                             onChange={formik.handleChange}
-                            value={formik.values.FormulairePage1.sexe}
+                            value={formik.values.sexe}
                         >
                             <option>Homme</option>
                             <option>Femme</option>
                         </select>
                     </div>
-                    <div className="md:w-1/2 px-3">
+                    <div className="px-3 md:w-1/2">
                         <label
-                            className="block uppercase tracking-wide text-xs font-bold mb-2"
+                            className="mb-2 block text-xs font-bold tracking-wide text-[#13005A]"
                             htmlFor="dateNaissance"
                         >
                             Date de naissance
                         </label>
                         <input
-                            className="appearance-none block w-full border rounded py-3 px-4"
+                            className="block w-2/3 appearance-none rounded border border-[#1C82AD] py-2 px-4 outline-none"
                             id="dateNaissance"
                             type="date"
-                            value={formik.values.FormulairePage1.dateNaissance}
+                            value={formik.values.dateNaissance}
                             onChange={formik.handleChange}
                         />
                     </div>
                 </div>
 
-                <div className="-mx-3 md:flex mb-6">
-                    <div className="md:w-1/2 px-3 mb-6 md:mb-0">
+                <div className="-mx-3 mb-6 md:flex">
+                    <div className="mb-6 px-3 md:mb-0 md:w-1/2">
                         <label
-                            className="block uppercase tracking-wide text-xs font-bold mb-2"
-                            htmlFor="telephone">
+                            className="mb-2 block text-xs font-bold tracking-wide text-[#13005A]"
+                            htmlFor="telephone"
+                        >
                             N° de telephone
                         </label>
                         <input
-                            className="appearance-none block w-full text-grey-darker border rounded py-3 px-4 mb-3"
+                            className="mb-3 block w-2/3 appearance-none rounded border border-[#1C82AD] py-2 px-4 outline-none"
                             id="telephone"
                             type="text"
-                            value={formik.values.FormulairePage1.telephone}
+                            value={formik.values.telephone}
                             onChange={formik.handleChange}
                         />
-
                     </div>
-                    <div className="md:w-1/2 px-3">
+                    <div className="px-3 md:w-1/2">
                         <label
-                            className="block uppercase tracking-wide text-xs font-bold mb-2"
+                            className="mb-2 block text-xs font-bold tracking-wide text-[#13005A]"
                             htmlFor="mail"
                         >
                             Adresse email
                         </label>
                         <input
-                            className="appearance-none block w-full border rounded py-3 px-4"
+                            className="block w-2/3 appearance-none rounded border border-[#1C82AD] py-2 px-4 outline-none"
                             id="mail"
                             type="text"
-                            value={formik.values.FormulairePage1.email}
+                            value={formik.values.email}
                             onChange={formik.handleChange}
                         />
                     </div>
                 </div>
-                <button className="block uppercase mx-auto shadow bg-[#13005A] hover:bg-white hover:text-[#13005A]  focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded-2xl">Suivant</button>
-            </div>
+                <button
+                    className=" text-l mx-auto rounded-2xl bg-[#13005A] py-3 px-10 text-white shadow hover:border-[#13005A] hover:bg-white hover:text-[#13005A]"
+                    onClick={handleSuivantEvent}
+                >
+                    Suivant
+                </button>
+            </form>
         </>
     );
-}
+};
 
 export default FormulairePage1;
