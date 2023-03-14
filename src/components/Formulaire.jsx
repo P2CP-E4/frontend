@@ -6,6 +6,7 @@ import FormulairePage2 from "./FormulairePage2";
 import FormulairePage3 from "./FormulairePage3";
 import FormulairePage4 from "./FormulairePage4";
 import ProgressBar from "./ProgressBar";
+import { useMultiStepForm } from "../hooks/useMultiStepForm";
 
 const Formulaire = () => {
     const formik = useFormik({
@@ -36,23 +37,30 @@ const Formulaire = () => {
             console.log(values);
         }
     })
-    const totalPageNumber = 4;
-    const [currentPage, setCurrentPage] = useState(1);
-    const handleSuivantEvent = () => {
-        setCurrentPage(currentPage + 1);
-    }
-    const handleRetourEvent = () => {
-        setCurrentPage(currentPage - 1);
-    }
 
+    const { steps, currentStepIndex, step, next, back, isFirstStep, isLastStep } = useMultiStepForm([
+        <FormulairePage1 formik={formik} />,
+        <FormulairePage2 formik={formik} />,
+        <FormulairePage3 formik={formik} />,
+        <FormulairePage4 formik={formik} />
+    ]);
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        next();
+    }
     return (
-        <div className="w-3/4 h-3/4 bg-white p-5 justify-center shadow-md rounded-xl">
-            <ProgressBar progressValue={((currentPage / totalPageNumber) * 100) + '%'} />
-            {currentPage === 1 && <FormulairePage1 formik={formik} handleSuivantEvent={handleSuivantEvent} />}
-            {currentPage === 2 && <FormulairePage2 formik={formik} handleSuivantEvent={handleSuivantEvent} handleRetourEvent={handleRetourEvent} />}
-            {currentPage === 3 && <FormulairePage3 formik={formik} handleSuivantEvent={handleSuivantEvent} handleRetourEvent={handleRetourEvent} />}
-            {currentPage === 4 && <FormulairePage4 formik={formik} handleRetourEvent={handleRetourEvent} />}
-        </div>
+        <div className="flex flex-col items-center justify-center w-4/6 p-2 m-1 bg-white rounded-xl  h-5/6 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
+            <form className="w-7/12 h-7/12" onSubmit={onSubmit}>
+                <ProgressBar progressValue={((currentStepIndex + 1) / steps.length) * 100 + '%'} />
+                {step}
+                <div className="flex w-full gap-2 mt-4">
+                    {!isFirstStep && <button type="button" onClick={back} className="">Retour</button>}
+                    {!isLastStep && <button type="submit" className="">Suivant</button>}
+                    {isLastStep && <button type="submit">Inscrire</button>}
+                </div>
+            </form >
+        </div >
     );
 }
 

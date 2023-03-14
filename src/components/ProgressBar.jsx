@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
 const ProgressBar = ({ progressValue }) => {
     return (
-        <div className="w-full h-3 flex-row justify-start items-stretch rounded-md bg-gray-300 shadow-inner overflow-hidden">
+        <div className="flex-row items-stretch justify-start w-full h-2 overflow-hidden bg-gray-300 rounded-md shadow-inner">
             <motion.div
-                className="w-0 h-3 bg-gradient-to-r from-[#00337C] to-[#03C988] rounded-r-md"
+                className="w-0 h-2 bg-gradient-to-r from-[#00337C] to-[#03C988] shadow-inner"
                 animate={{ width: progressValue }}
                 transition={{
-                    duration: 3
+                    duration: 1
                 }}
             ></motion.div>
         </div>

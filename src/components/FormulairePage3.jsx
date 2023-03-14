@@ -1,9 +1,9 @@
-const FormulairePage3 = ({ formik, handleSuivantEvent, handleRetourEvent }) => {
+const FormulairePage3 = ({ formik }) => {
     return (
         <>
-            step Three
-            <button type="button" onClick={handleSuivantEvent}>Suivant</button>
-            <button type="button" onClick={handleRetourEvent}>Retour</button>
+            <h2 className="text-lg font-bold leading-10  text-[#03C988]">
+                Information de these
+            </h2>
         </>);
 }
 
