@@ -3,7 +3,7 @@ const FormulairePage1 = ({ formik }) => {
     return (
         <>
             <div className="flex flex-col w-full bg-white">
-                <h2 className="text-lg font-semibold leading-10  text-[#03C988]">
+                <h2 className="text-lg font-semibold leading-10 text-[#03C988] mb-3">
                     Informations personnelles
                 </h2>
                 <div className="mb-6 -mx-3 md:flex">
@@ -15,7 +15,7 @@ const FormulairePage1 = ({ formik }) => {
                             Nom
                         </label>
                         <input
-                            className="mb-3 block w-3/4 appearance-none rounded-lg border border-[#1C82AD] py-2 px-4 outline-none"
+                            className="mb-3 block w-full appearance-none rounded-lg border border-[#1C82AD] py-2 px-4"
                             id="nom"
                             type="text"
                             value={formik.values.nom}
@@ -30,7 +30,7 @@ const FormulairePage1 = ({ formik }) => {
                             Prenom
                         </label>
                         <input
-                            className="block w-3/4 appearance-none rounded-lg border border-[#1C82AD] py-2 px-4 outline-none"
+                            className="block w-full appearance-none rounded-lg border border-[#1C82AD] py-2 px-4 "
                             id="prenom"
                             type="text"
                             value={formik.values.prenom}
@@ -48,7 +48,7 @@ const FormulairePage1 = ({ formik }) => {
                             Sexe
                         </label>
                         <select
-                            className="block w-3/4 appearance-none rounded-lg border border-[#1C82AD] py-2 px-4 outline-none"
+                            className="block w-full appearance-none rounded-lg border border-[#1C82AD] py-2 px-4 "
                             id="sexe"
                             onChange={formik.handleChange}
                             value={formik.values.sexe}
@@ -65,7 +65,7 @@ const FormulairePage1 = ({ formik }) => {
                             Date de naissance
                         </label>
                         <input
-                            className="block w-3/4 appearance-none rounded-lg border border-[#1C82AD] py-2 px-4 outline-none"
+                            className="block w-full appearance-none rounded-lg border border-[#1C82AD] py-2 px-4"
                             id="dateNaissance"
                             type="date"
                             value={formik.values.dateNaissance}
@@ -74,7 +74,7 @@ const FormulairePage1 = ({ formik }) => {
                     </div>
                 </div>
 
-                <div className="mb-6 -mx-3 md:flex">
+                <div className="mb-6 mt-6 -mx-3 md:flex">
                     <div className="px-3 mb-6 md:mb-0 md:w-1/2">
                         <label
                             className="mb-2 block text-xs tracking-wide text-[#13005A]"
@@ -83,7 +83,7 @@ const FormulairePage1 = ({ formik }) => {
                             N° de telephone
                         </label>
                         <input
-                            className="mb-3 block w-3/4 appearance-none rounded-lg border border-[#1C82AD] py-2 px-4 outline-none"
+                            className="mb-3 block w-full appearance-none rounded-lg border border-[#1C82AD] py-2 px-4"
                             id="telephone"
                             type="text"
                             value={formik.values.telephone}
@@ -98,7 +98,7 @@ const FormulairePage1 = ({ formik }) => {
                             Adresse email
                         </label>
                         <input
-                            className="block w-3/4 appearance-none rounded-lg border border-[#1C82AD] py-2 px-4 outline-none"
+                            className="block w-full appearance-none rounded-lg border border-[#1C82AD] py-2 px-4"
                             id="mail"
                             type="text"
                             value={formik.values.email}

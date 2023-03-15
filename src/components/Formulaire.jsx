@@ -50,13 +50,13 @@ const Formulaire = () => {
         next();
     }
     return (
-        <div className="flex flex-col items-center justify-center w-4/6 p-2 m-1 bg-white rounded-xl  h-5/6 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
-            <form className="w-7/12 h-7/12" onSubmit={onSubmit}>
+        <div className="flex flex-col items-center w-3/4 pt-8 bg-white rounded-xl h-5/6 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
+            <form className="w-2/3 h-7/12" onSubmit={onSubmit}>
                 <ProgressBar progressValue={((currentStepIndex + 1) / steps.length) * 100 + '%'} />
                 {step}
-                <div className="flex w-full gap-2 mt-4">
+                <div className={`flex ${isFirstStep ? 'justify-end' : 'justify-between'} mt-4`}>
                     {!isFirstStep && <button type="button" onClick={back} className="">Retour</button>}
-                    {!isLastStep && <button type="submit" className="">Suivant</button>}
+                    {!isLastStep && <button type="submit" className="rounded-2xl bg-[#13005A] text-white text-xs px-5 py-2 ">Suivant</button>}
                     {isLastStep && <button type="submit">Inscrire</button>}
                 </div>
             </form >
