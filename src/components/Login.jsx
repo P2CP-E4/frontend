@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/images/logo.svg"
 import crois from "../assets/images/crois.svg"
+import passwordVisibleEye from "../assets/images/passwordVisible.svg"
+import passwordInvisibleEye from "../assets/images/passwordInvisible.svg"
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const Login = () => {
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const togglePasswordVisibility = () => {
+        setIsPasswordVisible(!isPasswordVisible);
+    };
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -36,7 +44,7 @@ const Login = () => {
                         <input
                             type="email"
                             id="email"
-                            className="outline-none block w-full appearance-none rounded-lg border border-[#1C82AD] py-1.5 px-4"
+                            className="outline-none block w-full text-[#13005A] text-sm appearance-none rounded-lg border border-[#1C82AD] py-2 px-4"
                             onChange={formik.handleChange}
                             value={formik.values.email}
                             onBlur={formik.handleBlur}
@@ -44,19 +52,25 @@ const Login = () => {
                         />
                     </div>
 
-                    <div>
+                    <div className="relative">
                         <label className="mb-2 block text-xs font-normal text-[#13005A]">Mot de passe</label>
                         <input
-                            type="password"
+                            type={isPasswordVisible ? "text" : "password"}
                             id="password"
                             placeholder="••••••••"
-                            className="outline-none block w-full appearance-none rounded-lg border py-1.5 px-4 border-[#1C82AD]"
+                            className="outline-none block w-full text-[#13005A] text-sm appearance-none rounded-lg border py-2 px-4 border-[#1C82AD]"
                             onChange={formik.handleChange}
                             value={formik.values.password}
                             onBlur={formik.handleBlur}
                             autoComplete="current-password"
                         />
-
+                        <button
+                            type="button"
+                            className="absolute top-8 right-3 w-4   h-6"
+                            onClick={togglePasswordVisibility}
+                        >
+                            {isPasswordVisible ? <img src={passwordVisibleEye} alt="password visible" className="w-4 h-4" /> : <img src={passwordInvisibleEye} alt="password invisible" className="w-4 h-4" />}
+                        </button>
                     </div>
                     <a href="/" className="text-xs underline font-medium text-[#13005A]">Mot de passe oublié ?</a>
                     <div className="mb-3 mt-12 flex flex-col items-center">
@@ -71,7 +85,6 @@ const Login = () => {
                             className="flex flex-wrap justify-between rounded-3xl w-full border border-[#1C82AD] bg-[#EEF1F2] px-4 py-2.5 "
                             type="button"
                         >
-
                             <small className=" text-gray-500">Continuer en tant que ...</small>
                             <img
                                 className="w-5"

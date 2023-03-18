@@ -1,4 +1,5 @@
 import React from "react";
+import error from "../assets/images/formsErrorSign.svg"
 const FormulairePage1 = ({ formik }) => {
     return (
         <div className="w-2/3">
@@ -6,7 +7,7 @@ const FormulairePage1 = ({ formik }) => {
                 Informations personnelles
             </h2>
             <div className="mb-6 -mx-3 md:flex">
-                <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2" >
+                <div className="px-4 pb-2 mb-6 md:mb-0 md:w-1/2 relative" >
                     <label
                         className="mb-2 text-xs tracking-wide text-[#13005A]"
                         htmlFor="nom"
@@ -21,7 +22,8 @@ const FormulairePage1 = ({ formik }) => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     />
-
+                    {formik.touched.nom && formik.errors.nom && <img src={error} alt="error" className="absolute top-9 right-7 w-4 h-4" />}
+                    {formik.touched.nom && formik.errors.nom && <span className="absolute left-5 bottom-0 text-xs text-red-400" >{formik.errors.nom}</span>}
                 </div>
                 <div className="px-3 md:w-1/2">
                     <label
@@ -44,13 +46,13 @@ const FormulairePage1 = ({ formik }) => {
             <div className="mb-6 -mx-3 md:flex">
                 <div className="px-3 mb-6 md:mb-0 md:w-1/2">
                     <label
-                        className="mb-2 block text-xs tracking-wide text-[#13005A]"
+                        className="mb-2 text-xs tracking-wide text-[#13005A]"
                         htmlFor="sexe"
                     >
                         Sexe
                     </label>
                     <select
-                        className={`bg-white outline-none block w-full rounded-lg border py-2 px-4 ${(formik.touched.sexe && formik.errors.sexe) ? 'border-red-400' : 'border-[#1C82AD]'}`}
+                        className={`bg-white outline-none block w-full rounded-lg border py-2.5 px-4 ${(formik.touched.sexe && formik.errors.sexe) ? 'border-red-400' : 'border-[#1C82AD]'}`}
                         id="sexe"
                         onChange={formik.handleChange}
                         value={formik.values.sexe}
@@ -89,7 +91,7 @@ const FormulairePage1 = ({ formik }) => {
                         N° de telephone
                     </label>
                     <input
-                        className={`outline-none mb-3 block w-full appearance-none rounded-lg border border-[#1C82AD] py-2 px-4 ${(formik.touched.telephone && formik.errors.telephone) ? 'border-red-400' : 'border-[#1C82AD]'}`}
+                        className={`outline-none mb-3 block w-full appearance-none rounded-lg border  py-2 px-4 ${(formik.touched.telephone && formik.errors.telephone) ? 'border-red-400' : 'border-[#1C82AD]'}`}
                         id="telephone"
                         type="text"
                         onChange={formik.handleChange}
