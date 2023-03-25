@@ -1,19 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion"
-const Arrow = ({ showCoDirecteur, fill }) => {
-    return <svg width="23" height="14" viewBox="0 0 23 14" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-4 h-4">
-        <motion.path
-            d="M2.7025 0L11.5 8.65317L20.2975 0L23 2.66397L11.5 14L0 2.66397L2.7025 0Z"
-            fill={fill}
-            animate={{
-                rotate: showCoDirecteur ? 180 : 0,
-            }}
-            transition={{
-                duration: 0.3
-            }}
-        />
-    </svg>
-}
+import Arrow from "./Arrow"
 
 const FormulairePage4 = ({ formik }) => {
     const [showCoDirecteur, setShowCoDirecteur] = useState(false);
@@ -83,7 +70,7 @@ const FormulairePage4 = ({ formik }) => {
                     onClick={handleClickEvent}
                 >
                     Information du Co-directeur <span className="text-[#03C988] pl-1 pr-5">(optionnelle)</span>
-                    <Arrow showCoDirecteur={showCoDirecteur} fill='#03C988' />
+                    <Arrow showCoDirecteur={showCoDirecteur} fill='#03C988' className="w-4" />
                 </div>
                 {
                     showCoDirecteur && <div className="mt-5 mb-12 -mx-3 md:flex">

@@ -68,8 +68,12 @@ const Formulaire = () => {
     ]);
     const onSubmit = (e) => {
         e.preventDefault();
-        next();
+        if (isLastStep)
+            formik.handleSubmit();
+        else
+            next();
     }
+
     console.log(formik.values);
     return (
         <div className="flex flex-col items-center w-3/4 pt-8 bg-white rounded-xl md:h-5/6 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
