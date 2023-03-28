@@ -2,7 +2,9 @@ import React from 'react'
 
 function Doctorant() {
     return (
-        <div>Doctorant</div>
+        <div>Doctorant
+            <h1>maria et asma try</h1>
+        </div>
     )
 }
 

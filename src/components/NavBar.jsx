@@ -14,10 +14,10 @@ const NavBar = () => {
 
     return (
         <>
-            <nav className=" bg-[#13005A] w-full h-16  shadow">
+            <nav className=" bg-[#13005A] container h-16  shadow">
                 <div className="container mx-auto px-4">
                     <div className="flex items-center justify-around py-4">
-                        <img src={logo} alt='logo' className='w-8' />
+                        <img src={logo} alt='logo' className='w-24' />
                         <ul className="hidden sm:flex sm:items-center gap-12 ml-28">
                             <li className="text-white text-base font-normal"><Link to="/">Acceuil</Link></li>
                             <li className="text-white text-base font-normal"><Link to="/doctorant">Doctorant</Link></li>
@@ -30,7 +30,6 @@ const NavBar = () => {
                             <p className='text-white text-'>Lorem Ipsum</p>
                             <Arrow state={arrowState} fill={'#03C183'} className="w-2.5" />
                         </div>
-
                     </div>
                 </div>
             </nav >
