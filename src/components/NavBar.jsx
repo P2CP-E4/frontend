@@ -7,15 +7,15 @@ import profilePic from '../assets/images/profilePic.svg';
 import Arrow from './Arrow';
 
 const NavBar = () => {
-    const [arrowState, setArrowState] = useState(false);
+    const [dropDownIsOpen, setDropDownIsOpenState] = useState(false);
     const handleClickEvent = () => {
-        setArrowState(!arrowState);
+        setDropDownIsOpenState(!dropDownIsOpen);
     }
 
     return (
         <>
-            <nav className=" bg-[#13005A] container h-16  shadow">
-                <div className="container mx-auto px-4">
+            <nav className=" bg-[#13005A] h-16 shadow relative">
+                <div className="mx-auto px-4">
                     <div className="flex items-center justify-around py-4">
                         <img src={logo} alt='logo' className='w-24' />
                         <ul className="hidden sm:flex sm:items-center gap-12 ml-28">
@@ -25,14 +25,26 @@ const NavBar = () => {
                             <li className="text-white text-base font-normal"><Link to="/pv">PV</Link></li>
                             <li className="text-white text-base font-normal underline"><Link to="/aide">Aide</Link></li>
                         </ul>
-                        <div className='flex items-center cursor-pointer gap-2' onClick={handleClickEvent} >
-                            <img src={profilePic} alt='profile-pic' className='w-8' />
-                            <p className='text-white text-'>Lorem Ipsum</p>
-                            <Arrow state={arrowState} fill={'#03C183'} className="w-2.5" />
-                        </div>
+                        <button
+                            className=" text-white flex justify-between  items-center text-sm font-normal w-44"
+                            type="button"
+                            onClick={handleClickEvent}
+                        >
+                            <img src={profilePic} alt='profile-pic' className='w-10' />
+                            Lorem Ipsum
+                            <Arrow state={dropDownIsOpen} fill="green" className="h-2" />
+                        </button>
                     </div>
                 </div>
             </nav >
+            {dropDownIsOpen &&
+                <div className="text-sm text-gray-700 w-44 bg-white rounded-b-md absolute top-16 right-20 border-x border-b border-[#1C82AD]">
+                    <ul>
+                        <li className='className="block px-4 py-2 text-[#4E4E4E] hover:bg-[#ADD8E6] border-b border-[#1C82AD]'><Link to="/" >Consulter profile</Link></li >
+                        <li className='className="block px-4 py-2 text-[#4E4E4E] hover:bg-[#ADD8E6]'><Link to="/" >Se déconecter</Link></li>
+                    </ul >
+                </div >
+            }
         </>
     );
 }
