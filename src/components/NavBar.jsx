@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import { motion } from "framer-motion"
 import logo from '../assets/images/logo.svg';
 import profilePic from '../assets/images/profilePic.svg';
 import Arrow from './Arrow';
