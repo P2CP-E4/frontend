@@ -1,9 +1,9 @@
 import React from 'react';
-const TablePagination = ({ content, style, handleClickEvent, disable }) => {
+const PaginationButton = ({ content, style, handleClickEvent, disable }) => {
     return (
         <button
             type='button'
-            className='w-10 h-10 flex justify-center items-center bg-[#070606] rounded-2xl text-white mx-1'
+            className='flex items-center justify-center w-9 h-9 mx-1 text-black bg-white hover:bg-[#D9D9D9] rounded-2xl'
             style={style}
             onClick={handleClickEvent}
             disabled={disable}
@@ -13,4 +13,4 @@ const TablePagination = ({ content, style, handleClickEvent, disable }) => {
     );
 }
 
-export default TablePagination;
+export default PaginationButton;

@@ -8,8 +8,8 @@ const ProgressBar = ({ progressValue }) => {
                 transition={{
                     duration: 1
                 }}
-            ></motion.div>
-        </div>
+            />
+        </div >
     );
 }
 export default ProgressBar;

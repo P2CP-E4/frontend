@@ -30,7 +30,7 @@ const NavBar = () => {
                         >
                             <img src={profilePic} alt='profile-pic' className='w-10' />
                             Lorem Ipsum
-                            <Arrow state={dropDownIsOpen} fill="green" className="h-2" />
+                            <Arrow state={dropDownIsOpen} fill="#03C988" className="h-2" />
                         </button>
                     </div>
                 </div>
