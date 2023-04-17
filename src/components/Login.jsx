@@ -7,7 +7,7 @@ import passwordInvisibleEye from "../assets/images/passwordinvisible.svg"
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-const Login = () => {
+const Login = ({ handleCloseEvent }) => {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible);
@@ -31,10 +31,10 @@ const Login = () => {
     })
 
     return (
-        <div className="flex flex-wrap content-center justify-center rounded-2xl bg-white shadow-xl w-[450px] h-fit px-4 pt-4 pb-12" >
-            <img src={crois} alt="crois" className="w-5 mb-2 ml-auto cursor-pointer" />
-            <div className="flex flex-col items-center w-full pb-5">
-                <img src={logo} alt="logo" className="h-20 pb-3" />
+        <div className="mx-auto flex flex-wrap justify-center rounded-2xl bg-white shadow-xl w-[450px] h-fit px-4 pt-4 pb-7" >
+            <img id='close-button' src={crois} alt="crois" className="w-5 mb-2 ml-auto cursor-pointer" onClick={handleCloseEvent} />
+            <div className="flex flex-col items-center justify-center w-full pb-5">
+                <img src={logo} alt="logo" className="h-20 pb-3 pl-40" />
                 <h1 className="text-2xl text-[#13005A]">Bienvenue à la DPGR!</h1>
             </div>
             <div className="w-64">

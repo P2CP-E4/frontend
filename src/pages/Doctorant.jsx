@@ -1,11 +1,15 @@
 import React from 'react'
-import DoctorantTable from '../components/DoctorantsTable'
+import DoctorantTable from '../components/DoctorantsTable';
+import NavBar from '../components/NavBar';
 function Doctorant() {
     return (
-        <div className='flex flex-col justify-center items-center'>
-            <h1 className=' text-base my-5'>Tableau des Doctorants</h1>
-            <DoctorantTable />
-        </div>
+        <>
+            <NavBar />
+            <div className='flex flex-col items-center justify-center'>
+                <h1 className='my-5 text-base '>Tableau des Doctorants</h1>
+                <DoctorantTable />
+            </div>
+        </>
     )
 }
 

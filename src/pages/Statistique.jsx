@@ -1,8 +1,11 @@
 import React from 'react'
-
+import NavBar from '../components/NavBar'
 function Statistique() {
     return (
-        <div>Statistique</div>
+        <>
+            <NavBar />
+            <div>Statistique</div>
+        </>
     )
 }
 
