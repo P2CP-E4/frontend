@@ -4,6 +4,9 @@ import Pagination from './Pagination';
 import doctorant_data from '../data/doctorant_data.json';
 import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
+import StatusCustomCard from './StatusCustomCard';
+import edit_icon from '../assets/images/edit_icon.svg';
+
 const DoctorantTable = () => {
     //TODO: fetch data from API
     const data = useMemo(() => doctorant_data, []);
@@ -11,7 +14,8 @@ const DoctorantTable = () => {
         {
             Header: 'Nom et prénom',
             accessor: 'nomPrenom',
-            placeHolderFilter: 'Nom/prenom'
+            placeHolderFilter: 'Nom/prenom',
+            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span> <img src={edit_icon} alt='edit' className='w-5 h-5' /></span>,
         },
         {
             Header: 'Date 1ére inscription',
@@ -33,6 +37,7 @@ const DoctorantTable = () => {
             Header: 'Directeur',
             accessor: 'directeurPrincipal',
             placeHolderFilter: 'Directeur',
+            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span> <img src={edit_icon} alt='edit' className='w-5 h-5' /></span>,
         },
         {
             Header: 'Code PV',
@@ -49,6 +54,7 @@ const DoctorantTable = () => {
             accessor: 'status',
             placeHolderFilter: 'status',
             Filter: ColumSelectFilter,
+            Cell: ({ value }) => <StatusCustomCard value={value} />
         },
     ], []);
     const {
@@ -80,7 +86,7 @@ const DoctorantTable = () => {
                             <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10 rounded-t-xl text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
                                 {headerGroup.headers.map((column) => (
 
-                                    <th className='text-center border'{...column.getHeaderProps()}>
+                                    <th className='pl-5 text-left border'{...column.getHeaderProps()}>
                                         {column.render("Header")}
                                         {console.log(column)}
                                     </th>
@@ -95,7 +101,7 @@ const DoctorantTable = () => {
                         return (
                             <tr className='border-b border-gray-200 hover:bg-gray-100' {...row.getRowProps()}>
                                 {row.cells.map((cell) => (
-                                    <td className='px-6 py-3 text-left whitespace-nowrap' {...cell.getCellProps}>{cell.render('Cell')}</td>
+                                    <td className='px-2 py-3 text-center whitespace-nowrap' {...cell.getCellProps}>{cell.render('Cell')}</td>
                                 ))}
                             </tr>
                         );
