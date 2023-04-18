@@ -10,7 +10,7 @@ const ColumnFilter = ({ column }) => {
                 placeholder={column.placeHolderFilter}
                 value={filterValue || ''}
                 onChange={(e) => setFilter(e.target.value || undefined)}
-                className='first-letter:outline-none border border-[#1C82AD] rounded-full w-32 h-9 appearance-none px-2.5 py-2.5 mx-2 text-xs text-[#545454]'
+                className='outline-none border border-[#1C82AD] rounded-full w-32 h-9 appearance-none px-2.5 py-2.5 mx-2 text-xs text-[#545454]'
             />
             <img src={search} alt='search' className='absolute w-4 h-4 top-3 right-4' />
         </div >

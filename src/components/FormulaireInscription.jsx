@@ -7,8 +7,14 @@ import FormulairePage3 from "./FormulairePage3";
 import FormulairePage4 from "./FormulairePage4";
 import ProgressBar from "./ProgressBar";
 import { useMultiStepForm } from "../hooks/useMultiStepForm";
+import { useNavigate } from 'react-router-dom';
 
-const Formulaire = () => {
+const FormulaireInscription = () => {
+    const navigate = useNavigate();
+
+    const handleClickEvent = () => {
+        navigate('/');
+    }
 
     const formik = useFormik({
         initialValues: {
@@ -83,11 +89,11 @@ const Formulaire = () => {
                 <div className={`w-full px-14 flex ${isFirstStep ? 'justify-end' : 'justify-between'} mb-10 md:absolute md:bottom-0`}>
                     {!isFirstStep && <button type="button" onClick={back} className="rounded-3xl bg-[#13005A] text-white text-sm px-5 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Retour</button>}
                     {!isLastStep && <button type="submit" className=" rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>}
-                    {isLastStep && <button type="button" className="bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988]">Inscrire</button>}
+                    {isLastStep && <button type="button" className="bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988]" onClick={handleClickEvent}>Inscrire</button>}
                 </div>
             </form >
         </div >
     );
 }
 
-export default Formulaire;
+export default FormulaireInscription;

@@ -24,8 +24,9 @@ const WelcomPage = () => {
                 <button
                     type='button'
                     onClick={() => setLoginClicked(true)}
-                    className=' px-24 py-1.5 border-2 border-[#03C988] bg-[#03C988] text-white rounded-2xl hover:bg-white hover:text-[#03C988]'
-                >Se connecter</button>
+                    className=' px-24 py-1.5 border-2 border-[#03C988] bg-[#03C988] text-white rounded-2xl hover:bg-[#DCE7F1] hover:text-[#03C988]'
+                >Se connecter
+                </button>
             </div>
             <div className='flex items-end justify-self-end'>
                 <img src={ESI} alt="esi" className='h-10' />

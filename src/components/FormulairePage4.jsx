@@ -70,7 +70,7 @@ const FormulairePage4 = ({ formik }) => {
                     onClick={handleClickEvent}
                 >
                     Information du Co-directeur <span className="text-[#03C988] pl-1 pr-5">(optionnelle)</span>
-                    <Arrow showCoDirecteur={showCoDirecteur} fill='#03C988' className="w-4" />
+                    <Arrow fill='#03C988' className="w-4" state={showCoDirecteur} />
                 </div>
                 {
                     showCoDirecteur && <div className="mt-5 mb-12 -mx-3 md:flex">

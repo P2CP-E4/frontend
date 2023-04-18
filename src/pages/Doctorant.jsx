@@ -6,7 +6,7 @@ function Doctorant() {
         <>
             <NavBar />
             <div className='flex flex-col items-center justify-center'>
-                <h1 className='my-5 text-base '>Tableau des Doctorants</h1>
+                <h1 className='my-5 text-base text-[#13005A]'>Tableau des Doctorants</h1>
                 <DoctorantTable />
             </div>
         </>

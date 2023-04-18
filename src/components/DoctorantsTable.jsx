@@ -1,21 +1,33 @@
-import React, { useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTable, usePagination, useFilters, useGlobalFilter } from 'react-table';
 import Pagination from './Pagination';
 import doctorant_data from '../data/doctorant_data.json';
 import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
 import StatusCustomCard from './StatusCustomCard';
+import CarteInformationDoctorantPopUp from './CarteInformationDoctorantPopUp';
 import edit_icon from '../assets/images/edit_icon.svg';
+
 
 const DoctorantTable = () => {
     //TODO: fetch data from API
+    const [informationDoctorantClicked, setInformationDoctorantClicked] = useState(false);
+    //handle close event for the information doctorant popup model
+    const handleCloseEventInformationDoctorant = (e) => {
+        if (e.target.id === 'blured-background' || e.target.id === 'close-button') setInformationDoctorantClicked(false);
+    }
+    //handle close event for the information Encadrant popup model
+    const handleCloseEventInformationEncadrant = (e) => {
+        if (e.target.id === 'blured-background' || e.target.id === 'close-button') setInformationDoctorantClicked(false);
+    }
+
     const data = useMemo(() => doctorant_data, []);
     const columns = useMemo(() => [
         {
             Header: 'Nom et prénom',
             accessor: 'nomPrenom',
             placeHolderFilter: 'Nom/prenom',
-            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span> <img src={edit_icon} alt='edit' className='w-5 h-5' /></span>,
+            Cell: ({ value }) => < span className='flex justify-between' ><span className='text-xs'>{value}</span><img src={edit_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={() => setInformationDoctorantClicked(true)} /></span >,
         },
         {
             Header: 'Date 1ére inscription',
@@ -37,7 +49,7 @@ const DoctorantTable = () => {
             Header: 'Directeur',
             accessor: 'directeurPrincipal',
             placeHolderFilter: 'Directeur',
-            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span> <img src={edit_icon} alt='edit' className='w-5 h-5' /></span>,
+            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span><img src={edit_icon} alt='edit' className='w-5 h-5' /></span>,
         },
         {
             Header: 'Code PV',
@@ -101,7 +113,7 @@ const DoctorantTable = () => {
                         return (
                             <tr className='border-b border-gray-200 hover:bg-gray-100' {...row.getRowProps()}>
                                 {row.cells.map((cell) => (
-                                    <td className='px-2 py-3 text-center whitespace-nowrap' {...cell.getCellProps}>{cell.render('Cell')}</td>
+                                    <td className='px-5 py-3 text-left whitespace-nowrap' {...cell.getCellProps}>{cell.render('Cell')}</td>
                                 ))}
                             </tr>
                         );
@@ -119,6 +131,7 @@ const DoctorantTable = () => {
                     gotoPage={gotoPage}
                 />
             </div>
+            {informationDoctorantClicked && <CarteInformationDoctorantPopUp handleCloseEvent={handleCloseEventInformationDoctorant} />}
         </>
     );
 }

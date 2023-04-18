@@ -9,4 +9,4 @@ function Statistique() {
     )
 }
 
-export default Statistique
+export default Statistique;

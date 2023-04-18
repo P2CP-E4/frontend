@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/images/logo.svg"
 import crois from "../assets/images/crois.svg"
 import passwordVisibleEye from "../assets/images/passwordvisible.svg"
@@ -74,12 +75,14 @@ const Login = ({ handleCloseEvent }) => {
                     </div>
                     <a href="/" className="text-xs underline font-medium text-[#13005A]">Mot de passe oublié ?</a>
                     <div className="flex flex-col items-center mt-12 mb-3">
-                        <button
-                            className="bg-[#03C988] rounded-3xl font-semibold text-center w-full text-white text-base px-6 py-1.5 hover:bg-white hover:text-[#03C988] border-2 border-[#03C988] "
-                            type="submit"
-                        >
-                            Se connecter
-                        </button>
+                        <Link to="/" className="w-fit h-fir">
+                            <button
+                                className="bg-[#03C988] rounded-3xl font-semibold text-center text-white text-base px-6 py-1.5 hover:bg-white hover:text-[#03C988] border-2 w-64 border-[#03C988] "
+                                type="submit"
+                            >
+                                Se connecter
+                            </button>
+                        </Link>
                         <span className="py-3 text-sm font-semibold">OU</span>
                         <button
                             className="flex flex-wrap justify-between rounded-3xl w-full border border-[#1C82AD] bg-[#EEF1F2] px-4 py-2.5 "
