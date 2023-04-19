@@ -32,7 +32,10 @@ const Login = ({ handleCloseEvent }) => {
     })
 
     return (
-        <div className="mx-auto flex flex-wrap justify-center rounded-2xl bg-white shadow-xl w-[450px] h-fit px-4 pt-4 pb-7" >
+        <div
+            className="mx-auto flex flex-wrap justify-center rounded-2xl bg-white shadow-xl w-[450px] h-fit px-4 pt-4 pb-7"
+            onClick={e => e.stopPropagation()}
+        >
             <img id='close-button' src={crois} alt="crois" className="w-5 mb-2 ml-auto cursor-pointer" onClick={handleCloseEvent} />
             <div className="flex flex-col items-center justify-center w-full pb-5">
                 <img src={logo} alt="logo" className="h-20 pb-3 pl-40" />

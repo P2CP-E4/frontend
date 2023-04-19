@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { LoginPopUp } from '../components/LoginPopUp';
+import { usePopUp } from '../hooks/usePopUp';
+import Login from '../components/Login';
+import PopUp from '../components/PopUp';
 import ESI from '../assets/images/ESI.svg'
-const WelcomPage = () => {
-    const [loginClicked, setLoginClicked] = useState(false);
-    const handleCloseEvent = (e) => {
-        if (e.target.id === 'blured-background' || e.target.id === 'close-button') setLoginClicked(false);
-    }
-
+const WelcomePage = () => {
+    const [loginClicked, openLoginPopUp, closeLoginPopUp] = usePopUp();
     return (
         <div className="flex flex-col justify-between w-screen h-screen py-6 pl-16 bg-[url('/src/assets/images/welcomePage.jpg')] bg-cover">
             <nav className="flex ml-10">
                 <ul className="flex gap-10">
-                    <li className=" text-[#13005A] font-semibold hover:text-[#03C988]"><a href="/welcomepage" onClick={() => setLoginClicked(true)}>Acceuil</a></li>
+                    <li className=" text-[#13005A] font-semibold hover:text-[#03C988]"><a href="/welcomepage" onClick={openLoginPopUp}>Acceuil</a></li>
                     <li className="text-[#13005A] font-semibold hover:text-[#03C988]"><a href="/welcomepage">Se Connecter</a></li>
                 </ul>
             </nav>
@@ -23,7 +21,7 @@ const WelcomPage = () => {
                     <br /> minim.</p>
                 <button
                     type='button'
-                    onClick={() => setLoginClicked(true)}
+                    onClick={openLoginPopUp}
                     className=' px-24 py-1.5 border-2 border-[#03C988] bg-[#03C988] text-white rounded-2xl hover:bg-[#DCE7F1] hover:text-[#03C988]'
                 >Se connecter
                 </button>
@@ -32,10 +30,10 @@ const WelcomPage = () => {
                 <img src={ESI} alt="esi" className='h-10' />
                 <p className='text-xs text-[#13005A]'>Ecole nationale Supérieure d’Informatique ESI</p>
             </div>
-            {loginClicked && <LoginPopUp handleCloseEvent={handleCloseEvent} />}
+            <PopUp trigger={loginClicked} handleCloseEvent={closeLoginPopUp}><Login handleCloseEvent={closeLoginPopUp} /></PopUp>
         </div>
 
     );
 }
 
-export default WelcomPage;
+export default WelcomePage;

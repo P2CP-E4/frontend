@@ -35,7 +35,8 @@ const NavBar = () => {
                     </div>
                 </div>
             </nav >
-            {dropDownIsOpen &&
+            {
+                dropDownIsOpen &&
                 <div className="text-sm text-gray-700 w-44 bg-white rounded-b-md absolute top-16 right-20 border-x border-b border-[#1C82AD]">
                     <ul>
                         <li className='className="block px-4 py-2 text-[#4E4E4E] hover:bg-[#ADD8E6] border-b border-[#1C82AD]'><Link to="/" >Consulter profile</Link></li >

@@ -1,25 +1,22 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useTable, usePagination, useFilters, useGlobalFilter } from 'react-table';
+import { usePopUp } from '../hooks/usePopUp';
 import Pagination from './Pagination';
-import doctorant_data from '../data/doctorant_data.json';
+import PopUp from './PopUp';
+import CarteInformationDoctorant from './CarteInformationDoctorant';
+import CartesInformationsDirecteur from './CarteInformationDirecteur';
 import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
 import StatusCustomCard from './StatusCustomCard';
-import CarteInformationDoctorantPopUp from './CarteInformationDoctorantPopUp';
 import edit_icon from '../assets/images/edit_icon.svg';
+import doctorant_data from '../data/doctorant_data.json';
 
 
 const DoctorantTable = () => {
     //TODO: fetch data from API
-    const [informationDoctorantClicked, setInformationDoctorantClicked] = useState(false);
-    //handle close event for the information doctorant popup model
-    const handleCloseEventInformationDoctorant = (e) => {
-        if (e.target.id === 'blured-background' || e.target.id === 'close-button') setInformationDoctorantClicked(false);
-    }
-    //handle close event for the information Encadrant popup model
-    const handleCloseEventInformationEncadrant = (e) => {
-        if (e.target.id === 'blured-background' || e.target.id === 'close-button') setInformationDoctorantClicked(false);
-    }
+    //* usePopUp is a custom hook made to handle the popUp events
+    const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
+    const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
 
     const data = useMemo(() => doctorant_data, []);
     const columns = useMemo(() => [
@@ -27,7 +24,7 @@ const DoctorantTable = () => {
             Header: 'Nom et prénom',
             accessor: 'nomPrenom',
             placeHolderFilter: 'Nom/prenom',
-            Cell: ({ value }) => < span className='flex justify-between' ><span className='text-xs'>{value}</span><img src={edit_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={() => setInformationDoctorantClicked(true)} /></span >,
+            Cell: ({ value }) => < span className='flex justify-between' ><span className='text-xs'>{value}</span><img src={edit_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDoctorantPopUp} /></span >,
         },
         {
             Header: 'Date 1ére inscription',
@@ -49,7 +46,7 @@ const DoctorantTable = () => {
             Header: 'Directeur',
             accessor: 'directeurPrincipal',
             placeHolderFilter: 'Directeur',
-            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span><img src={edit_icon} alt='edit' className='w-5 h-5' /></span>,
+            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span><img src={edit_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDirecteurPopUp} /></span>,
         },
         {
             Header: 'Code PV',
@@ -91,14 +88,15 @@ const DoctorantTable = () => {
                     {headerGroup.headers.map((column) => column.canFilter ? column.render("Filter") : null)}
                 </div >
             ))}
-            <table className="w-11/12 table-fixed rounded-t-xl" {...getTableProps()}>
+
+            <table className="w-11/12 table-auto" {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
                         <>
                             <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10 rounded-t-xl text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
                                 {headerGroup.headers.map((column) => (
 
-                                    <th className='pl-5 text-left border'{...column.getHeaderProps()}>
+                                    <th className='pl-5 text-left border '{...column.getHeaderProps()}>
                                         {column.render("Header")}
                                         {console.log(column)}
                                     </th>
@@ -131,7 +129,8 @@ const DoctorantTable = () => {
                     gotoPage={gotoPage}
                 />
             </div>
-            {informationDoctorantClicked && <CarteInformationDoctorantPopUp handleCloseEvent={handleCloseEventInformationDoctorant} />}
+            <PopUp trigger={doctorantPopUpTrigger} handleCloseEvent={closeDoctorantPopUp}><CarteInformationDoctorant handleCloseEvent={closeDoctorantPopUp} /></PopUp>
+            <PopUp trigger={directeurPopUpTrigger} handleCloseEvent={closeDirecteurPopUp}><CartesInformationsDirecteur handleCloseEvent={closeDirecteurPopUp} /></PopUp>
         </>
     );
 }

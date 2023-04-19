@@ -1,11 +1,15 @@
 import React from 'react'
 import crois from '../assets/images/crois.svg'
-const CarteInformationDoctorant = (props) => {
+
+const CarteInformationDoctorant = ({ handleCloseEvent }) => {
     return (
-        <div className=' bg-white w-11/12 h-fit pr-10 pl-20 pb-14 pt-8 rounded-3xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]'>
+        <div
+            className=' bg-white w-11/12 h-fit pr-10 pl-20 pb-14 pt-8 rounded-3xl shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]'
+            onClick={e => e.stopPropagation()}
+        >
             <div className='flex justify-between'>
                 <h2 className=" text-xl font-semibold text-[#03C988] mb-4">Informations personnelles</h2>
-                <img id='close-button' src={crois} alt='crois' className='ml-auto cursor-pointer w-7' />
+                <img src={crois} alt='crois' onClick={handleCloseEvent} className='ml-auto cursor-pointer w-7' />
             </div>
             <div className='grid w-full grid-cols-3 gap-5 ml-5'>
                 <span className="text-[#00337C]">Nom :<span className='ml-1 font-semibold text-black'>Benmachiche</span></span>

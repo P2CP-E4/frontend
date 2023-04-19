@@ -6,7 +6,7 @@ import Statistique from "./pages/Statistique";
 import Pv from "./pages/Pv";
 import Aide from "./pages/Aide";
 import NoPage from "./pages/NoPage";
-import WelcomPage from "./pages/WelcomePage";
+import WelcomePage from "./pages/WelcomePage";
 import Inscription from "./pages/Inscription";
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/aide" element={<Aide />} />
         <Route path="/pv" element={<Pv />} />
         <Route path="/statistique" element={<Statistique />} />
-        <Route path="/welcomepage" element={<WelcomPage />} />
+        <Route path="/welcomepage" element={<WelcomePage />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
