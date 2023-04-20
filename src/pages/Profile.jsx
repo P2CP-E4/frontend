@@ -1,12 +1,13 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
-function Statistique() {
+
+const Profile = () => {
     return (
         <>
             <NavBar />
-            <div>Statistique</div>
+            <div>Profile</div>
         </>
     )
 }
 
-export default Statistique;
+export default Profile

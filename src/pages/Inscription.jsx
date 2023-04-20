@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar'
 const Inscription = () => {
     return (
         <>
-            <div className='flex flex-col items-center justify-between w-screen h-screen pb-8 bg-white'>
+            <div className='flex flex-col items-center justify-between w-screen h-screen pb-8'>
                 <NavBar />
                 <FormulaireInscription />
             </div>

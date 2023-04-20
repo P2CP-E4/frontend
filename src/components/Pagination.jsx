@@ -2,7 +2,13 @@ import React from 'react';
 import PaginationButton from './PaginationButton';
 const Pagination = ({ pageNumber, currentPageIndex, nextPage, previousPage, canNextPage, canPreviousPage, gotoPage }) => {
     const pagination = [];
-    if (currentPageIndex <= 4) {
+    if (pageNumber <= 8) {
+
+        for (let i = 1; i <= pageNumber; i++) {
+            i === currentPageIndex ? pagination.push(<PaginationButton content={i} style={{ backgroundColor: "#03C988", color: "white" }} />) : pagination.push(<PaginationButton content={i} handleClickEvent={() => gotoPage(i - 1)} />);
+        }
+
+    } else if (currentPageIndex <= 4) {
 
         for (let i = 1; i <= 7; i++) {
             i === currentPageIndex ? pagination.push(<PaginationButton content={i} style={{ backgroundColor: "#03C988", color: "white" }} />) : pagination.push(<PaginationButton content={i} handleClickEvent={() => gotoPage(i - 1)} />);

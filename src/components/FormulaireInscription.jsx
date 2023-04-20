@@ -10,8 +10,8 @@ import { useMultiStepForm } from "../hooks/useMultiStepForm";
 import { useNavigate } from 'react-router-dom';
 
 const FormulaireInscription = () => {
+    //TODO: Add multi step form validation
     const navigate = useNavigate();
-
     const handleClickEvent = () => {
         navigate('/');
     }
@@ -43,7 +43,7 @@ const FormulaireInscription = () => {
             nom: Yup.string().min(3, 'Min. 3 characters').required(),
             prenom: Yup.string().min(3, 'Min. 3 characters').required(),
             sexe: Yup.string().required(),
-            dateNaissance: Yup.boolean().required(),
+            dateNaissance: Yup.date().required(),
             telephone: Yup.string().required(),
             email: Yup.string().email('enter un email valid').required(),
             LmdOuClassique: Yup.string().required(),
@@ -72,15 +72,12 @@ const FormulaireInscription = () => {
         <FormulairePage3 key="3" formik={formik} />,
         <FormulairePage4 key="4" formik={formik} />
     ]);
+    console.log(formik);
     const onSubmit = (e) => {
         e.preventDefault();
-        if (isLastStep)
-            formik.handleSubmit();
-        else
-            next();
+        next();
     }
 
-    console.log(formik.values);
     return (
         <div className="flex flex-col items-center w-3/4 pt-8 bg-white rounded-xl md:h-5/6 shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
             <ProgressBar progressValue={((currentStepIndex + 1) / steps.length) * 100 + '%'} />

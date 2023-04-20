@@ -1,32 +1,45 @@
-import React, { useMemo } from 'react';
-import { useTable, useFilters, usePagination } from 'react-table';
+import React, { useMemo } from 'react'
+import { useTable, useFilters, useGlobalFilter, usePagination } from 'react-table';
 import Pagination from './Pagination';
 import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
-import pv_data from '../data/pv_data.json';
-const PvTable = () => {
+import StatusCustomCard from './StatusCustomCard';
+import doctorant_data from '../data/doctorant_data.json';
+const ModificationStatusTable = () => {
     //TODO: fetch data from API
-    const data = useMemo(() => pv_data.sort((a, b) => (a.date - b.date)), []);
+    const data = useMemo(() => doctorant_data, []);
+
     const columns = useMemo(() => [
         {
-            Header: 'Année',
-            accessor: 'date',
-            placeHolderFilter: 'Année',
-            Filter: ColumSelectFilter,
-        },
-        {
-            Header: 'Code',
-            accessor: 'code',
-            placeHolderFilter: 'Code',
+            Header: 'Nom et prénom',
+            accessor: 'nomPrenom',
+            placeHolderFilter: 'Nom/prenom',
             Filter: ColumnFilter,
         },
         {
-            Header: 'Lien',
-            accessor: 'url',
-            placeHolderFilter: 'Lien',
-            Filter: '',
-            Cell: ({ value }) => <a href={value} className='text-[#03C988] underline '>Lien vers fichier PDF</a>
+            Header: 'Date 1ére inscription',
+            accessor: 'premiereInscription',
+            placeHolderFilter: 'Date 1ère insc',
+            Filter: ColumnFilter,
         },
+        {
+            Header: 'Directeur',
+            accessor: 'directeurPrincipal',
+            placeHolderFilter: 'Directeur',
+            Filter: ColumnFilter,
+        },
+        {
+            Header: 'Code PV',
+            accessor: 'code_pv',
+            placeHolderFilter: 'Code PV'
+        },
+        {
+            Header: 'Status',
+            accessor: 'status',
+            placeHolderFilter: 'status',
+            Filter: ColumSelectFilter,
+            Cell: ({ value }) => <StatusCustomCard value={value} />
+        }
     ], []);
     const {
         getTableProps,
@@ -41,16 +54,16 @@ const PvTable = () => {
         state,
         gotoPage,
         pageCount,
-    } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, usePagination,);
+    } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, useGlobalFilter, usePagination);
     const { pageIndex } = state;
     return (
         <>
             {headerGroups.map((headerGroup) => (
-                <div className='flex w-1/2 gap-20 pl-10 mb-3'>
+                <div className='flex justify-between w-2/3 mx-auto mb-3'>
                     {headerGroup.headers.map((column) => column.canFilter ? column.render("Filter") : null)}
                 </div >
             ))}
-            <table className="w-1/2 table-fixed rounded-t-xl" {...getTableProps()}>
+            <table className="w-2/3 table-fixed rounded-t-xl" {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
                         <>
@@ -78,7 +91,7 @@ const PvTable = () => {
                     })}
                 </tbody>
             </table >
-            <div className='bg-[#F9F9F9] border border-[#D9D9D9] w-1/2 h-12 rounded-b-xl flex justify-between items-center'>
+            <div className='bg-[#F9F9F9] border border-[#D9D9D9] w-2/3 h-12 rounded-b-xl flex justify-between items-center mb-12'>
                 <Pagination
                     pageNumber={pageCount}
                     currentPageIndex={pageIndex + 1}
@@ -93,4 +106,4 @@ const PvTable = () => {
     );
 }
 
-export default PvTable;
+export default ModificationStatusTable

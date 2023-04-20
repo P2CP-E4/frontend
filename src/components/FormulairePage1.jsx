@@ -7,7 +7,7 @@ const FormulairePage1 = ({ formik }) => {
                 Informations personnelles
             </h2>
             <div className="mb-6 -mx-3 md:flex">
-                <div className="px-4 pb-2 mb-6 md:mb-0 md:w-1/2 relative" >
+                <div className="relative px-4 pb-2 mb-6 md:mb-0 md:w-1/2" >
                     <label
                         className="mb-2 text-xs tracking-wide text-[#13005A]"
                         htmlFor="nom"
@@ -22,8 +22,8 @@ const FormulairePage1 = ({ formik }) => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     />
-                    {formik.touched.nom && formik.errors.nom && <img src={error} alt="error" className="absolute top-9 right-7 w-4 h-4" />}
-                    {formik.touched.nom && formik.errors.nom && <span className="absolute left-5 bottom-0 text-xs text-red-400" >{formik.errors.nom}</span>}
+                    {formik.touched.nom && formik.errors.nom && <img src={error} alt="error" className="absolute w-4 h-4 top-9 right-7" />}
+                    {formik.touched.nom && formik.errors.nom && <span className="absolute bottom-0 text-xs text-red-400 left-5" >{formik.errors.nom}</span>}
                 </div>
                 <div className="px-3 md:w-1/2">
                     <label
