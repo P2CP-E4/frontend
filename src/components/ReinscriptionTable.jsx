@@ -15,10 +15,10 @@ import CheckBox from './CheckBox';
 
 const ReinscriptionTable = () => {
     //TODO: fetch data from API
+
     //* usePopUp is a custom hook made to handle the popUp events
     const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
     const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
-
     const data = useMemo(() => doctorant_data, []);
     const columns = useMemo(() => [
         {
@@ -110,7 +110,6 @@ const ReinscriptionTable = () => {
 
                                     <th className={`border ${column.className}`} {...column.getHeaderProps({ width: column.width, })}>
                                         {column.render("Header")}
-                                        {console.log(column)}
                                     </th>
                                 ))}
                             </tr >
@@ -119,7 +118,6 @@ const ReinscriptionTable = () => {
                 </thead >
                 <tbody className='text-sm font-light text-gray-600 bg-white' {...getTableBodyProps()}>
                     {page.map((row) => {
-                        console.log(row.cells);
                         prepareRow(row);
                         return (
                             <tr className='border-b border-gray-200 hover:bg-gray-100' {...row.getRowProps()}>

@@ -3,7 +3,6 @@ import { Formik, Form } from "formik";
 import FormsTextInput from "./FormsTextInput";
 import * as Yup from "yup";
 import FormsDatePicker from "./FormsDatePicker";
-import FormsSelect from "./FormsSelect";
 import FormsCreatableSelect from "./FormsCreatableSelect";
 
 const FormulairePage3 = ({ data, next, back }) => {

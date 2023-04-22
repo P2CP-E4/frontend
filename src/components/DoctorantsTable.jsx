@@ -100,7 +100,7 @@ const DoctorantTable = () => {
     return (
         <>
             {headerGroups.map((headerGroup) => (
-                <div className='flex justify-between w-full mb-3 pl-14 pr-14'>
+                <div className='flex justify-between w-full mb-3 pl-14 pr-14'  >
                     {headerGroup.headers.map((column) => column.canFilter ? column.render("Filter") : null)}
                 </div >
             ))}
@@ -109,10 +109,8 @@ const DoctorantTable = () => {
                     {headerGroups.map((headerGroup) => (
                         <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10 text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
-
                                 <th className={`border ${column.className}`} {...column.getHeaderProps({ width: column.width, })}>
                                     {column.render("Header")}
-                                    {console.log(column)}
                                 </th>
                             ))}
                         </tr>

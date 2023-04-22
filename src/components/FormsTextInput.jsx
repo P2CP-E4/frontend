@@ -14,7 +14,6 @@ const FormsInput = ({ name, label, ...rest }) => {
             <Field>
                 {
                     ({ form }) => {
-                        console.table(form.values)
                         return (
                             <div className='relative'>
                                 <input
@@ -29,7 +28,6 @@ const FormsInput = ({ name, label, ...rest }) => {
                                 />
                                 {form.touched[name] && form.errors[name] && <img src={error} alt="error" className="absolute w-4 h-4 top-3.5 right-4" />}
                             </div>
-
                         )
                     }
                 }

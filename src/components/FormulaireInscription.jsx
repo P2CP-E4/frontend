@@ -56,7 +56,6 @@ const FormulaireInscription = () => {
         <FormulairePage3 key={3} data={data} next={handleNextStep} back={handlePreviousStep} />,
         <FormulairePage4 key={4} data={data} next={handleNextStep} back={handlePreviousStep} />
     ]
-    console.table(data)
     return (
         <div className='w-3/4 md:h-5/6 px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF] hover:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
             <div div className="flex flex-col items-center w-full pt-8 bg-white rounded-[45px] md:h-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]" >
