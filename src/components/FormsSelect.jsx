@@ -51,7 +51,6 @@ const FormsSelect = ({ name, label, options, placeholder, ...rest }) => {
                                             }
                                         },
                                         menu: (provided) => {
-                                            console.log(provided);
                                             return {
                                                 ...provided,
                                                 margin: '0px',

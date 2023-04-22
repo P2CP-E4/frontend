@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import styles from './NavBar.module.css';
 import logo from '../assets/images/logo.svg';
 import profilePic from '../assets/images/profilePic.svg';
 import Arrow from './Arrow';
@@ -14,26 +15,24 @@ const NavBar = () => {
     return (
         <>
             <nav className=" bg-[#13005A] h-16 w-screen shadow relative">
-                <div className="px-4 mx-auto">
-                    <div className="flex items-center justify-around py-4">
-                        <img src={logo} alt='logo' className='w-24 cursor-pointer' onClick={() => navigate('/')} />
-                        <ul className="hidden gap-12 sm:flex sm:items-center ml-28">
-                            <li className="text-base font-normal text-white" ><Link to="/">Acceuil</Link></li>
-                            <li className="text-base font-normal text-white"><Link to="/doctorant">Doctorant</Link></li>
-                            <li className="text-base font-normal text-white"><Link to="/statistique">Statistique</Link></li>
-                            <li className="text-base font-normal text-white"><Link to="/pv">PV</Link></li>
-                            <li className="text-base font-normal text-white"><Link to="/aide">Aide</Link></li>
-                        </ul>
-                        <button
-                            className="flex items-center justify-between text-sm font-normal text-white w-44"
-                            type="button"
-                            onClick={handleClickEvent}
-                        >
-                            <img src={profilePic} alt='profile-pic' className='w-10' />
-                            Lorem Ipsum
-                            <Arrow state={dropDownIsOpen} fill="#03C988" className="h-2" />
-                        </button>
-                    </div>
+                <div className="flex items-center justify-around py-4">
+                    <img src={logo} alt='logo' className='w-24 cursor-pointer' onClick={() => navigate('/')} />
+                    <ul className="hidden gap-12 sm:flex sm:items-center ml-28">
+                        <li className={styles.animation} ><Link to="/">Acceuil</Link></li>
+                        <li className={styles.animation}><Link to="/doctorant">Doctorant</Link></li>
+                        <li className={styles.animation}><Link to="/statistique">Statistique</Link></li>
+                        <li className={styles.animation}><Link to="/pv">PV</Link></li>
+                        <li className={styles.animation}><Link to="/aide">Aide</Link></li>
+                    </ul>
+                    <button
+                        className="flex items-center justify-between text-sm font-normal text-white w-44"
+                        type="button"
+                        onClick={handleClickEvent}
+                    >
+                        <img src={profilePic} alt='profile-pic' className='w-10' />
+                        Lorem Ipsum
+                        <Arrow state={dropDownIsOpen} fill="#03C988" className="h-2" />
+                    </button>
                 </div>
             </nav >
             {
