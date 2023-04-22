@@ -1,131 +1,91 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion"
+import { Formik, Form } from "formik";
+import FormsTextInput from "./FormsTextInput";
+import * as Yup from "yup";
 import Arrow from "./Arrow"
 
-const FormulairePage4 = ({ formik }) => {
+const FormulairePage4 = ({ data, next, back }) => {
     const [showCoDirecteur, setShowCoDirecteur] = useState(false);
     const handleClickEvent = () => {
         setShowCoDirecteur(!showCoDirecteur);
     }
+    const validationSchema = Yup.object().shape({
+        nomDirecteur: Yup.string()
+            .min(3, "Min. 3 characters")
+            .required("veuillez remplir ce champ."),
+        etablissementDirecteur: Yup.string()
+            .min(3, "Min. 3 characters")
+            .required("veuillez remplir ce champ."),
+        gradeDirecteur: Yup.string()
+            .min(3, "Min. 3 characters")
+            .required("veuillez remplir ce champ."),
+        nomCoDirecteur: Yup.string()
+            .min(3, "Min. 3 characters")
+            .required("veuillez remplir ce champ."),
+        etablissementCoDirecteur: Yup.string()
+            .min(3, "Min. 3 characters")
+            .required("veuillez remplir ce champ."),
+        gradeCoDirecteur: Yup.string()
+            .min(3, "Min. 3 characters")
+            .required("veuillez remplir ce champ."),
+    })
+    const handleSubmitEvent = (values) => {
+        next(values, true);
+    }
 
     return (
-        <>
-            <h2 className="mr-auto ml-40 text-lg font-semibold leading-10  text-[#03C988]">
-                Information de directeur
-            </h2>
-            <div className="w-4/5 mt-10">
-                <div className="mb-12 -mx-3 md:flex">
-                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                        <label
-                            className="mb-2 block text-xs tracking-wide text-[#13005A]"
-                            htmlFor="nomDirecteur"
-                        >
-                            Nom du Directeur
-                        </label>
-                        <input
-                            className={`outline-none mb-3 block w-full appearance-none rounded-lg border py-2 px-4 ${formik.touched.nomDirecteur && formik.errors.nomDirecteur ? 'border-red-400' : 'border-[#1C82AD]'}`}
-                            id="nomDirecteur"
-                            type="text"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.nomDirecteur}
-                        />
-                    </div>
-                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                        <label
-                            className="mb-2 block text-xs tracking-wide text-[#13005A]"
-                            htmlFor="etablissementDirecteur"
-                        >
-                            Nom d'Etablissement du Directeur
-                        </label>
-                        <input
-                            className={`outline-none mb-3 block w-full appearance-none rounded-lg border py-2 px-4 ${formik.touched.etablissementDirecteur && formik.errors.etablissementDirecteur ? 'border-red-400' : 'border-[#1C82AD]'}`}
-                            id="etablissementDirecteur"
-                            type="text"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.etablissementDirecteur}
-                        />
-                    </div>
-                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                        <label
-                            className="mb-2 block text-xs tracking-wide text-[#13005A]"
-                            htmlFor="gradeDirecteur"
-                        >
-                            Grade du Directeur
-                        </label>
-                        <input
-                            className={`outline-none mb-3 block w-full appearance-none rounded-lg border py-2 px-4 ${formik.touched.gradeDirecteur && formik.errors.gradeDirecteur ? 'border-red-400' : 'border-[#1C82AD]'}`}
-                            id="gradeDirecteur"
-                            type="text"
-                            onChange={formik.handleChange}
-                            onBlur={formik.handleBlur}
-                            value={formik.values.gradeDirecteur}
-                        />
-                    </div>
-                </div>
+        <Formik
+            initialValues={data}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmitEvent}
+        >
+            {
+                ({ values }) => (
+                    <Form className="relative flex flex-col items-center w-full h-full">
+                        <h2 className="mr-auto ml-40 text-lg font-semibold leading-10  text-[#03C988]">
+                            Information de directeur
+                        </h2>
+                        <div className="w-4/5 mt-10">
+                            <div className="mb-12 -mx-3 md:flex">
+                                <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
+                                    <FormsTextInput name='nomDirecteur' label='Nom du Directeur' />
+                                </div>
+                                <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
+                                    <FormsTextInput name='etablissementDirecteur' label="Nom d'Etablissement du Directeur" />
+                                </div>
+                                <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
+                                    <FormsTextInput name='gradeDirecteur' label='Grade du Directeur' />
+                                </div>
+                            </div>
 
-                <div
-                    className=" cursor-pointer flex items-center w-fit rounded-3xl border border-[#1C82AD] py-1 px-4 mb-2 text-sm text-[#13005A]"
-                    onClick={handleClickEvent}
-                >
-                    Information du Co-directeur <span className="text-[#03C988] pl-1 pr-5">(optionnelle)</span>
-                    <Arrow fill='#03C988' className="w-4" state={showCoDirecteur} />
-                </div>
-                {
-                    showCoDirecteur && <div className="mt-5 mb-12 -mx-3 md:flex">
-                        <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                            <label
-                                className="mb-2 block text-xs tracking-wide text-[#13005A]"
-                                htmlFor="nomCoDirecteur"
+                            <div
+                                className="cursor-pointer flex items-center w-fit rounded-3xl border border-[#1C82AD] py-1 px-4 mb-2 text-sm text-[#13005A]"
+                                onClick={handleClickEvent}
                             >
-                                Nom du Co-Directeur
-                            </label>
-                            <input
-                                className={`outline-none mb-3 block w-full appearance-none rounded-lg border py-2 px-4 ${showCoDirecteur && formik.touched.nomCoDirecteur && formik.errors.nomCoDirecteur ? 'border-red-400' : 'border-[#1C82AD]'}`}
-                                id="nomCoDirecteur"
-                                type="text"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.nomCoDirecteur}
-                            />
-                        </div>
-                        <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                            <label
-                                className="mb-2 block text-xs tracking-wide text-[#13005A]"
-                                htmlFor="etablissementCoDirecteur"
-                            >
-                                Etablissement
-                            </label>
-                            <input
-                                className={`outline-none mb-3 block w-full appearance-none rounded-lg border py-2 px-4 ${showCoDirecteur && formik.touched.etablissementCoDirecteur && formik.errors.etablissementCoDirecteur ? 'border-red-400' : 'border-[#1C82AD]'}`}
-                                id="etablissementCoDirecteur"
-                                type="text"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.etablissementCoDirecteur}
-                            />
-                        </div>
-                        <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                            <label
-                                className="mb-2 block text-xs tracking-wide text-[#13005A]"
-                                htmlFor="gradeCoDirecteur"
-                            >
-                                Grade
-                            </label>
-                            <input
-                                className={`outline-none mb-3 block w-full appearance-none rounded-lg border py-2 px-4 ${showCoDirecteur && formik.touched.gradeCoDirecteur && formik.errors.gradeCoDirecteur ? 'border-red-400' : 'border-[#1C82AD]'}`}
-                                id="gradeCoDirecteur"
-                                type="text"
-                                onChange={formik.handleChange}
-                                onBlur={formik.handleBlur}
-                                value={formik.values.gradeCoDirecteur}
-                            />
-                        </div>
-                    </div>
-                }
-            </div >
-        </>
+                                Information du Co-directeur <span className="text-[#03C988] pl-1 pr-5">(optionnelle)</span>
+                                <Arrow fill='#03C988' className="w-4" state={showCoDirecteur} />
+                            </div>
+                            {
+                                showCoDirecteur && <div className="mt-5 mb-12 -mx-3 md:flex">
+                                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
+                                        <FormsTextInput name='nomCoDirecteur' label='Nom du Co-Directeur' />
+                                    </div>
+                                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
+                                        <FormsTextInput name='etablissementCoDirecteur' label="Nom d'Etablissement du Co-Directeur" />
+                                    </div>
+                                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
+                                        <FormsTextInput name='gradeCoDirecteur' label='Grade du Co-Directeur' />
+                                    </div>
+                                </div>
+                            }
+                        </div >
+                        <button type="submit" className="md:absolute md:bottom-10 md:right-12 bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988]">Inscrire</button>
+                        <button type="button" onClick={() => back(values)} className="md:absolute md:bottom-10 md:left-12 rounded-3xl bg-[#13005A] text-white text-sm px-5 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Retour</button>
+                    </Form>
+                )
+            }
+
+        </Formik >
     );
 }
 

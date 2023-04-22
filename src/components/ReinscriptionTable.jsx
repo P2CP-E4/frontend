@@ -141,7 +141,7 @@ const ReinscriptionTable = () => {
                     canPreviousPage={canPreviousPage}
                     gotoPage={gotoPage}
                 />
-                <button className='bg-[#03C988] w-44 text-white rounded-lg mr-3 px-3 py-1 font-semibold hover:bg-white border-2 border-[#03C988] hover:text-[#03C988]' type='button' onClick={handleClickEvent}>reinscrire</button>
+                <button className='bg-[#03C988] w-44 text-white rounded-xl mr-3 px-3 py-1 font-semibold hover:bg-white border-2 border-[#03C988] hover:text-[#03C988]' type='button' onClick={handleClickEvent}>reinscrire</button>
             </div>
             <PopUp trigger={doctorantPopUpTrigger} handleCloseEvent={closeDoctorantPopUp}><CarteInformationDoctorant handleCloseEvent={closeDoctorantPopUp} /></PopUp>
             <PopUp trigger={directeurPopUpTrigger} handleCloseEvent={closeDirecteurPopUp}><CartesInformationsDirecteur handleCloseEvent={closeDirecteurPopUp} /></PopUp>

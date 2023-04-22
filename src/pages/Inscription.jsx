@@ -6,6 +6,7 @@ const Inscription = () => {
         <>
             <div className='flex flex-col items-center justify-between w-screen h-screen pb-8'>
                 <NavBar />
+                {/* <h1 className='mt-2 mb-1 text-3xl text-[#13005A] font-medium'>Inscription du doctorant</h1> */}
                 <FormulaireInscription />
             </div>
         </>

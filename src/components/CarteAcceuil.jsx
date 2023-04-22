@@ -15,7 +15,7 @@ const CarteAcceuil = ({ title, description, path }) => {
                 <span className=' text-2xl font-semibold mb-3.5'>{title}</span>
                 <span className='text-sm font-light '>{description}</span>
             </div>
-        </div>
+        </div> 
 
     )
 }

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.svg';
 import profilePic from '../assets/images/profilePic.svg';
 import Arrow from './Arrow';
 
 const NavBar = () => {
+    const navigate = useNavigate();
+
     const [dropDownIsOpen, setDropDownIsOpenState] = useState(false);
     const handleClickEvent = () => {
         setDropDownIsOpenState(!dropDownIsOpen);
@@ -14,7 +16,7 @@ const NavBar = () => {
             <nav className=" bg-[#13005A] h-16 w-screen shadow relative">
                 <div className="px-4 mx-auto">
                     <div className="flex items-center justify-around py-4">
-                        <img src={logo} alt='logo' className='w-24' />
+                        <img src={logo} alt='logo' className='w-24 cursor-pointer' onClick={() => navigate('/')} />
                         <ul className="hidden gap-12 sm:flex sm:items-center ml-28">
                             <li className="text-base font-normal text-white" ><Link to="/">Acceuil</Link></li>
                             <li className="text-base font-normal text-white"><Link to="/doctorant">Doctorant</Link></li>
