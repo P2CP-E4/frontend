@@ -100,7 +100,7 @@ const Login = ({ handleCloseEvent }) => {
                         </button>
                     </div>
                 </form>
-            </div>
+            </div >
         </div >
     );
 }

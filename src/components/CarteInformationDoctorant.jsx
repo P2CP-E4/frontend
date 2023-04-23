@@ -1,6 +1,5 @@
 import React from 'react'
 import crois from '../assets/images/crois.svg'
-
 const CarteInformationDoctorant = ({ handleCloseEvent }) => {
     return (
         <div

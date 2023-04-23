@@ -100,8 +100,8 @@ const DoctorantTable = () => {
     return (
         <>
             {headerGroups.map((headerGroup) => (
-                <div className='flex justify-between w-full mb-3 pl-14 pr-14'  >
-                    {headerGroup.headers.map((column) => column.canFilter ? column.render("Filter") : null)}
+                <div className='flex w-11/12 gap-1 mb-3' {...headerGroup.getHeaderGroupProps()} >
+                    {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
                 </div >
             ))}
             <table className="w-11/12 table-fixed" {...getTableProps()}>
