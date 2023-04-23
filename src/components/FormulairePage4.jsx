@@ -20,14 +20,11 @@ const FormulairePage4 = ({ data, next, back }) => {
             .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
         nomCoDirecteur: Yup.string()
-            .min(3, "Min. 3 characters")
-            .required("veuillez remplir ce champ."),
+            .min(3, "Min. 3 characters"),
         etablissementCoDirecteur: Yup.string()
-            .min(3, "Min. 3 characters")
-            .required("veuillez remplir ce champ."),
+            .min(3, "Min. 3 characters"),
         gradeCoDirecteur: Yup.string()
-            .min(3, "Min. 3 characters")
-            .required("veuillez remplir ce champ."),
+            .min(3, "Min. 3 characters"),
     })
     const handleSubmitEvent = (values) => {
         next(values, true);
@@ -42,10 +39,10 @@ const FormulairePage4 = ({ data, next, back }) => {
             {
                 ({ values }) => (
                     <Form className="relative flex flex-col items-center w-full h-full">
-                        <h2 className="mr-auto ml-40 text-lg font-semibold leading-10  text-[#03C988]">
-                            Information de directeur
-                        </h2>
-                        <div className="w-4/5 mt-10">
+                        <div className="w-4/5">
+                            <h2 className="text-lg font-semibold leading-10 text-[#03C988] mb-6 ml-16">
+                                Information de directeur
+                            </h2>
                             <div className="mb-12 -mx-3 md:flex">
                                 <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
                                     <FormsTextInput name='nomDirecteur' label='Nom du Directeur' />

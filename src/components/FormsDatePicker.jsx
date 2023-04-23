@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, ErrorMessage } from 'formik'
 import FormsErrorMessage from './FormsErrorMessage'
-import DateView from 'react-datepicker'
+import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const FormsDatePicker = ({ label, name, ...rest }) => {
@@ -18,7 +18,7 @@ const FormsDatePicker = ({ label, name, ...rest }) => {
                     ({ form, field }) => {
                         const { setFieldValue } = form;
                         const { value } = field;
-                        return <DateView
+                        return <DatePicker
                             id={name}
                             {...field}
                             {...rest}

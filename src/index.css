@@ -2,17 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Poppins";
-  src: url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-}
+@import url("https://fonts.googleapis.com/css?family=Poppins");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
   user-select: none;
-  font-family: Poppins, sans-serif;
+  font-family: "Poppins", sans-serif;
   overflow: visible;
 }
