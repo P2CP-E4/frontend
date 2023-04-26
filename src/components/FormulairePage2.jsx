@@ -34,18 +34,18 @@ const FormulairePage2 = ({ data, next, back }) => {
                                 </h2>
                                 <h6 className="text-xs mb-3 text-[#13005A] ">Type du doctorat : </h6>
                                 <div className="flex">
-                                    <label className="mr-10 cursor-pointer">
-                                        <Field type="radio" name="typeDoctorat" id="typeDoctorat" className="sr-only peer" value="LMD" />
-                                        <div className="bg-white rounded-2xl border border-[#1C82AD] px-7 py-1 text-[#898989] text-sm transition-all peer-checked:text-white peer-checked:bg-[#1C82AD]">
-                                            LMD
-                                        </div>
-                                    </label>
-                                    <label className="cursor-pointer">
-                                        <Field type="radio" name="typeDoctorat" id="typeDoctorat" className="sr-only peer" value="Classique" />
-                                        <div className=" bg-white rounded-2xl border border-[#1C82AD] px-7 py-1 text-[#898989] text-sm transition-all peer-checked:text-white peer-checked:bg-[#1C82AD]">
-                                            Classique
-                                        </div>
-                                    </label>
+                                        <label className="mr-10 cursor-pointer">
+                                            <Field type="radio" name="typeDoctorat" id="typeDoctorat" className="sr-only peer" value="LMD" />
+                                            <div className="bg-white rounded-2xl border border-[#1C82AD] px-7 py-1 text-[#898989] text-sm transition-all peer-checked:text-white peer-checked:bg-[#1C82AD]">
+                                                LMD
+                                            </div>
+                                        </label>
+                                        <label className="cursor-pointer">
+                                            <Field type="radio" name="typeDoctorat" id="typeDoctorat" className="sr-only peer" value="Classique" />
+                                            <div className=" bg-white rounded-2xl border border-[#1C82AD] px-7 py-1 text-[#898989] text-sm transition-all peer-checked:text-white peer-checked:bg-[#1C82AD]">
+                                                Classique
+                                            </div>
+                                        </label>
                                 </div>
                                 <div className="mt-4">
                                     <FormsSelect name="typeDiplome" placeholder="" label="Type de diplôme" options={dropdownOptions} />

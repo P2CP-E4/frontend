@@ -29,7 +29,7 @@ const NavBar = () => {
                         type="button"
                         onClick={handleClickEvent}
                     >
-                        <div className='flex justify-center items-center gap-1'>
+                        <div className='flex items-center justify-center gap-1'>
                             <img src={profilePic} alt='profile-pic' className='w-10' />
                             Admin
                             <Arrow state={dropDownIsOpen} fill="#03C988" className="h-2" />

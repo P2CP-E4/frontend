@@ -51,7 +51,7 @@ const FormulairePage3 = ({ data, next, back }) => {
                                         <FormsCreatableSelect name="laboratoire" label="Laboratoire" placeholder="" options={dropdownOptions} />
                                     </div>
                                     <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                                        <FormsDatePicker name="premiereInscription" label="Date de la Première Inscription" />
+                                        <FormsDatePicker name="premiereInscription" label="Date de la Première Inscription" showYearPicker />
                                     </div>
                                 </div>
 

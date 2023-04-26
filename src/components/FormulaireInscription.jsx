@@ -8,6 +8,7 @@ import ProgressBar from "./ProgressBar";
 const FormulaireInscription = () => {
     //TODO: make post request on Submit
     //TODO: comfirm page ,after Submit
+
     const [currentStep, setCurrentStep] = useState(0);
     const [data, setData] = useState({
         nom: '',
