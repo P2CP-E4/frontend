@@ -154,20 +154,25 @@ const Statistique = () => {
         ],
     });
     return (
-        <div className='w-screen h-[400vh] bg-[#F5F5F5]'>
+        <div className='w-full h-[400vh] bg-[#F5F5F5]'>
             <NavBar />
             <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
             <Carousel />
-            <div className=' mx-2 flex gap-5 mt-10 mb-10'>
+            <div className=' mx-2 md:flex md:justify-around mt-10 mb-10'>
                 <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Lab' />
                 <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Statu' subTitle='Statu' />
                 <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
             </div>
-            <div>
-                <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' ssubTitle='Diplome' />
-                <LineChart chartData={doctorantData} chartOptions={doctorantOptionsLineChart} title='Nombre d’inscrits par années' />
+            <div className='mx-2 md:grid grid-rows-4 grid-cols-3 mt-10 mb-10'>
+                <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
+                <LineChart chartData={doctorantData} chartOptions={doctorantOptionsLineChart} title='Nombre d’inscrits par années' className=' row-span-2' />
+                <LineChart chartData={doctorantData} chartOptions={doctorantOptionsLineChart} title='Nombre d’inscrits par années' className='row-span-2' />
+                <div className='w-full h-full bg-yellow-500 row-span-2'>Stat Multi</div>
+                <div className='w-full h-full bg-pink-500 row-span-2'>Stat Multi</div>
+                <DirecteursStatsTable />
+                <div className='w-full h-full bg-red-500'>Stat Multi</div>
+
             </div>
-            <DirecteursStatsTable />
         </div >
     )
 }
