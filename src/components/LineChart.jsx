@@ -4,7 +4,7 @@ import { Chart as ChartJS } from 'chart.js/auto'
 
 const LineChart = ({ chartData, chartOptions, title }) => {
     return (
-        <div className='relative w-[440px] p-3 bg-white rounded-xl'>
+        <div className='relative w-[440px] p-3 bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
             <h1 className='mb-5 text-xl font-semibold text-center'>{title}</h1>
             <Line data={chartData} options={chartOptions} />
         </div>

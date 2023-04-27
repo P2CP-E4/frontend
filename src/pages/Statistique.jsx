@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import NavBar from '../components/NavBar'
 import LineChart from '../components/LineChart';
 import BarChart from '../components/BarChart';
@@ -177,16 +177,16 @@ const Statistique = () => {
         ],
     };
     return (
-        <div className='w-full h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center'>
+        <div className='w-fit h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center'>
             <NavBar />
             <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
             <Carousel />
-            <div className='mx-2 mt-10 mb-10 md:flex md:gap-10'>
-                <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Lab' />
-                <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Statu' subTitle='Statu' />
+            <div className='mt-10 mb-10 md:flex md:gap-10'>
+                <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Labo' />
+                <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Status' subTitle='Status' />
                 <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
             </div>
-            <div className='flex gap-4 mb-16'>
+            <div className='flex gap-4 px-3 mb-16'>
                 <div className='flex flex-col gap-5'>
                     <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
                     <div className='bg-yellow-500 h-60 w-80'>Stat Multi</div>
