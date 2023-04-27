@@ -13,10 +13,24 @@ const DirecteursStatsTable = () => {
             Filter: ColumnFilter,
         },
         {
-            Header: 'Nombre de Doctortorants',
-            accessor: 'nombreDoctorant',
-            placeHolderFilter: 'Code',
+            Header: 'nombre de doctorants comme directeur principale',
+            accessor: 'nombreDoctorantAsDirecteur',
             Filter: '',
+            Cell: item => (
+                <span className={item.value > 6 ? "text-red-500" : ""}>
+                    {item.value}
+                </span>
+            ),
+        },
+        {
+            Header: 'nombre de doctorants comme co-directeur principale',
+            accessor: 'nombreDoctorantAsCoDirecteur',
+            Filter: '',
+            Cell: item => (
+                <span className={item.value > 6 ? "text-red-500" : ""}>
+                    {item.value}
+                </span>
+            ),
         },
     ], []);
     const {

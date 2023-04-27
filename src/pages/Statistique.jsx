@@ -7,10 +7,10 @@ import GaugeChart from '../components/GaugeChart';
 import line_chart_data from '../data/line_chart_data.json';
 import DirecteursStatsTable from '../components/DirecteursStatsTable';
 import Carousel from '../components/CarouselStats';
-
+import DoctorantTable from '../components/DoctorantsTable'
 
 const Statistique = () => {
-    const [barData, setbarData] = useState({
+    const barData = {
         labels: line_chart_data.map(data => data.year),
         datasets: [{
             label: "nombre d'inscrit",
@@ -20,17 +20,20 @@ const Statistique = () => {
             pointBorderColor: 'transparent',
             tension: 0.1,
         }]
-    });
+    };
 
     const optionsBarChart = {
         plugins: {
             legend: {
                 display: false,
-                position: 'bottom',
             },
         },
+        scales: {
+
+        }
+
     };
-    const [lineData, setLineData] = useState({
+    const lineData = {
         labels: line_chart_data.map(data => data.year),
         datasets: [{
             label: "nombre d'inscrit",
@@ -40,7 +43,7 @@ const Statistique = () => {
             pointBorderColor: 'transparent',
             tension: 0.1,
         }]
-    });
+    };
 
     const OptionsLineChart = {
         plugins: {
@@ -67,7 +70,7 @@ const Statistique = () => {
         },
         cutout: '75%',
     }
-    const [laboData, setlaboData] = useState({
+    const laboData = {
         labels: ['LMCS  12%', 'LCSI  27%', 'AUTRES  61%'],
         datasets: [{
             data: [12, 27, 61],
@@ -75,7 +78,7 @@ const Statistique = () => {
             borderColor: ['#FF008A', '#1C82AD', '#F6DC4E'],
             label: '%',
         }]
-    });
+    };
 
     const laboOptionsDoughnutChart = {
         plugins: {
@@ -93,7 +96,7 @@ const Statistique = () => {
         },
         cutout: '75%',
     }
-    const [statusData, setStatusData] = useState({
+    const statusData = {
         labels: ['Inscrits  12%', 'Abondons  27%', 'Différeé  61%'],
         datasets: [{
             data: [12, 27, 61],
@@ -101,7 +104,7 @@ const Statistique = () => {
             borderColor: ['#03C988', '#FF008A', '#F6DC4E'],
             label: '%',
         }]
-    });
+    };
     const typeDoctoratOptions = {
         plugins: {
             legend: {
@@ -109,7 +112,6 @@ const Statistique = () => {
                 position: 'bottom',
                 labels: {
                     usePointStyle: true,
-                    padding: 10,
                     font: {
                         weight: 'bold',
                         size: 10,
@@ -127,7 +129,7 @@ const Statistique = () => {
         maintainAspectRatio: true,
         responsive: true,
     }
-    const [typeDoctoratData, setTypeDoctoratData] = useState({
+    const typeDoctoratData = {
         labels: ['Lmd              ', 'Doctorat'],
         datasets: [
             {
@@ -137,7 +139,7 @@ const Statistique = () => {
                 label: '%',
             },
         ],
-    });
+    };
     const sexeOptions = {
         plugins: {
             legend: {
@@ -163,7 +165,7 @@ const Statistique = () => {
         maintainAspectRatio: true,
         responsive: true,
     }
-    const [sexeData, setSexeData] = useState({
+    const sexeData = {
         labels: ['Homme              ', 'Femme'],
         datasets: [
             {
@@ -173,19 +175,19 @@ const Statistique = () => {
                 label: '%',
             },
         ],
-    });
+    };
     return (
-        <div className='w-full h-[400vh] bg-[#F5F5F5]'>
+        <div className='w-full h-[400vh] bg-[#F5F5F5] flex flex-col items-center'>
             <NavBar />
             <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
             <Carousel />
-            <div className='mx-2 mt-10 mb-10 md:flex md:justify-around'>
+            <div className='mx-2 mt-10 mb-10 md:flex md:gap-10'>
                 <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Lab' />
                 <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Statu' subTitle='Statu' />
                 <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
             </div>
-            <div className='flex justify-around'>
-                <div className=''>
+            <div className='flex gap-4 mb-16'>
+                <div className='flex flex-col gap-5'>
                     <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
                     <div className='bg-yellow-500 h-60 w-80'>Stat Multi</div>
                     <div className='bg-pink-500 h-80 w-80'>Stat Multi</div>
@@ -199,6 +201,7 @@ const Statistique = () => {
                     <DirecteursStatsTable />
                 </div>
             </div>
+            <DoctorantTable />
         </div >
     )
 }

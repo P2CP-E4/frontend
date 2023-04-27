@@ -1,52 +1,252 @@
 [
-  { "directeur": "Georgette Lippard", "nombreDoctorant": 76 },
-  { "directeur": "Kirsten Dodge", "nombreDoctorant": 10 },
-  { "directeur": "Wallas Carhart", "nombreDoctorant": 94 },
-  { "directeur": "Philbert Rupert", "nombreDoctorant": 20 },
-  { "directeur": "Thurstan Raynor", "nombreDoctorant": 14 },
-  { "directeur": "Delmor Sayward", "nombreDoctorant": 97 },
-  { "directeur": "Katya Cossins", "nombreDoctorant": 45 },
-  { "directeur": "Merrel Lagde", "nombreDoctorant": 97 },
-  { "directeur": "Lynnette Noweak", "nombreDoctorant": 31 },
-  { "directeur": "Leesa Jealous", "nombreDoctorant": 49 },
-  { "directeur": "Latrina Allday", "nombreDoctorant": 16 },
-  { "directeur": "Janenna Lerwill", "nombreDoctorant": 64 },
-  { "directeur": "Bern Cockerill", "nombreDoctorant": 70 },
-  { "directeur": "Conroy Blyden", "nombreDoctorant": 80 },
-  { "directeur": "Cordie Sleith", "nombreDoctorant": 90 },
-  { "directeur": "Karylin Geerits", "nombreDoctorant": 94 },
-  { "directeur": "Horatio Stilgo", "nombreDoctorant": 48 },
-  { "directeur": "Aubrey Kenewel", "nombreDoctorant": 5 },
-  { "directeur": "Ashia Petrollo", "nombreDoctorant": 66 },
-  { "directeur": "Flynn Stooders", "nombreDoctorant": 11 },
-  { "directeur": "Kevin Ferrolli", "nombreDoctorant": 54 },
-  { "directeur": "Kaspar Tidridge", "nombreDoctorant": 30 },
-  { "directeur": "Atlanta Hedderly", "nombreDoctorant": 22 },
-  { "directeur": "Louie Cisson", "nombreDoctorant": 19 },
-  { "directeur": "Boycie Wordley", "nombreDoctorant": 9 },
-  { "directeur": "Deeyn Westover", "nombreDoctorant": 22 },
-  { "directeur": "Camala Farleigh", "nombreDoctorant": 70 },
-  { "directeur": "Morgan Closs", "nombreDoctorant": 11 },
-  { "directeur": "Marigold Musgrave", "nombreDoctorant": 22 },
-  { "directeur": "Siouxie Nathon", "nombreDoctorant": 73 },
-  { "directeur": "Karylin Izen", "nombreDoctorant": 21 },
-  { "directeur": "Jermain Pfaffel", "nombreDoctorant": 96 },
-  { "directeur": "Nikolai Rowly", "nombreDoctorant": 87 },
-  { "directeur": "Ernestus Iannetti", "nombreDoctorant": 83 },
-  { "directeur": "Olvan Vanderplas", "nombreDoctorant": 94 },
-  { "directeur": "Shirl Wingatt", "nombreDoctorant": 68 },
-  { "directeur": "Tawnya MacAllen", "nombreDoctorant": 22 },
-  { "directeur": "Bianka Rummer", "nombreDoctorant": 57 },
-  { "directeur": "Carleen Harbach", "nombreDoctorant": 34 },
-  { "directeur": "Horten Austin", "nombreDoctorant": 77 },
-  { "directeur": "Hayward Lisimore", "nombreDoctorant": 59 },
-  { "directeur": "Opal Kardos-Stowe", "nombreDoctorant": 26 },
-  { "directeur": "Francine Sumbler", "nombreDoctorant": 18 },
-  { "directeur": "Alberta Starmont", "nombreDoctorant": 26 },
-  { "directeur": "Ebba Bolger", "nombreDoctorant": 79 },
-  { "directeur": "Astrix Sivorn", "nombreDoctorant": 15 },
-  { "directeur": "Woodman Askie", "nombreDoctorant": 42 },
-  { "directeur": "Alard Iskower", "nombreDoctorant": 23 },
-  { "directeur": "Tarra Greenalf", "nombreDoctorant": 58 },
-  { "directeur": "Man Romand", "nombreDoctorant": 24 }
+  {
+    "directeur": "Georgette Lippard",
+    "nombreDoctorantAsDirecteur": 76,
+    "nombreDoctorantAsCoDirecteur": 76
+  },
+  {
+    "directeur": "Kirsten Dodge",
+    "nombreDoctorantAsDirecteur": 10,
+    "nombreDoctorantAsCoDirecteur": 10
+  },
+  {
+    "directeur": "Wallas Carhart",
+    "nombreDoctorantAsDirecteur": 94,
+    "nombreDoctorantAsCoDirecteur": 94
+  },
+  {
+    "directeur": "Philbert Rupert",
+    "nombreDoctorantAsDirecteur": 20,
+    "nombreDoctorantAsCoDirecteur": 20
+  },
+  {
+    "directeur": "Thurstan Raynor",
+    "nombreDoctorantAsDirecteur": 14,
+    "nombreDoctorantAsCoDirecteur": 14
+  },
+  {
+    "directeur": "Delmor Sayward",
+    "nombreDoctorantAsDirecteur": 97,
+    "nombreDoctorantAsCoDirecteur": 97
+  },
+  {
+    "directeur": "Katya Cossins",
+    "nombreDoctorantAsDirecteur": 45,
+    "nombreDoctorantAsCoDirecteur": 45
+  },
+  {
+    "directeur": "Merrel Lagde",
+    "nombreDoctorantAsDirecteur": 97,
+    "nombreDoctorantAsCoDirecteur": 97
+  },
+  {
+    "directeur": "Lynnette Noweak",
+    "nombreDoctorantAsDirecteur": 31,
+    "nombreDoctorantAsCoDirecteur": 31
+  },
+  {
+    "directeur": "Leesa Jealous",
+    "nombreDoctorantAsDirecteur": 49,
+    "nombreDoctorantAsCoDirecteur": 49
+  },
+  {
+    "directeur": "Latrina Allday",
+    "nombreDoctorantAsDirecteur": 16,
+    "nombreDoctorantAsCoDirecteur": 16
+  },
+  {
+    "directeur": "Janenna Lerwill",
+    "nombreDoctorantAsDirecteur": 64,
+    "nombreDoctorantAsCoDirecteur": 64
+  },
+  {
+    "directeur": "Bern Cockerill",
+    "nombreDoctorantAsDirecteur": 70,
+    "nombreDoctorantAsCoDirecteur": 70
+  },
+  {
+    "directeur": "Conroy Blyden",
+    "nombreDoctorantAsDirecteur": 80,
+    "nombreDoctorantAsCoDirecteur": 80
+  },
+  {
+    "directeur": "Cordie Sleith",
+    "nombreDoctorantAsDirecteur": 90,
+    "nombreDoctorantAsCoDirecteur": 90
+  },
+  {
+    "directeur": "Karylin Geerits",
+    "nombreDoctorantAsDirecteur": 94,
+    "nombreDoctorantAsCoDirecteur": 94
+  },
+  {
+    "directeur": "Horatio Stilgo",
+    "nombreDoctorantAsDirecteur": 48,
+    "nombreDoctorantAsCoDirecteur": 48
+  },
+  {
+    "directeur": "Aubrey Kenewel",
+    "nombreDoctorantAsDirecteur": 5,
+    "nombreDoctorantAsCoDirecteur": 5
+  },
+  {
+    "directeur": "Ashia Petrollo",
+    "nombreDoctorantAsDirecteur": 66,
+    "nombreDoctorantAsCoDirecteur": 66
+  },
+  {
+    "directeur": "Flynn Stooders",
+    "nombreDoctorantAsDirecteur": 11,
+    "nombreDoctorantAsCoDirecteur": 11
+  },
+  {
+    "directeur": "Kevin Ferrolli",
+    "nombreDoctorantAsDirecteur": 54,
+    "nombreDoctorantAsCoDirecteur": 54
+  },
+  {
+    "directeur": "Kaspar Tidridge",
+    "nombreDoctorantAsDirecteur": 30,
+    "nombreDoctorantAsCoDirecteur": 30
+  },
+  {
+    "directeur": "Atlanta Hedderly",
+    "nombreDoctorantAsDirecteur": 22,
+    "nombreDoctorantAsCoDirecteur": 22
+  },
+  {
+    "directeur": "Louie Cisson",
+    "nombreDoctorantAsDirecteur": 19,
+    "nombreDoctorantAsCoDirecteur": 19
+  },
+  {
+    "directeur": "Boycie Wordley",
+    "nombreDoctorantAsDirecteur": 9,
+    "nombreDoctorantAsCoDirecteur": 9
+  },
+  {
+    "directeur": "Deeyn Westover",
+    "nombreDoctorantAsDirecteur": 22,
+    "nombreDoctorantAsCoDirecteur": 22
+  },
+  {
+    "directeur": "Camala Farleigh",
+    "nombreDoctorantAsDirecteur": 70,
+    "nombreDoctorantAsCoDirecteur": 70
+  },
+  {
+    "directeur": "Morgan Closs",
+    "nombreDoctorantAsDirecteur": 11,
+    "nombreDoctorantAsCoDirecteur": 11
+  },
+  {
+    "directeur": "Marigold Musgrave",
+    "nombreDoctorantAsDirecteur": 22,
+    "nombreDoctorantAsCoDirecteur": 22
+  },
+  {
+    "directeur": "Siouxie Nathon",
+    "nombreDoctorantAsDirecteur": 73,
+    "nombreDoctorantAsCoDirecteur": 73
+  },
+  {
+    "directeur": "Karylin Izen",
+    "nombreDoctorantAsDirecteur": 21,
+    "nombreDoctorantAsCoDirecteur": 21
+  },
+  {
+    "directeur": "Jermain Pfaffel",
+    "nombreDoctorantAsDirecteur": 96,
+    "nombreDoctorantAsCoDirecteur": 96
+  },
+  {
+    "directeur": "Nikolai Rowly",
+    "nombreDoctorantAsDirecteur": 87,
+    "nombreDoctorantAsCoDirecteur": 87
+  },
+  {
+    "directeur": "Ernestus Iannetti",
+    "nombreDoctorantAsDirecteur": 83,
+    "nombreDoctorantAsCoDirecteur": 83
+  },
+  {
+    "directeur": "Olvan Vanderplas",
+    "nombreDoctorantAsDirecteur": 94,
+    "nombreDoctorantAsCoDirecteur": 94
+  },
+  {
+    "directeur": "Shirl Wingatt",
+    "nombreDoctorantAsDirecteur": 68,
+    "nombreDoctorantAsCoDirecteur": 68
+  },
+  {
+    "directeur": "Tawnya MacAllen",
+    "nombreDoctorantAsDirecteur": 22,
+    "nombreDoctorantAsCoDirecteur": 22
+  },
+  {
+    "directeur": "Bianka Rummer",
+    "nombreDoctorantAsDirecteur": 57,
+    "nombreDoctorantAsCoDirecteur": 57
+  },
+  {
+    "directeur": "Carleen Harbach",
+    "nombreDoctorantAsDirecteur": 34,
+    "nombreDoctorantAsCoDirecteur": 34
+  },
+  {
+    "directeur": "Horten Austin",
+    "nombreDoctorantAsDirecteur": 77,
+    "nombreDoctorantAsCoDirecteur": 77
+  },
+  {
+    "directeur": "Hayward Lisimore",
+    "nombreDoctorantAsDirecteur": 59,
+    "nombreDoctorantAsCoDirecteur": 59
+  },
+  {
+    "directeur": "Opal Kardos-Stowe",
+    "nombreDoctorantAsDirecteur": 26,
+    "nombreDoctorantAsCoDirecteur": 26
+  },
+  {
+    "directeur": "Francine Sumbler",
+    "nombreDoctorantAsDirecteur": 18,
+    "nombreDoctorantAsCoDirecteur": 18
+  },
+  {
+    "directeur": "Alberta Starmont",
+    "nombreDoctorantAsDirecteur": 26,
+    "nombreDoctorantAsCoDirecteur": 26
+  },
+  {
+    "directeur": "Ebba Bolger",
+    "nombreDoctorantAsDirecteur": 79,
+    "nombreDoctorantAsCoDirecteur": 79
+  },
+  {
+    "directeur": "Astrix Sivorn",
+    "nombreDoctorantAsDirecteur": 15,
+    "nombreDoctorantAsCoDirecteur": 15
+  },
+  {
+    "directeur": "Woodman Askie",
+    "nombreDoctorantAsDirecteur": 42,
+    "nombreDoctorantAsCoDirecteur": 42
+  },
+  {
+    "directeur": "Alard Iskower",
+    "nombreDoctorantAsDirecteur": 23,
+    "nombreDoctorantAsCoDirecteur": 23
+  },
+  {
+    "directeur": "Tarra Greenalf",
+    "nombreDoctorantAsDirecteur": 58,
+    "nombreDoctorantAsCoDirecteur": 58
+  },
+  {
+    "directeur": "Man Romand",
+    "nombreDoctorantAsDirecteur": 24,
+    "nombreDoctorantAsCoDirecteur": 24
+  }
 ]
