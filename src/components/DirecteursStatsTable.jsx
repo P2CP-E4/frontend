@@ -47,7 +47,7 @@ const DirecteursStatsTable = () => {
                     {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
                 </div >
             ))}
-            <div className='overflow-y-auto w-fit max-h-96 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-300'>
+            <div className='overflow-y-auto w-fit max-h-[490px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-300'>
                 <table className="m-0 table-fixed rounded-t-xl" {...getTableProps()}>
                     <thead className='sticky top-0'>
                         {headerGroups.map((headerGroup) => (

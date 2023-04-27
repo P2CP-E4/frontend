@@ -177,7 +177,7 @@ const Statistique = () => {
         ],
     };
     return (
-        <div className='w-full h-[400vh] bg-[#F5F5F5] flex flex-col items-center'>
+        <div className='w-full h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center'>
             <NavBar />
             <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
             <Carousel />
@@ -196,7 +196,7 @@ const Statistique = () => {
                     <BarChart chartData={barData} chartOptions={optionsBarChart} title='Nombre de Doctorants par nombre d’inscriptions' />
                     <div className='bg-red-500 h-96 w-96'>Stat Multi</div>
                 </div>
-                <div className='flex flex-col items-center justify-between '>
+                <div className='flex flex-col gap-8'>
                     <LineChart chartData={lineData} chartOptions={OptionsLineChart} title='Nombre d’inscrits par années' />
                     <DirecteursStatsTable />
                 </div>
