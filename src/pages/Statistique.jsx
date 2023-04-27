@@ -1,15 +1,36 @@
 import React, { useState } from 'react'
 import NavBar from '../components/NavBar'
 import LineChart from '../components/LineChart';
+import BarChart from '../components/BarChart';
 import DoughnutChart from '../components/DoughnutChart';
 import GaugeChart from '../components/GaugeChart';
 import line_chart_data from '../data/line_chart_data.json';
 import DirecteursStatsTable from '../components/DirecteursStatsTable';
 import Carousel from '../components/CarouselStats';
+
+
 const Statistique = () => {
+    const [barData, setbarData] = useState({
+        labels: line_chart_data.map(data => data.year),
+        datasets: [{
+            label: "nombre d'inscrit",
+            data: line_chart_data.map(data => data.inscrit),
+            backgroundColor: '#1C82AD',
+            borderColor: '#8744E1',
+            pointBorderColor: 'transparent',
+            tension: 0.1,
+        }]
+    });
 
-
-    const [doctorantData, setDoctorantData] = useState({
+    const optionsBarChart = {
+        plugins: {
+            legend: {
+                display: false,
+                position: 'bottom',
+            },
+        },
+    };
+    const [lineData, setLineData] = useState({
         labels: line_chart_data.map(data => data.year),
         datasets: [{
             label: "nombre d'inscrit",
@@ -21,7 +42,7 @@ const Statistique = () => {
         }]
     });
 
-    const doctorantOptionsLineChart = {
+    const OptionsLineChart = {
         plugins: {
             legend: {
                 display: false,
@@ -158,20 +179,25 @@ const Statistique = () => {
             <NavBar />
             <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
             <Carousel />
-            <div className=' mx-2 md:flex md:justify-around mt-10 mb-10'>
+            <div className='mx-2 mt-10 mb-10 md:flex md:justify-around'>
                 <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Lab' />
                 <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Statu' subTitle='Statu' />
                 <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
             </div>
-            <div className='mx-2 md:grid grid-rows-4 grid-cols-3 mt-10 mb-10'>
-                <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
-                <LineChart chartData={doctorantData} chartOptions={doctorantOptionsLineChart} title='Nombre d’inscrits par années' className=' row-span-2' />
-                <LineChart chartData={doctorantData} chartOptions={doctorantOptionsLineChart} title='Nombre d’inscrits par années' className='row-span-2' />
-                <div className='w-full h-full bg-yellow-500 row-span-2'>Stat Multi</div>
-                <div className='w-full h-full bg-pink-500 row-span-2'>Stat Multi</div>
-                <DirecteursStatsTable />
-                <div className='w-full h-full bg-red-500'>Stat Multi</div>
-
+            <div className='flex justify-around'>
+                <div className=''>
+                    <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
+                    <div className='bg-yellow-500 h-60 w-80'>Stat Multi</div>
+                    <div className='bg-pink-500 h-80 w-80'>Stat Multi</div>
+                </div>
+                <div className='flex flex-col items-center justify-between '>
+                    <BarChart chartData={barData} chartOptions={optionsBarChart} title='Nombre de Doctorants par nombre d’inscriptions' />
+                    <div className='bg-red-500 h-96 w-96'>Stat Multi</div>
+                </div>
+                <div className='flex flex-col items-center justify-between '>
+                    <LineChart chartData={lineData} chartOptions={OptionsLineChart} title='Nombre d’inscrits par années' />
+                    <DirecteursStatsTable />
+                </div>
             </div>
         </div >
     )
