@@ -6,7 +6,10 @@ import ColumSelectFilter from './ColumnSelectFilter';
 import StatusCustomCard from './StatusCustomCard';
 import ModificationStatusCheckBox from './ModificationStatusCheckBox';
 import CheckBox from './CheckBox';
+import CarteWarning from './CarteWarning';
 import doctorant_data from '../data/doctorant_data.json';
+import { usePopUp } from '../hooks/usePopUp';
+import PopUp from './PopUp';
 const ModificationStatusTable = () => {
     //TODO: fetch data from API
     const [showModificationStatusCheckBox, setShowModificationStatusCheckBox] = useState(false);
@@ -85,13 +88,11 @@ const ModificationStatusTable = () => {
 
     useEffect(() => {
         if (showModificationStatusCheckBox && selectedFlatRows.length === 0) {
-            setShowModificationStatusCheckBox(!showModificationStatusCheckBox);
+            setShowModificationStatusCheckBox(prevState => !prevState);
             setFilter([]);
             setSelectedStatus('')
         } else if (selectedFlatRows.length === 1) {
             setSelectedStatus(selectedFlatRows[0]?.original.status);
-        } else {
-            setSelectedStatus('');
         }
     }, [selectedFlatRows]);
 
@@ -104,10 +105,14 @@ const ModificationStatusTable = () => {
 
     const { pageIndex } = state;
 
-    const handleClickSubmitButtonEvent = () => {
+    const [showWarning, openWaning, closeWarning] = usePopUp()
+
+    const handleClickSubmitButtonEvent = (e) => {
+        if (!selectedStatus) return openWaning();
+        if (selectedFlatRows.length === 0) return openWaning();
+        if (selectedStatus.toLowerCase() === 'radie' && e.target.value.toLowerCase() === 'inscrit') return openWaning();
         console.log(JSON.stringify(selectedFlatRows.map((row) => row.original), null, 2));
     }
-
     return (
         <>
             {headerGroups.map((headerGroup) => (
@@ -155,6 +160,7 @@ const ModificationStatusTable = () => {
                 </div>
                 <ModificationStatusCheckBox visibility={showModificationStatusCheckBox} onClick={handleClickSubmitButtonEvent} defaultValue={selectedStatus} className='absolute top-10 -right-44' />
             </div >
+            <PopUp trigger={showWarning} handleCloseEvent={closeWarning}><CarteWarning onClick={closeWarning} /></PopUp>
         </>
     );
 }

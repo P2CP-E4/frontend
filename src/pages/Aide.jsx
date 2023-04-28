@@ -1,15 +1,17 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
 import ModificationStatusCheckBox from '../components/ModificationStatusCheckBox';
+import CarteError from '../components/CarteError';
+import CarteSuccess from '../components/CarteSuccess';
+import CarteWarning from '../components/CarteWarning';
 function Aide() {
     return (
         <>
             <NavBar />
-            <div className='flex items-center justify-center w-screen h-screen bg-slate-500'>
-                <ModificationStatusCheckBox />
-            </div >
+            <CarteError />
+            <CarteSuccess />
+            <CarteWarning />
         </>
     )
 }
-
 export default Aide;

@@ -8,7 +8,7 @@ import CartesInformationsDirecteur from './CarteInformationDirecteur';
 import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
 import StatusCustomCard from './StatusCustomCard';
-import edit_icon from '../assets/images/edit_icon.svg';
+import more_info_icon from '../assets/images/more_info_icon.svg';
 import doctorant_data from '../data/doctorant_data.json';
 
 
@@ -24,9 +24,9 @@ const DoctorantTable = () => {
             Header: 'Nom et prénom',
             accessor: 'nomPrenom',
             placeHolderFilter: 'Nom/prenom',
-            width: 175,
+            width: 200,
             className: "bg-[#F9F9F9] text-left pl-5",
-            Cell: ({ value }) => < span className='flex justify-between' ><span className='text-xs'>{value}</span><img src={edit_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDoctorantPopUp} /></span >,
+            Cell: ({ value }) => < span className='flex justify-between w-[175px] p-0' ><span className='text-xs'>{value}</span><img src={more_info_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDoctorantPopUp} /></span >,
         },
         {
             Header: 'Date 1ére inscription',
@@ -56,7 +56,7 @@ const DoctorantTable = () => {
             placeHolderFilter: 'Directeur',
             width: 175,
             className: "text-left pl-5",
-            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span><img src={edit_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDirecteurPopUp} /></span>,
+            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span><img src={more_info_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDirecteurPopUp} /></span>,
         },
         {
             Header: 'Code PV',

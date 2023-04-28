@@ -71,12 +71,13 @@ const ModificationStatusCheckBox = ({ visibility, defaultValue, className, onCli
                         className='w-44 h-10 rounded-br-2xl flex items-center justify-center text-xl text-white bg-[#03C988]'
                         type='button'
                         onClick={onClick}
+                        value={selectedOption}
                     >
                         Confirmer
                     </button>
                 </motion.div>
             }
-        </AnimatePresence>
+        </AnimatePresence >
     )
 }
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export function usePopUp() {
-    const [trigger, setTrigger] = useState(false);
+export function usePopUp(initialTrigger) {
+    const [trigger, setTrigger] = useState(initialTrigger);
 
     function openPopUp() {
         setTrigger(true);

@@ -97,7 +97,7 @@ const Statistique = () => {
         cutout: '75%',
     }
     const statusData = {
-        labels: ['Inscrits  12%', 'Abondons  27%', 'Différeé  61%'],
+        labels: ['Inscrits 12% ', 'Abondons  27%', 'Différeé  61%'],
         datasets: [{
             data: [12, 27, 61],
             backgroundColor: ['#03C988', '#FF008A', '#F6DC4E'],
@@ -177,7 +177,7 @@ const Statistique = () => {
         ],
     };
     return (
-        <div className='w-fit h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center'>
+        <div className='w-fit h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />
             <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
             <Carousel />
