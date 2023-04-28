@@ -34,18 +34,18 @@ const FormulairePage2 = ({ data, next, back }) => {
                                 </h2>
                                 <h6 className="text-xs mb-3 text-[#13005A] ">Type du doctorat : </h6>
                                 <div className="flex">
-                                        <label className="mr-10 cursor-pointer">
-                                            <Field type="radio" name="typeDoctorat" id="typeDoctorat" className="sr-only peer" value="LMD" />
-                                            <div className="bg-white rounded-2xl border border-[#1C82AD] px-7 py-1 text-[#898989] text-sm transition-all peer-checked:text-white peer-checked:bg-[#1C82AD]">
-                                                LMD
-                                            </div>
-                                        </label>
-                                        <label className="cursor-pointer">
-                                            <Field type="radio" name="typeDoctorat" id="typeDoctorat" className="sr-only peer" value="Classique" />
-                                            <div className=" bg-white rounded-2xl border border-[#1C82AD] px-7 py-1 text-[#898989] text-sm transition-all peer-checked:text-white peer-checked:bg-[#1C82AD]">
-                                                Classique
-                                            </div>
-                                        </label>
+                                    <label className="mr-10 cursor-pointer">
+                                        <Field type="radio" name="typeDoctorat" id="typeDoctorat" className="sr-only peer" value="LMD" />
+                                        <div className="bg-white rounded-2xl border border-[#1C82AD] px-7 py-1 text-[#898989] text-sm transition-all peer-checked:text-white peer-checked:bg-[#1C82AD]">
+                                            LMD
+                                        </div>
+                                    </label>
+                                    <label className="cursor-pointer">
+                                        <Field type="radio" name="typeDoctorat" id="typeDoctorat" className="sr-only peer" value="Classique" />
+                                        <div className=" bg-white rounded-2xl border border-[#1C82AD] px-7 py-1 text-[#898989] text-sm transition-all peer-checked:text-white peer-checked:bg-[#1C82AD]">
+                                            Classique
+                                        </div>
+                                    </label>
                                 </div>
                                 <div className="mt-4">
                                     <FormsSelect name="typeDiplome" placeholder="" label="Type de diplôme" options={dropdownOptions} />
@@ -54,8 +54,8 @@ const FormulairePage2 = ({ data, next, back }) => {
                                     <FormsTextInput name="etablissementOrigine" label="Nom d’Etablissement d’origine" />
                                 </div>
                             </div >
-                            <button type="submit" className="md:absolute md:bottom-10 md:right-12 rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>
-                            <button type="button" onClick={() => back(values)} className="md:absolute md:bottom-10 md:left-12 rounded-3xl bg-[#13005A] text-white text-sm px-5 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Retour</button>
+                            <button type="submit" className="md:absolute border-transparent md:bottom-10 md:right-12 rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>
+                            <button type="button" onClick={() => back(values)} className="md:absolute border-transparent md:bottom-10 md:left-12 rounded-3xl bg-[#13005A] text-white text-sm px-5 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Retour</button>
                         </Form>
                     )
                 }

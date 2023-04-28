@@ -71,7 +71,7 @@ const FormulairePage1 = ({ data, next }) => {
                         </div>
                     </div>
                 </div >
-                <button type="submit" className="md:absolute md:bottom-10 md:right-12 rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>
+                <button type="submit" className="md:absolute border-transparent md:bottom-10 md:right-12 rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>
             </Form >
         </Formik >
     );

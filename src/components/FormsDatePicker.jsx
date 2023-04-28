@@ -4,7 +4,7 @@ import FormsErrorMessage from './FormsErrorMessage'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const FormsDatePicker = ({ label, name, ...rest }) => {
+const FormsDatePicker = ({ label, name, popperPlacement, ...rest }) => {
     return (
         <>
             <label
@@ -25,7 +25,7 @@ const FormsDatePicker = ({ label, name, ...rest }) => {
                             selected={value}
                             onChange={val => setFieldValue(name, val)}
                             dateFormat="yyyy/MM/dd"
-                            popperPlacement="right"
+                            popperPlacement={popperPlacement || "right"}
                             showYearDropdown
                             className={'outline-none block w-full appearance-none rounded-lg border-[#1C82AD] border py-2 px-4' + (form.touched[name] && form.errors[name] ? ' border-red-500' : '')}
                         />
