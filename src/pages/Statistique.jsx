@@ -5,16 +5,17 @@ import BarChart from '../components/BarChart';
 import DoughnutChart from '../components/DoughnutChart';
 import GaugeChart from '../components/GaugeChart';
 import line_chart_data from '../data/line_chart_data.json';
+import bar_chart_data from '../data/bar_chart_data.json';
 import DirecteursStatsTable from '../components/DirecteursStatsTable';
 import Carousel from '../components/CarouselStats';
 import DoctorantTable from '../components/DoctorantsTable'
 
 const Statistique = () => {
     const barData = {
-        labels: line_chart_data.map(data => data.year),
+        labels: bar_chart_data.map(data => data.year),
         datasets: [{
             label: "nombre d'inscrit",
-            data: line_chart_data.map(data => data.inscrit),
+            data: bar_chart_data.map(data => data.inscrit),
             backgroundColor: '#1C82AD',
             borderColor: '#8744E1',
             pointBorderColor: 'transparent',
@@ -130,7 +131,7 @@ const Statistique = () => {
         responsive: true,
     }
     const typeDoctoratData = {
-        labels: ['Lmd              ', 'Doctorat'],
+        labels: ['Lmd', 'Doctorat'],
         datasets: [
             {
                 data: [61, 39],
@@ -166,7 +167,7 @@ const Statistique = () => {
         responsive: true,
     }
     const sexeData = {
-        labels: ['Homme              ', 'Femme'],
+        labels: ['Homme', 'Femme'],
         datasets: [
             {
                 data: [61, 39],
@@ -179,14 +180,14 @@ const Statistique = () => {
     return (
         <div className='w-fit h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />
-            <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
+            <h1 className='my-6 text-2xl text-[#13005A] text-center '>Statistique</h1>
             <Carousel />
             <div className='mt-10 mb-10 md:flex md:gap-10'>
                 <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Labo' />
                 <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Status' subTitle='Status' />
                 <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
             </div>
-            <div className='flex gap-4 px-3 mb-16'>
+            <div className='flex gap-4 px-3 mb-16 ml-8'>
                 <div className='flex flex-col gap-5'>
                     <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
                     <div className='bg-yellow-500 h-60 w-80'>Stat Multi</div>

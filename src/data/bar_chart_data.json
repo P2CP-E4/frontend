@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "year": 1,
+    "inscrit": 10
+  },
+  {
+    "id": 1,
+    "year": 2,
+    "inscrit": 2
+  },
+  {
+    "id": 1,
+    "year": 3,
+    "inscrit": 8
+  },
+  {
+    "id": 2,
+    "year": 4,
+    "inscrit": 4
+  },
+  {
+    "id": 3,
+    "year": 5,
+    "inscrit": 7
+  },
+  {
+    "id": 4,
+    "year": 6,
+    "inscrit": 9
+  },
+  {
+    "id": 5,
+    "year": 7,
+    "inscrit": 10
+  },
+  {
+    "id": 1,
+    "year": 8,
+    "inscrit": 8
+  },
+  {
+    "id": 2,
+    "year": 9,
+    "inscrit": 4
+  },
+  {
+    "id": 3,
+    "year": 10,
+    "inscrit": 7
+  }
+]

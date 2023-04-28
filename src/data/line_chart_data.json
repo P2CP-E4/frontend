@@ -1,52 +1,57 @@
 [
   {
     "id": 1,
+    "year": 2012,
+    "inscrit": 10
+  },
+  {
+    "id": 1,
     "year": 2013,
-    "inscrit": 80000
+    "inscrit": 10
   },
   {
     "id": 2,
     "year": 2014,
-    "inscrit": 45677
+    "inscrit": 5
   },
   {
     "id": 3,
     "year": 2015,
-    "inscrit": 78888
+    "inscrit": 8
   },
   {
     "id": 4,
     "year": 2016,
-    "inscrit": 90000
+    "inscrit": 1
   },
   {
     "id": 5,
     "year": 2017,
-    "inscrit": 4300
+    "inscrit": 4
   },
   {
     "id": 1,
     "year": 2018,
-    "inscrit": 80000
+    "inscrit": 9
   },
   {
     "id": 2,
     "year": 2019,
-    "inscrit": 45677
+    "inscrit": 15
   },
   {
     "id": 3,
     "year": 2020,
-    "inscrit": 78888
+    "inscrit": 18
   },
   {
     "id": 4,
     "year": 2021,
-    "inscrit": 90000
+    "inscrit": 10
   },
   {
     "id": 5,
     "year": 2022,
-    "inscrit": 4300
+    "inscrit": 14
   }
 ]

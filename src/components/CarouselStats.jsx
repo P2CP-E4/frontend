@@ -24,7 +24,7 @@ const items = [
 const CarouselStats = () => {
     const { visibleItems, handlePrevClick, handleNextClick } = useInfiniteCarousel(items);
     return (
-        <div className="flex items-center justify-center gap-5">
+        <div className="flex items-center justify-center gap-5 ">
             <button
                 onClick={handlePrevClick}
                 className="flex items-center justify-center w-10 h-10 transition-colors duration-300 bg-white rounded-full"

@@ -20,8 +20,7 @@ const ModificationForm = () => {
         laboratoire: '',
         etablissementOrigine: '',
         option: '',
-        nomDirecteur: '',
-        nomCoDirecteur: '',
+        FCT: ''
     }
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -70,16 +69,17 @@ const ModificationForm = () => {
                         <Form className="relative grid w-full h-full bg-white md:grid-cols-3 gap-y-4 gap-x-14 auto-rows-min">
                             <div><FormsTextInput name="nom" label="Nom" /></div>
                             <div><FormsTextInput name="prenom" label="Prenom" /></div>
-                            <div><FormsSelect name="sexe" label="Sexe" options={dropdownOptions} /></div>
                             <div><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
+                            <div><FormsSelect name="sexe" label="Sexe" options={dropdownOptions} /></div>
                             <div><FormsTextInput name="telephone" label="Telephone" /></div>
                             <div><FormsTextInput name="email" label="Email" /></div>
                             <div><FormsSelect name="typeDiplome" label="Type du diplome" options={dropdownOptions} /></div>
                             <div><FormsSelect name="laboratoire" label="Laboratoire" options={dropdownOptions} /></div>
                             <div><FormsSelect name="etablissementOrigine" label="Nom d’Etablissement d’origine " options={dropdownOptions} /></div>
                             <div><FormsSelect name="option" label="Option" options={dropdownOptions} /></div>
-                            <div><FormsTextInput name="nomDirecteur" label="Nom du Directeur" /></div>
-                            <div><FormsTextInput name="nomCoDirecteur" label="Nom du Co-Directeur" /></div>
+                            <div><FormsDatePicker name="FCT" label="Date Enregistrement FCT" /></div>
+                            {/* <div><FormsTextInput name="nomDirecteur" label="Nom du Directeur" /></div> */}
+                            {/* <div><FormsTextInput name="nomCoDirecteur" label="Nom du Co-Directeur" /></div> */}
                             <button type="submit" className="md:absolute md:bottom-6  md:-right-8 bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988]">Modifier</button>
                         </Form >
                     </Formik >

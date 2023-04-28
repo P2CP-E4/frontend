@@ -8,7 +8,7 @@ const DoughnutChart = ({ chartData, chartOptions, subTitle, title }) => {
         beforeDatasetsDraw(chart, args, pluginOptions) {
             const { ctx, data } = chart;
             ctx.save();
-            ctx.font = 'bold 10px sans-serif';
+            ctx.font = 'bold 15px sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseLine = 'middle'
             ctx.fillStyle = 'black';
@@ -17,9 +17,8 @@ const DoughnutChart = ({ chartData, chartOptions, subTitle, title }) => {
         }
     }
     return (
-        <div className='relative flex justify-center items-end bg-white rounded-xl w-[400px] h-[247px] shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
-            <h1 className="absolute text-base font-black text-center top-2">{title}</h1>
-            {/* <h2 className='absolute font-bold top-1/2 right-28'>{subTitle}</h2> */}
+        <div className='relative flex justify-center items-end bg-white rounded-xl w-[350px] h-[247px] shadow-[0_8px_30px_rgb(0,0,0,0.12)]'>
+            <h1 className="absolute px-10 text-base font-black text-left top-5 left-1">{title}</h1>
             <Doughnut
                 className='-mb-4'
                 data={chartData}
