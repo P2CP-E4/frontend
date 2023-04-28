@@ -35,7 +35,7 @@ const DirecteursStatsTable = () => {
         prepareRow,
     } = useTable({ columns, data, defaultColumn: { Filter: ColumnFilter } }, useFilters);
     return (
-        <div className='w-fit'>
+        <div className='flex flex-col items-center w-fit'>
             <h1 className='mb-5'>Nombre de Doctorant par directeur</h1>
             {headerGroups.map((headerGroup) => (
                 <div className='px-10 mb-5' {...headerGroup.getHeaderGroupProps()}>
