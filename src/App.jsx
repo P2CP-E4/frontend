@@ -13,6 +13,7 @@ import Reinscription from "./pages/Reinscription";
 import Importer from "./pages/Importer";
 import Exporter from "./pages/Exporter";
 import Profile from "./pages/Profile";
+import ModificationThese from "./pages/ModificationThese";
 function App() {
   return (
     <>
@@ -29,6 +30,7 @@ function App() {
         <Route path="/importer" element={<Importer />} />
         <Route path="/exporter" element={<Exporter />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/modificationthese" element={<ModificationThese />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </>
