@@ -80,10 +80,8 @@ const ModificationTheseTable = () => {
             ...columns
         ]);
     })
-
     const { pageIndex } = state;
     const [showCarteChangementThese, openCarteChangementThese, closeCarteChangementThese] = usePopUp();
-
     const handleClickEvent = () => {
         if (selectedFlatRows.length === 1) openCarteChangementThese();
         console.log(JSON.stringify(selectedFlatRows.map((row) => row.original), null, 2));

@@ -3,6 +3,7 @@ import FormulairePage1 from "./FormulairePage1";
 import FormulairePage2 from "./FormulairePage2";
 import FormulairePage3 from "./FormulairePage3";
 import FormulairePage4 from "./FormulairePage4";
+import FormulairePage5 from "./FormulairePage5";
 import ProgressBar from "./ProgressBar";
 
 const FormulaireInscription = () => {
@@ -22,15 +23,18 @@ const FormulaireInscription = () => {
         etablissementOrigine: '',
         these: '',
         laboratoire: '',
+        option: '',
         premiereInscription: '',
-        dateEnregistrementFCT: '',
-        codePV: '',
         nomDirecteur: '',
         etablissementDirecteur: '',
         gradeDirecteur: '',
         nomCoDirecteur: '',
         etablissementCoDirecteur: '',
-        gradeCoDirecteur: ''
+        gradeCoDirecteur: '',
+        codePV: '',
+        urlPV: '',
+        ordreDuJour: '',
+        dateDuJour: '',
     });
 
     const makeRequest = (formData) => {
@@ -55,7 +59,8 @@ const FormulaireInscription = () => {
         <FormulairePage1 key={1} data={data} next={handleNextStep} />,
         <FormulairePage2 key={2} data={data} next={handleNextStep} back={handlePreviousStep} />,
         <FormulairePage3 key={3} data={data} next={handleNextStep} back={handlePreviousStep} />,
-        <FormulairePage4 key={4} data={data} next={handleNextStep} back={handlePreviousStep} />
+        <FormulairePage4 key={4} data={data} next={handleNextStep} back={handlePreviousStep} />,
+        <FormulairePage5 key={5} data={data} next={handleNextStep} back={handlePreviousStep} />,
     ]
     return (
         <div className='w-3/4 md:h-5/6 px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF] hover:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>

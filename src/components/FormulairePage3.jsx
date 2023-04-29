@@ -6,10 +6,14 @@ import FormsDatePicker from "./FormsDatePicker";
 import FormsCreatableSelect from "./FormsCreatableSelect";
 
 const FormulairePage3 = ({ data, next, back }) => {
-    const dropdownOptions = [
+    const laboDropdownOptions = [
         { value: "LMCS", label: "LMCS - ESI" },
         { value: "LCSI", label: "LCSI - ESI" },
         { value: "autre", label: "autre" },
+    ]
+    const optionDropdownOptions = [
+        { value: "SIQ", label: "SIQ" },
+        { value: "SI", label: "SI" },
     ]
 
     const validationSchema = Yup.object().shape({
@@ -20,9 +24,7 @@ const FormulairePage3 = ({ data, next, back }) => {
             .required("veuillez remplir ce champ."),
         premiereInscription: Yup.date()
             .required("veuillez remplir ce champ."),
-        dateEnregistrementFCT: Yup.date()
-            .required("veuillez remplir ce champ."),
-        codePV: Yup.string()
+        option: Yup.string()
             .required("veuillez remplir ce champ."),
     })
 
@@ -38,38 +40,23 @@ const FormulairePage3 = ({ data, next, back }) => {
             >
                 {
                     ({ values }) => (
-                        < Form className="relative flex flex-col items-center w-full h-full">
-                            <div className="w-4/5">
-                                <h2 className="text-lg font-semibold leading-10 text-[#03C988] mb-6 ml-16">
+                        <>
+                            <Form className="relative w-full h-full md:px-40 md:gap-y-10 md:gap-x-10 md:auto-rows-min md:grid"
+                                style={{
+                                    gridTemplateColumns: "60% 40%",
+                                }}
+                            >
+                                <h2 className=" md:col-span-2 text-lg font-semibold text-left leading-10 text-[#03C988] mb-6">
                                     Information de these
                                 </h2>
-                                <div className="mb-16 -mx-3 md:flex">
-                                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                                        <FormsTextInput name="these" label="Intitulé de these" />
-                                    </div>
-                                    <div className="px-3 mb-6 md:mb-0 md:w-1/2">
-                                        <FormsCreatableSelect name="laboratoire" label="Laboratoire" placeholder="" options={dropdownOptions} />
-                                    </div>
-                                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                                        <FormsDatePicker name="premiereInscription" label="Date de la Première Inscription" showYearPicker />
-                                    </div>
-                                </div>
-
-                                <div className="mb-6 -mx-3 md:flex">
-                                    <div className="px-3 md:w-1/2">
-                                        <FormsDatePicker name="dateEnregistrementFCT" label="Date enregistrement FCT" />
-                                    </div>
-                                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                                        <FormsTextInput name="codePV" label="Code du Procès verbal" />
-                                    </div>
-                                    <div className="content-center px-3 mb-6 md:mb-0 md:w-1/2">
-                                        <FormsTextInput name="codePV" label="Code du Procès verbal" />
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" className="md:absolute  border-transparent md:bottom-10 md:right-12 rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>
-                            <button type="button" onClick={() => back(values)} className="md:absolute border-transparent md:bottom-10 md:left-12 rounded-3xl bg-[#13005A] text-white text-sm px-5 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Retour</button>
-                        </Form>
+                                <div className=""><FormsTextInput name="these" label="Intitulé de these" /></div>
+                                <div className="md:ml-8"><FormsCreatableSelect name="laboratoire" label="Laboratoire" placeholder="" options={laboDropdownOptions} /></div>
+                                <div className="md:mr-20"><FormsDatePicker name="premiereInscription" label="Date de la Première Inscription" showYearPicker /></div>
+                                <div className=""><FormsCreatableSelect name="option" label="option" placeholder="" options={optionDropdownOptions} /></div>
+                                <button type="submit" className="md:absolute  border-transparent md:bottom-10 md:right-12 rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>
+                                <button type="button" onClick={() => back(values)} className="md:absolute border-transparent md:bottom-10 md:left-12 rounded-3xl bg-[#13005A] text-white text-sm px-5 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Retour</button>
+                            </Form>
+                        </>
                     )
                 }
             </Formik >
