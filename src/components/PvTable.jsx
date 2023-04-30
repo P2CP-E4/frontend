@@ -9,23 +9,34 @@ const PvTable = () => {
     const data = useMemo(() => pv_data.sort((a, b) => (a.date - b.date)), []);
     const columns = useMemo(() => [
         {
-            Header: 'Année',
+            Header: 'Date du proces verbal',
             accessor: 'date',
-            placeHolderFilter: 'Année',
+            placeHolderFilter: 'Date PV',
+            width: 150,
             Filter: ColumSelectFilter,
         },
         {
             Header: 'Code',
             accessor: 'code',
             placeHolderFilter: 'Code',
+            width: 150,
             Filter: ColumnFilter,
         },
         {
             Header: 'Lien',
             accessor: 'url',
             placeHolderFilter: 'Lien',
+            width: 200,
             Filter: '',
-            Cell: ({ value }) => <a href={value} target='_blank' className='text-[#03C988] underline '>Lien vers fichier PDF</a>
+            Cell: ({ value }) => <a href={value} target='_blank' className='text-[#13005A] underline'>Lien vers fichier PDF</a>
+        },
+        {
+            Header: 'Ordre du jour',
+            accessor: '',
+            placeHolderFilter: 'Ordre du jour',
+            width: 300,
+            Filter: ColumnFilter,
+            Cell: ({ value }) => <p className='text-xs whitespace-pre-line'>Non Lorem ex esse cupidatat id esse anim laboris mollit ea. Fugiat et ex non tempor mollit nulla amet adipisicing culpa exercitation reprehenderit elit sint incididunt. Excepteur fugiat ad qui culpa consequat aute exercitation laborum anim sint commodo minim veniam. Excepteur minim elit est labore laborum in ullamco amet cillum.</p>
         },
     ], []);
     const {
@@ -46,16 +57,18 @@ const PvTable = () => {
     return (
         <>
             {headerGroups.map((headerGroup) => (
-                <div className='flex justify-center w-1/2 gap-1 mb-3' {...headerGroup.getHeaderGroupProps()}>
+                <div className='flex justify-center w-[800px] gap-1 mb-3' {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
+                    <button type="button" className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-7 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Exporter</button>
+                    <button type="button" className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Ajouter PV</button>
                 </div >
             ))}
-            <table className="w-1/2 table-fixed rounded-t-xl" {...getTableProps()}>
+            <table className="table-fixed " {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
-                        <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10 rounded-t-xl text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
+                        <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10  text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
-                                <th className='text-center border'{...column.getHeaderProps()}>
+                                <th className='text-center border'{...column.getHeaderProps({ width: column.width, })}>
                                     {column.render("Header")}
                                 </th>
                             ))}
@@ -68,14 +81,14 @@ const PvTable = () => {
                         return (
                             <tr className='border-b border-gray-200 hover:bg-gray-100' {...row.getRowProps()}>
                                 {row.cells.map((cell) => (
-                                    <td className='px-2 py-3 text-center whitespace-nowrap' {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                    <td className='px-2 py-3 text-center whitespace-nowrap' {...cell.getCellProps({ width: cell.column.width, })}>{cell.render('Cell')}</td>
                                 ))}
                             </tr>
                         );
                     })}
                 </tbody>
             </table >
-            <div className='bg-[#F9F9F9] border border-[#D9D9D9] w-1/2 h-12 rounded-b-xl flex justify-between items-center'>
+            <div className='bg-[#F9F9F9] border border-[#D9D9D9] w-[800px] h-12 rounded-b-xl flex justify-between items-center'>
                 <Pagination
                     pageNumber={pageCount}
                     currentPageIndex={pageIndex + 1}

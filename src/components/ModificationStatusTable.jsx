@@ -7,6 +7,7 @@ import StatusCustomCard from './StatusCustomCard';
 import ModificationStatusCheckBox from './ModificationStatusCheckBox';
 import CheckBox from './CheckBox';
 import CarteWarning from './CarteWarning';
+import CarteSuccess from './CarteSuccess'
 import doctorant_data from '../data/doctorant_data.json';
 import { usePopUp } from '../hooks/usePopUp';
 import PopUp from './PopUp';
@@ -106,12 +107,21 @@ const ModificationStatusTable = () => {
 
     const { pageIndex } = state;
 
-    const [showWarning, openWaning, closeWarning] = usePopUp()
+    const [showWarning, openWaning, closeWarning] = usePopUp();
+    const [showSuccess, openSuccess, closeSuccess] = usePopUp();
+    const submissionState = (changedStatus) => {
+        // return false warning , returns true Okay
+        if (selectedStatus.toLowerCase() === 'inscrit') return true;
+        if (selectedStatus.toLowerCase() === 'differe' && changedStatus.toLowerCase() === 'radie') return true;
+        return false;
+    }
 
     const handleClickSubmitButtonEvent = (e) => {
         if (!selectedStatus) return openWaning();
         if (selectedFlatRows.length === 0) return openWaning();
-        if (selectedStatus.toLowerCase() === 'radie' && e.target.value.toLowerCase() === 'inscrit') return openWaning();
+        console.log(submissionState(e.target.value))
+        if (!submissionState(e.target.value)) return openWaning();
+        openSuccess();
         console.log(JSON.stringify(selectedFlatRows.map((row) => row.original), null, 2));
     }
     return (
@@ -121,13 +131,13 @@ const ModificationStatusTable = () => {
                     {headerGroup.headers.map(column => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
                 </div >
             ))}
-            <div className='relative w-2/3 h-fit'>
+            <div className='relative w-2/3 h-0 bg-black'>
                 <table className="table-fixed" {...getTableProps()}>
                     <thead>
                         {headerGroups.map((headerGroup) => (
                             <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10 rounded-t-xl text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
                                 {headerGroup.headers.map((column) => (
-                                    < th className='text-left pl-4 border'{...column.getHeaderProps({ width: column.width, })} >
+                                    < th className='pl-4 text-left border'{...column.getHeaderProps({ width: column.width, })} >
                                         {column.render("Header")}
                                     </th>
                                 )
@@ -141,7 +151,7 @@ const ModificationStatusTable = () => {
                             return (
                                 <tr className='border-b border-gray-200 hover:bg-gray-100' {...row.getRowProps()}>
                                     {row.cells.map((cell) => (
-                                        <td className='px-5 py-3 whitespace-nowrap text-left' {...cell.getCellProps({ width: cell.column.width, })}>{cell.render('Cell')}</td>
+                                        <td className='px-5 py-3 text-left whitespace-nowrap' {...cell.getCellProps({ width: cell.column.width, })}>{cell.render('Cell')}</td>
                                     ))}
                                 </tr>
                             );
@@ -162,6 +172,7 @@ const ModificationStatusTable = () => {
                 <ModificationStatusCheckBox visibility={showModificationStatusCheckBox} onClick={handleClickSubmitButtonEvent} defaultValue={selectedStatus} className='absolute top-10 -right-44' />
             </div >
             <PopUp trigger={showWarning} handleCloseEvent={closeWarning}><CarteWarning onClick={closeWarning} /></PopUp>
+            <PopUp trigger={showSuccess} handleCloseEvent={closeSuccess}><CarteSuccess onClick={closeSuccess} /></PopUp>
         </>
     );
 }

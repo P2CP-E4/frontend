@@ -27,7 +27,7 @@ const FormsDatePicker = ({ label, name, popperPlacement, ...rest }) => {
                             dateFormat="yyyy/MM/dd"
                             popperPlacement={popperPlacement || "right"}
                             showYearDropdown
-                            className={'outline-none block w-full appearance-none rounded-lg border-[#1C82AD] border py-2 px-4' + (form.touched[name] && form.errors[name] ? ' border-red-500' : '')}
+                            className={'outline-none block w-full appearance-none rounded-lg border-[#1C82AD] border py-2 px-4  ' + (form.touched[name] && form.errors[name] ? ' border-red-500' : '')}
                         />
                     }
                 }
