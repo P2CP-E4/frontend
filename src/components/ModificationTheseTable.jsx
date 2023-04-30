@@ -8,7 +8,7 @@ import CheckBox from './CheckBox';
 import Radio from './Radio';
 import { usePopUp } from '../hooks/usePopUp';
 import PopUp from './PopUp';
-import CarteModificationThese from './CarteModificationThese';
+import CarteChangementThese from './CarteChangementThese';
 const ModificationTheseTable = () => {
     //TODO: fetch data from API
     const data = useMemo(() => doctorant_data, []);
@@ -83,7 +83,8 @@ const ModificationTheseTable = () => {
     const { pageIndex } = state;
     const [showCarteChangementThese, openCarteChangementThese, closeCarteChangementThese] = usePopUp();
     const handleClickEvent = () => {
-        if (selectedFlatRows.length === 1) openCarteChangementThese();
+        if (selectedFlatRows.length === 0) alert('Veuillez sélectionner un doctorant');
+        else if (selectedFlatRows.length === 1) openCarteChangementThese();
         console.log(JSON.stringify(selectedFlatRows.map((row) => row.original), null, 2));
     }
 
@@ -132,7 +133,7 @@ const ModificationTheseTable = () => {
                 />
                 <button className='bg-[#03C988] w-44 text-white rounded-xl mr-3 px-3 py-1 font-semibold hover:bg-white border-2 border-[#03C988] hover:text-[#03C988]' type='button' onClick={handleClickEvent}>Modifier</button>
             </div>
-            <PopUp trigger={showCarteChangementThese} handleCloseEvent={closeCarteChangementThese}><CarteModificationThese /> </PopUp>
+            <PopUp trigger={showCarteChangementThese} handleCloseEvent={closeCarteChangementThese}><CarteChangementThese /> </PopUp>
         </>
     );
 }

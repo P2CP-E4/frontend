@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import FormsTextInput from './FormsTextInput'
 import FormsDatePicker from './FormsDatePicker'
 import FormsTextArea from './FormsTextArea'
-const AjoutObservation = () => {
+const CarteAjoutObservation = () => {
     const initialValues = {
         nom: '',
         prenom: '',
@@ -26,7 +26,9 @@ const AjoutObservation = () => {
     });
 
     return (
-        <div className=' w-4/6 h-fit mt-5 px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
+        <div className=' w-4/6 h-fit mt-5 px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'
+            onClick={e => e.stopPropagation()}
+        >
             <div className='flex flex-col w-full pt-4 pb-16 px-5  bg-white rounded-[45px] md:h-full'>
                 <h1 className='text-[#03C988] text-xl font-black text-center'>Ajout d’une Observation</h1>
                 <Formik
@@ -51,4 +53,4 @@ const AjoutObservation = () => {
     )
 }
 
-export default AjoutObservation
+export default CarteAjoutObservation

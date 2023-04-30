@@ -25,7 +25,7 @@ const PvTable = () => {
             accessor: 'url',
             placeHolderFilter: 'Lien',
             Filter: '',
-            Cell: ({ value }) => <a href={value} className='text-[#03C988] underline '>Lien vers fichier PDF</a>
+            Cell: ({ value }) => <a href={value} target='_blank' className='text-[#03C988] underline '>Lien vers fichier PDF</a>
         },
     ], []);
     const {

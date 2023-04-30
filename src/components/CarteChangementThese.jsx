@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import FormsTextInput from './FormsTextInput'
 import FormsDatePicker from './FormsDatePicker'
 
-const CarteModificationThese = ({ nomDoctorant, observation, theseActuelle }) => {
+const CarteChangementThese = ({ nomDoctorant, observation, theseActuelle }) => {
   const initialValues = {
     nouveauThese: '',
     codePv: '',
@@ -13,19 +13,24 @@ const CarteModificationThese = ({ nomDoctorant, observation, theseActuelle }) =>
     datePv: '',
   }
   const validationSchema = Yup.object().shape({
-    nom: Yup.string()
+    nouveauThese: Yup.string()
       .min(3, 'Min. 3 characters')
       .required('veuillez remplir ce champ.'),
-    prenom: Yup.string()
+    codePv: Yup.string()
       .min(3, 'Min. 3 characters')
       .required('veuillez remplir ce champ.'),
-    dateNaissance: Yup.date()
+    urlPv: Yup.string()
       .required('veuillez remplir ce champ.'),
-    FCT: Yup.date()
+    ordreDuJour: Yup.string()
+      .required('veuillez remplir ce champ.'),
+    datePv: Yup.string()
       .required('veuillez remplir ce champ.'),
   });
   return (
-    <div className=' w-4/6 h-[550px] px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]' >
+    <div
+      className=' w-4/6 h-[550px] px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'
+      onClick={e => e.stopPropagation()}
+    >
       <div className='flex flex-col w-full py-10 px-10  bg-white rounded-[45px] md:h-full'>
         <h1 className='text-[#03C988] text-xl font-black text-center'>{`Modifier les theses du Doctorant “${nomDoctorant}“`}  </h1>
         <Formik
@@ -41,7 +46,6 @@ const CarteModificationThese = ({ nomDoctorant, observation, theseActuelle }) =>
             <div><FormsTextInput name="urlPv" label="Url" /></div>
             <div><FormsDatePicker name="ordreDuJour" label="Ordre du jour" /></div>
             <div><FormsDatePicker name="datePv" label="Date du proces verbal" /></div>
-
             <button type="submit" className=" col-start-2 ml-12 mt-6 rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border border-transparent hover:border-[#03C988]">Confirmer la modification</button>
           </Form >
         </Formik >
@@ -50,4 +54,4 @@ const CarteModificationThese = ({ nomDoctorant, observation, theseActuelle }) =>
   )
 }
 
-export default CarteModificationThese;
+export default CarteChangementThese;

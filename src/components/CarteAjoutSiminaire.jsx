@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import FormsTextInput from './FormsTextInput'
 import FormsDatePicker from './FormsDatePicker'
 import FormsTextArea from './FormsTextArea'
-const AjoutSiminaire = () => {
+const CarteAjoutSiminaire = () => {
     const initialValues = {
         nom: '',
         prenom: '',
@@ -33,7 +33,9 @@ const AjoutSiminaire = () => {
             .required('veuillez remplir ce champ.'),
     });
     return (
-        <div className=' w-4/6 h-fit px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
+        <div className=' w-4/6 h-fit px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'
+            onClick={e => e.stopPropagation()}
+        >
             <div className='flex flex-col w-full py-4 px-5  bg-white rounded-[45px] md:h-full'>
                 <h1 className='text-[#03C988] text-xl font-black text-center'>Ajout d’une Siminaire</h1>
                 <Formik
@@ -62,4 +64,4 @@ const AjoutSiminaire = () => {
     )
 }
 
-export default AjoutSiminaire
+export default CarteAjoutSiminaire

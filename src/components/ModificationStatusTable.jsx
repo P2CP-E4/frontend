@@ -12,6 +12,7 @@ import { usePopUp } from '../hooks/usePopUp';
 import PopUp from './PopUp';
 const ModificationStatusTable = () => {
     //TODO: fetch data from API
+
     const [showModificationStatusCheckBox, setShowModificationStatusCheckBox] = useState(false);
 
     const handleClickCheckBoxEvent = (e) => {
@@ -33,7 +34,7 @@ const ModificationStatusTable = () => {
             Header: 'Date 1ére inscription',
             accessor: 'premiereInscription',
             placeHolderFilter: 'Date 1ère insc',
-            width: 110,
+            width: 180,
             Filter: ColumnFilter,
         },
         {
@@ -44,10 +45,10 @@ const ModificationStatusTable = () => {
             Filter: ColumnFilter,
         },
         {
-            Header: 'Code PV',
+            Header: 'Lien PV',
             accessor: 'code_pv',
-            width: 150,
-            placeHolderFilter: 'Code PV'
+            width: 80,
+            placeHolderFilter: 'Code PV',
         },
         {
             Header: 'Status',
@@ -126,7 +127,7 @@ const ModificationStatusTable = () => {
                         {headerGroups.map((headerGroup) => (
                             <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10 rounded-t-xl text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
                                 {headerGroup.headers.map((column) => (
-                                    < th className='text-center border'{...column.getHeaderProps({ width: column.width, })} >
+                                    < th className='text-left pl-4 border'{...column.getHeaderProps({ width: column.width, })} >
                                         {column.render("Header")}
                                     </th>
                                 )
@@ -140,7 +141,7 @@ const ModificationStatusTable = () => {
                             return (
                                 <tr className='border-b border-gray-200 hover:bg-gray-100' {...row.getRowProps()}>
                                     {row.cells.map((cell) => (
-                                        <td className='px-2 py-3 text-center whitespace-nowrap' {...cell.getCellProps({ width: cell.column.width, })}>{cell.render('Cell')}</td>
+                                        <td className='px-5 py-3 whitespace-nowrap text-left' {...cell.getCellProps({ width: cell.column.width, })}>{cell.render('Cell')}</td>
                                     ))}
                                 </tr>
                             );

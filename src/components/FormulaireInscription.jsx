@@ -28,6 +28,8 @@ const FormulaireInscription = () => {
         nomDirecteur: '',
         etablissementDirecteur: '',
         gradeDirecteur: '',
+        adresseEmailDirecteur: '',
+        telephoneDirecteur: '',
         nomCoDirecteur: '',
         etablissementCoDirecteur: '',
         gradeCoDirecteur: '',

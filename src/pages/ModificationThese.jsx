@@ -7,7 +7,7 @@ const ModificationThese = () => {
         <>
             <NavBar />
             <div className='flex flex-col items-center justify-center w-full h-full'>
-                <h1 className='text-[#13005A] text-xl my-8'>Modifier les theses des Doctorants</h1>
+                <h1 className='text-[#13005A] text-xl my-8'>Changement de these d'un Doctorants</h1>
                 <ModificationTheseTable />
             </div>
         </>

@@ -3,22 +3,17 @@ import { useTable, usePagination, useFilters, useRowSelect } from 'react-table';
 import { usePopUp } from '../hooks/usePopUp';
 import Pagination from './Pagination';
 import PopUp from './PopUp';
-import CarteInformationDoctorant from './CarteInformationDoctorant';
-import CartesInformationsDirecteur from './CarteInformationDirecteur';
 import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
 import StatusCustomCard from './StatusCustomCard';
-import more_info_icon from '../assets/images/more_info_icon.svg';
-import doctorant_data from '../data/doctorant_data.json';
+import CarteAjoutPv from './CarteAjoutPv';
 import CheckBox from './CheckBox';
-
+import doctorant_data from '../data/doctorant_data.json';
 
 const ReinscriptionTable = () => {
     //TODO: fetch data from API
 
     //* usePopUp is a custom hook made to handle the popUp events
-    const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
-    const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
     const data = useMemo(() => doctorant_data, []);
     const columns = useMemo(() => [
         {
@@ -27,7 +22,7 @@ const ReinscriptionTable = () => {
             placeHolderFilter: 'Nom/prenom',
             width: 175,
             className: "bg-[#F9F9F9] text-left pl-5",
-            Cell: ({ value }) => < span className='flex justify-between' ><span className='text-xs'>{value}</span><img src={more_info_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDoctorantPopUp} /></span >,
+            Cell: ({ value }) => <span className='text-xs'>{value}</span>,
         },
         {
             Header: 'Date 1ére inscription',
@@ -43,7 +38,7 @@ const ReinscriptionTable = () => {
             placeHolderFilter: 'Directeur',
             width: 150,
             className: "text-center",
-            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span><img src={more_info_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDirecteurPopUp} /></span>,
+            Cell: ({ value }) => <span className='text-xs '>{value}</span>,
         },
         {
             Header: 'Code PV',
@@ -89,7 +84,12 @@ const ReinscriptionTable = () => {
         ])
     });
     const { pageIndex } = state;
+
+    const [ajoutPvTrigger, openAjoutPv, closeAjoutPv] = usePopUp();
+
     const handleClickEvent = () => {
+        if (selectedFlatRows.length === 0) return alert('Veuillez sélectionner au moins un doctorant');
+        openAjoutPv();
         console.log(JSON.stringify(selectedFlatRows.map((row) => row.original), null, 2));
     }
 
@@ -138,8 +138,7 @@ const ReinscriptionTable = () => {
                 />
                 <button className='bg-[#03C988] w-44 text-white rounded-xl mr-3 px-3 py-1 font-semibold hover:bg-white border-2 border-[#03C988] hover:text-[#03C988]' type='button' onClick={handleClickEvent}>reinscrire</button>
             </div>
-            <PopUp trigger={doctorantPopUpTrigger} handleCloseEvent={closeDoctorantPopUp}><CarteInformationDoctorant handleCloseEvent={closeDoctorantPopUp} /></PopUp>
-            <PopUp trigger={directeurPopUpTrigger} handleCloseEvent={closeDirecteurPopUp}><CartesInformationsDirecteur handleCloseEvent={closeDirecteurPopUp} /></PopUp>
+            <PopUp trigger={ajoutPvTrigger} handleCloseEvent={closeAjoutPv}><CarteAjoutPv operation='réinscription' /></PopUp>
         </>
     );
 }

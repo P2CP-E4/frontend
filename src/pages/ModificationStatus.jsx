@@ -5,7 +5,7 @@ const ModificationStatus = () => {
     return (
         <>
             <NavBar />
-            <h1 className='text-xl mx-auto mb-8 mt-2 w-2/3 text-[#13005A]'>Modifier le status des Doctorants  :</h1>
+            <h1 className='text-xl text-center  mb-7 mt-7 text-[#13005A]'>Modifier le status des Doctorants  :</h1>
             <div className='flex flex-col items-center w-screen'>
                 <ModificationStatusTable />
             </div>

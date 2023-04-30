@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import FormsTextInput from './FormsTextInput'
 import FormsDatePicker from './FormsDatePicker'
 
-const AjoutFCT = () => {
+const CarteAjoutFCT = () => {
     const initialValues = {
         nom: '',
         prenom: '',
@@ -24,7 +24,9 @@ const AjoutFCT = () => {
             .required('veuillez remplir ce champ.'),
     });
     return (
-        <div className=' w-4/6 h-[450px] px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]' >
+        <div className=' w-4/6 h-[450px] px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'
+            onClick={e => e.stopPropagation()}
+        >
             <div className='flex flex-col w-full py-10 px-5  bg-white rounded-[45px] md:h-full'>
                 <h1 className='text-[#03C988] text-xl font-black text-center'>Ajout de la Date d’enregistrement du fichier central</h1>
                 <Formik
@@ -51,4 +53,4 @@ const AjoutFCT = () => {
     )
 }
 
-export default AjoutFCT
+export default CarteAjoutFCT
