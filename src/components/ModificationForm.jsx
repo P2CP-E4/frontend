@@ -57,8 +57,8 @@ const ModificationForm = () => {
     });
     return (
         <>
-            <div className='w-3/4 md:h-[430px] mt-auto px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
-                <div className='flex flex-col w-full py-9 md:px-16 bg-white rounded-[45px] md:h-full'>
+            <div className='w-3/4 md:h-[400px] px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
+                <div className='flex flex-col w-full py-3 md:px-16 bg-white rounded-[45px] md:h-full'>
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}

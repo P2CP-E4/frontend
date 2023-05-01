@@ -2,26 +2,20 @@ import React from 'react'
 import { Form, Formik } from "formik"
 import * as Yup from 'yup'
 import FormsTextInput from './FormsTextInput'
-import FormsDatePicker from './FormsDatePicker'
 import FormsTextArea from './FormsTextArea'
+import FormsSelect from './FormsSelect'
+import data from '../data/doctorant_data.json'
 const CarteAjoutSiminaire = () => {
+
     const initialValues = {
-        nom: '',
-        prenom: '',
-        dateNaissance: '',
+        idDoctorant: '',
         titre: '',
         animateur: '',
         resume: '',
     }
     const validationSchema = Yup.object().shape({
-        nom: Yup.string()
-            .min(3, 'Min. 3 characters')
-            .required('veuillez remplir ce champ.'),
-        prenom: Yup.string()
-            .min(3, 'Min. 3 characters')
-            .required('veuillez remplir ce champ.'),
-        dateNaissance: Yup.date()
-            .required('veuillez remplir ce champ.'),
+        idDoctorant: Yup.string()
+            .required('veuillez vous choisir un doctorant.'),
         titre: Yup.string()
             .min(3, 'Min. 3 characters')
             .required('veuillez remplir ce champ.'),
@@ -32,6 +26,13 @@ const CarteAjoutSiminaire = () => {
             .min(10, 'Min. 3 characters')
             .required('veuillez remplir ce champ.'),
     });
+    const dropdownOptions = data.map((doctorant) => {
+        return {
+            label: doctorant.nomPrenom,
+            value: doctorant.id
+        }
+    })
+
     return (
         <div className=' w-4/6 h-fit px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'
             onClick={e => e.stopPropagation()}
@@ -45,12 +46,8 @@ const CarteAjoutSiminaire = () => {
                 >
                     <Form className="w-full mt-10 md:px-14">
                         <h6 className='mb-4 text-sm'>Veuillez remplir les informations du doctorant voulu</h6>
-                        <div className='mb-6 md:flex md:gap-5'>
-                            <div><FormsTextInput name="nom" label="Nom" /></div>
-                            <div><FormsTextInput name="prenom" label="Prenom" /></div>
-                            <div><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
-                        </div>
-                        <h6 className='mb-4 text-sm'>Information du siminaire a ajouter</h6>
+                        <FormsSelect options={dropdownOptions} name='idDoctorant' label='Nom Complet' />
+                        <h3 className='mt-3 text-sm text-left'>Information du siminaire a ajouter :</h3>
                         <div className='mb-6 md:flex md:gap-28'>
                             <div><FormsTextInput name="titre" label="Titre" /></div>
                             <div><FormsTextInput name="animateur" label="Animateur" /></div>

@@ -1,14 +1,12 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import FormsTextInput from './FormsTextInput'
 import FormsDatePicker from './FormsDatePicker'
-
+import FormsSelect from './FormsSelect'
+import data from '../data/doctorant_data.json'
 const CarteAjoutFCT = () => {
     const initialValues = {
-        nom: '',
-        prenom: '',
-        dateNaissance: '',
+        idDoctorant: '',
         FCT: '',
     }
     const validationSchema = Yup.object().shape({
@@ -23,6 +21,12 @@ const CarteAjoutFCT = () => {
         FCT: Yup.date()
             .required('veuillez remplir ce champ.'),
     });
+    const dropdownOptions = data.map((doctorant) => {
+        return {
+            label: doctorant.nomPrenom,
+            value: doctorant.id
+        }
+    })
     return (
         <div className=' w-4/6 h-[450px] px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'
             onClick={e => e.stopPropagation()}
@@ -36,11 +40,8 @@ const CarteAjoutFCT = () => {
                 >
                     <Form className="w-full mt-10 md:px-10">
                         <h6 className='mb-4 text-sm'>Veuillez remplir les informations du doctorant voulu</h6>
-                        <div className='mb-6 md:flex md:gap-5'>
-                            <div><FormsTextInput name="nom" label="Nom" /></div>
-                            <div><FormsTextInput name="prenom" label="Prenom" /></div>
-                            <div><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
-                        </div>
+                        <FormsSelect options={dropdownOptions} name='idDoctorant' label='Nom Complet' />
+
                         <div className='items-center gap-3 mt-10 md:flex'>
                             <h6 className='mt-5 text-sm font-light'>L’Ajout de la Date d’enregistrement du fichier central</h6>
                             <div className=''><FormsDatePicker name="FCT" label="La Date du FCT" /></div>

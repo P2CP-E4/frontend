@@ -47,13 +47,13 @@ const SearchBar = ({ placeholder, data, handleaSubmit }) => {
     }
     //---------------------------------------------------
     //animations
-    const containerVariants = {
+    const dropDownContainerVariants = {
         expanded: {
-            height: "15em",
+            height: "200px",
 
         },
         collapsed: {
-            height: "43.5px",
+            height: "0px",
         }
     }
 
@@ -62,7 +62,6 @@ const SearchBar = ({ placeholder, data, handleaSubmit }) => {
         damping: 22,
         stiffness: 150,
     }
-
     //collapssing on click outside logic
     useEffect(() => {
         if (isClickedOutside) {
@@ -76,21 +75,22 @@ const SearchBar = ({ placeholder, data, handleaSubmit }) => {
         setSearchQuery(e.target.value)
     }
     return (
-        <motion.div
-            className=' border border-[#1C82AD] rounded-lg w-1/2 shadow-xl'
+        <div
+            className=' border border-[#1C82AD] w-[600px] shadow-xl'
+            style={{ borderRadius: isExpanded ? '0.5rem 0.5rem  0rem 0rem' : '0.5rem', }}
             ref={parentRef}
-            animate={isExpanded ? "expanded" : "collapsed"}
-            transition={animationTransition}
-            variants={containerVariants}
         >
-            <div className='sticky top-0'>
+            <div className='sticky top-0'
+                style={{ borderRadius: isExpanded ? '0rem 0rem' : '0.5rem', }}
+            >
                 <input
                     type='text'
                     placeholder={placeholder}
                     value={searchQuery}
                     onChange={handleFilter}
                     onFocus={expandContainer}
-                    className={'outline-none block w-full appearance-none border-transparent rounded-lg border py-2 px-10' + (isExpanded ? 'rounded-b-none' : 'rounded-lg')}
+                    style={{ borderRadius: isExpanded ? '0.5rem 0.5rem  0rem 0rem' : '0.5rem', }}
+                    className='outline-none block w-full appearance-none border-transparent border py-2 px-10   '
                 />
                 <AnimatePresence>
                     {isExpanded && <div
@@ -98,22 +98,30 @@ const SearchBar = ({ placeholder, data, handleaSubmit }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        onClick={clearInput}
                         transition={{ duration: 0.4 }}
+                        onClick={clearInput}
                     ><img src={crois} alt='crois' className='w-3' /></div>}
                 </AnimatePresence>
             </div >
             {
-                <div className={'flex flex-col items-center overflow-hidden overflow-y-auto divide-y divide-[#1C82AD] scrollbar-none h-60 w-1/2 absolute float-left m-0 min-w-max border-none bg-white' + isExpanded ? 'z-[1000]' : 'z-0'}>
+                <motion.div
+                    animate={isExpanded ? "expanded" : "collapsed"}
+                    variants={dropDownContainerVariants}
+                    transition={animationTransition}
+                    className={'flex flex-col items-center overflow-hidden overflow-y-auto divide-y divide-[#1C82AD] scrollbar-none w-[600px] absolute m-0 min-w-max bg-white rounded-b-lg bg-transparent z-20'}
+                    style={{
+                        border: isExpanded ? '1px solid #1C82AD' : '0rem'
+                    }}
+                >
                     {
                         filteredData.slice(0, 15).map((item, index) => (
-                            <button type='button' value={item.nomPrenom} onClick={handleSelect} className='self-start block w-full px-5 py-2 text-left hover:bg-slate-200' key={index}>{item.nomPrenom}</button>
+                            <button type='button' value={item.nomPrenom} onClick={handleSelect} className='self-start bg-white block w-full px-5 py-2 text-left hover:bg-slate-200' key={index}>{item.nomPrenom}</button>
                         ))
                     }
                     < MoonLoader loading={filteredData.length === 0 && isExpanded} size={30} color='#1C82AD' className='m-auto' />
-                </div >
+                </motion.div >
             }
-        </motion.div >
+        </div >
     )
 }
 

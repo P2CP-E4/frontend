@@ -1,14 +1,12 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import FormsTextInput from './FormsTextInput'
-import FormsDatePicker from './FormsDatePicker'
 import FormsTextArea from './FormsTextArea'
+import FormsSelect from './FormsSelect'
+import data from '../data/doctorant_data.json'
 const CarteAjoutObservation = () => {
     const initialValues = {
-        nom: '',
-        prenom: '',
-        dateNaissance: '',
+        idDoctorant: '',
         observation: ''
     }
     const validationSchema = Yup.object().shape({
@@ -24,7 +22,12 @@ const CarteAjoutObservation = () => {
             .min(10, 'Min. 3 characters')
             .required('veuillez remplir ce champ.'),
     });
-
+    const dropdownOptions = data.map((doctorant) => {
+        return {
+            label: doctorant.nomPrenom,
+            value: doctorant.id
+        }
+    })
     return (
         <div className=' w-4/6 h-fit mt-5 px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'
             onClick={e => e.stopPropagation()}
@@ -38,10 +41,8 @@ const CarteAjoutObservation = () => {
                 >
                     <Form className="w-full mt-10 md:px-14">
                         <h6 className='mb-4 text-sm'>Veuillez remplir les informations du doctorant voulu</h6>
-                        <div className='md:flex md:gap-5'>
-                            <div><FormsTextInput name="nom" label="Nom" /></div>
-                            <div><FormsTextInput name="prenom" label="Prenom" /></div>
-                            <div><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
+                        <div className='pr-32'>
+                            <FormsSelect options={dropdownOptions} name='idDoctorant' label='Nom Complet' placeholder='enter le nom complet' />
                         </div>
                         <h6 className='my-5 mb-4 text-sm'>Ajout de l’observation</h6>
                         <div className='mr-32'><FormsTextArea name="observation" label="Observation" /></div>
