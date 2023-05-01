@@ -9,8 +9,8 @@ const WelcomePage = () => {
         <div className="flex flex-col justify-between w-screen h-screen py-6 pl-16 bg-[url('/src/assets/images/welcomePage.jpg')] bg-cover">
             <nav className="flex ml-10">
                 <ul className="flex gap-10">
-                    <li className=" text-[#13005A] font-semibold hover:text-[#03C988]"><a href="/welcomepage" onClick={openLoginPopUp}>Acceuil</a></li>
-                    <li className="text-[#13005A] font-semibold hover:text-[#03C988]"><a href="/welcomepage">Se Connecter</a></li>
+                    <li className=" text-[#13005A] font-semibold hover:text-[#03C988]"><a href="/welcomepage" >Acceuil</a></li>
+                    <li className="text-[#13005A] font-semibold hover:text-[#03C988]"><a href="/" onClick={openLoginPopUp}>Se Connecter</a></li>
                 </ul>
             </nav>
             <div className='ml-10'>

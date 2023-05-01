@@ -20,12 +20,11 @@ const ExcelRequestsImport = ({ uploadHandler }) => {
                 const { cols, rows } = resp;
                 let newRows = rows.filter(row => row.length);
 
-                for (let i = 0; i < newRows.length; i++) {
-                    for (let j = 0; j < newRows[i].length; j++) {
-                        // if (typeof newRows[i][j==='number'])
-                        if (newRows[i][j] && typeof newRows[i][j] === 'number' && newRows[i][j].toString().length >= 4) {
-                            newRows[i][j] = ExcelDateToJSDate(newRows[i][j]).toISOString().slice(0, 10)
-                            console.log(newRows[i][j])
+                for (const row of newRows) {
+                    for (let j = 0; j < row.length; j++) {
+                        if (row[j] && typeof row[j] === 'number' && row[j].toString().length >= 4) {
+                            row[j] = ExcelDateToJSDate(row[j]).toISOString().slice(0, 10)
+                            console.log(row[j])
                         }
                     }
                 }
