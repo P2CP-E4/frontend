@@ -30,7 +30,8 @@ const QuestionBox = ({ question }) => {
 
     return (
         <div className='relative'>
-            <div className='flex items-center text-start w-[300px] h-[35px] bg-white  shadow-lg'
+            <div className='flex items-center text-start w-[300px] h-[35px] bg-white shadow-lg cursor-pointer'
+                onClick={toggleDrawer}
                 style={{
                     borderRadius: isOpen ? '0.5rem 0.5rem  0rem 0rem' : '0.5rem',
                 }}>
@@ -39,8 +40,7 @@ const QuestionBox = ({ question }) => {
                 <button onClick={toggleDrawer} className="w-5 h-5 ml-auto mr-3 focus:outline-none">
                     <motion.img
                         src={green_arrow}
-                        alt=""
-                        className={`transform ${isOpen ? 'rotate-90' : ''}`}
+                        alt="arrow"
                         initial={false}
                         animate={{ rotate: isOpen ? 90 : 0 }}
                         transition={{ duration: 0.2 }}
