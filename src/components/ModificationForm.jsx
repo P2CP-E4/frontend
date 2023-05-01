@@ -57,8 +57,8 @@ const ModificationForm = () => {
     });
     return (
         <>
-            <div className='w-3/4 md:h-[430px] mt-5 px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
-                <div className='flex flex-col w-full pt-8 md:px-20 bg-white rounded-[45px] md:h-full'>
+            <div className='w-3/4 md:h-[430px] mt-auto px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
+                <div className='flex flex-col w-full py-9 md:px-16 bg-white rounded-[45px] md:h-full'>
                     <Formik
                         initialValues={initialValues}
                         validationSchema={validationSchema}
@@ -75,9 +75,7 @@ const ModificationForm = () => {
                             <div><FormsSelect name="etablissementOrigine" label="Nom d’Etablissement d’origine " options={dropdownOptions} /></div>
                             <div><FormsSelect name="option" label="Option" options={dropdownOptions} /></div>
                             <div><FormsDatePicker name="FCT" label="Date Enregistrement FCT" /></div>
-                            {/* <div><FormsTextInput name="nomDirecteur" label="Nom du Directeur" /></div> */}
-                            {/* <div><FormsTextInput name="nomCoDirecteur" label="Nom du Co-Directeur" /></div> */}
-                            <button type="submit" className="md:absolute md:bottom-6  md:-right-8 bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988]">Confirmer la modification</button>
+                            <button type="submit" className="md:absolute md:bottom-1.5 md:right-1 bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988]">Confirmer la modification</button>
                         </Form >
                     </Formik >
                 </div>

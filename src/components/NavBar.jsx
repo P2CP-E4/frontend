@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './NavBar.module.css';
+import styles from '../styles/NavBar.module.css';
 import logo from '../assets/images/logo.svg';
 import profilePic from '../assets/images/profilePic.svg';
 import Arrow from './Arrow';

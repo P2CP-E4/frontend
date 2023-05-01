@@ -104,10 +104,10 @@ const SearchBar = ({ placeholder, data, handleaSubmit }) => {
                 </AnimatePresence>
             </div >
             {
-                <div className='flex flex-col items-center overflow-hidden overflow-y-auto scrollbar-none h-4/5' >
+                <div className={'flex flex-col items-center overflow-hidden overflow-y-auto divide-y divide-[#1C82AD] scrollbar-none h-60 w-1/2 absolute float-left m-0 min-w-max border-none bg-white' + isExpanded ? 'z-[1000]' : 'z-0'}>
                     {
                         filteredData.slice(0, 15).map((item, index) => (
-                            <button type='button' value={item.nomPrenom} onClick={handleSelect} className='self-start w-full px-5 py-2 text-left hover:bg-slate-200' key={index}>{item.nomPrenom}</button>
+                            <button type='button' value={item.nomPrenom} onClick={handleSelect} className='self-start block w-full px-5 py-2 text-left hover:bg-slate-200' key={index}>{item.nomPrenom}</button>
                         ))
                     }
                     < MoonLoader loading={filteredData.length === 0 && isExpanded} size={30} color='#1C82AD' className='m-auto' />

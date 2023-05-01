@@ -36,7 +36,7 @@ const PvTable = () => {
             placeHolderFilter: 'Ordre du jour',
             width: 300,
             Filter: ColumnFilter,
-            Cell: ({ value }) => <p className='text-xs whitespace-pre-line'>Non Lorem ex esse cupidatat id esse anim laboris mollit ea. Fugiat et ex non tempor mollit nulla amet adipisicing culpa exercitation reprehenderit elit sint incididunt. Excepteur fugiat ad qui culpa consequat aute exercitation laborum anim sint commodo minim veniam. Excepteur minim elit est labore laborum in ullamco amet cillum.</p>
+            Cell: ({ value }) => <p className='text-xs whitespace-pre-line'>Non Lorem ex esse cupidatat id esse anim laboris mollit ea. Fugiat et ex non tempor</p>
         },
     ], []);
     const {
@@ -63,7 +63,7 @@ const PvTable = () => {
                     <button type="button" className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Ajouter PV</button>
                 </div >
             ))}
-            <table className="table-fixed " {...getTableProps()}>
+            <table className="table-fixed" {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
                         <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10  text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>

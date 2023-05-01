@@ -14,6 +14,7 @@ import doctorant_data from '../data/doctorant_data.json';
 
 const DoctorantTable = () => {
     //TODO: fetch data from API
+
     //* usePopUp is a custom hook made to handle the popUp events
     const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
     const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
@@ -84,6 +85,7 @@ const DoctorantTable = () => {
             Cell: ({ value }) => <StatusCustomCard value={value} />
         },
     ], []);
+
     const {
         getTableProps,
         getTableBodyProps,
@@ -97,7 +99,7 @@ const DoctorantTable = () => {
         state,
         gotoPage,
         pageCount,
-    } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, usePagination);
+    } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, usePagination,);
     const { pageIndex } = state;
     return (
         <>
@@ -106,7 +108,7 @@ const DoctorantTable = () => {
                     {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
                 </div >
             ))}
-            <table className="w-11/12 table-fixed" {...getTableProps()}>
+            <table className="w-11/12 overflow-x-auto table-fixed" {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
                         <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10 text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
