@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useClickOutside } from 'react-click-outside-hook';
-
-
 import crois from '../assets/images/crois.svg'
 import { MoonLoader } from 'react-spinners';
 

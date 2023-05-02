@@ -5,16 +5,14 @@ import * as Yup from "yup";
 import FormsDatePicker from "./FormsDatePicker";
 import FormsCreatableSelect from "./FormsCreatableSelect";
 
-const FormulairePage3 = ({ data, next, back }) => {
-    const laboDropdownOptions = [
-        { value: "LMCS", label: "LMCS - ESI" },
-        { value: "LCSI", label: "LCSI - ESI" },
-        { value: "autre", label: "autre" },
-    ]
-    const optionDropdownOptions = [
-        { value: "SIQ", label: "SIQ" },
-        { value: "SI", label: "SI" },
-    ]
+const FormulairePage3 = ({ data, next, back, dropDownOptions }) => {
+
+    const laboDropdownOptions = [...new Set(dropDownOptions.laboratoires, 'LMCS', 'LCSI')].map((item) => {
+        if (item === 'LMCS' || item === 'LCSI') return ({ label: `${item} - ESI`, value: item });
+        return ({ label: item, value: item });
+    });
+
+    const optionDropdownOptions = [...new Set(dropDownOptions.options, 'SIQ', 'SI')].map((item) => ({ label: item, value: item }));
 
     const validationSchema = Yup.object().shape({
         these: Yup.string()
@@ -31,6 +29,7 @@ const FormulairePage3 = ({ data, next, back }) => {
     const handleSubmitEvent = (values) => {
         next(values);
     }
+
     return (
         <>
             <Formik

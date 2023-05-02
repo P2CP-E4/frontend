@@ -1,12 +1,27 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTable, useFilters, usePagination } from 'react-table';
+import axios from 'axios';
 import Pagination from './Pagination';
 import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
-import pv_data from '../data/pv_data.json';
+import { usePopUp } from '../hooks/usePopUp';
+import PopUp from './PopUp';
+import CarteAjoutPv from './CarteAjoutPv';
+
 const PvTable = () => {
-    //TODO: fetch data from API
-    const data = useMemo(() => pv_data.sort((a, b) => (a.date - b.date)), []);
+    const PV_TABLE_GET_DATA_URL = 'http://localhost:9000/api/PVs/allPV';
+    const [tableData, setTableData] = useState([]);
+
+    useEffect(() => {
+        axios.get(PV_TABLE_GET_DATA_URL)
+            .then((res) => {
+                setTableData(res.data);
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+    const data = useMemo(() => tableData, [tableData]);
+
     const columns = useMemo(() => [
         {
             Header: 'Date du proces verbal',
@@ -14,6 +29,11 @@ const PvTable = () => {
             placeHolderFilter: 'Date PV',
             width: 150,
             Filter: ColumSelectFilter,
+            Cell: ({ value }) => {
+                let strDate = value.slice(0, 10);
+                const [year, month, day] = strDate.split('-')
+                return `${day}/${month}/${year}`;
+            }
         },
         {
             Header: 'Code',
@@ -32,11 +52,11 @@ const PvTable = () => {
         },
         {
             Header: 'Ordre du jour',
-            accessor: '',
+            accessor: 'ordreDuJour',
             placeHolderFilter: 'Ordre du jour',
             width: 300,
             Filter: ColumnFilter,
-            Cell: ({ value }) => <p className='text-xs whitespace-pre-line'>Non Lorem ex esse cupidatat id esse anim laboris mollit ea. Fugiat et ex non tempor</p>
+            Cell: ({ value }) => <p className='text-xs whitespace-pre-line'>{value}</p>
         },
     ], []);
     const {
@@ -54,16 +74,18 @@ const PvTable = () => {
         pageCount,
     } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, usePagination,);
     const { pageIndex } = state;
+    const [ajoutPvTrigger, openAjoutPv, closeAjoutPv] = usePopUp();
+
     return (
         <>
             {headerGroups.map((headerGroup) => (
                 <div className='flex justify-center w-[800px] gap-1 mb-3' {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
                     <button type="button" className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-7 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Exporter</button>
-                    <button type="button" className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Ajouter PV</button>
+                    <button type="button" onClick={openAjoutPv} className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Ajouter PV</button>
                 </div >
             ))}
-            <table className="table-fixed" {...getTableProps()}>
+            <table className="table-fixed " {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
                         <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10  text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
@@ -99,6 +121,7 @@ const PvTable = () => {
                     gotoPage={gotoPage}
                 />
             </div>
+            <PopUp trigger={ajoutPvTrigger} handleCloseEvent={closeAjoutPv}><CarteAjoutPv /></PopUp>
         </>
     );
 }
