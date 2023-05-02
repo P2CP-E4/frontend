@@ -20,7 +20,9 @@ const ModificationForm = () => {
         laboratoire: '',
         etablissementOrigine: '',
         option: '',
-        FCT: ''
+        FCT: '',
+        DirecteurPrincipal: '',
+        coDirecteur: '',
     }
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -49,9 +51,9 @@ const ModificationForm = () => {
             .required('veuillez remplir ce champ.'),
         option: Yup.string()
             .required('veuillez remplir ce champ.'),
-        nomDirecteur: Yup.string()
+        directeurPrincipal: Yup.string()
             .required('veuillez remplir ce champ.'),
-        nomCoDirecteur: Yup.string()
+        coDirecteur: Yup.string()
             .required('veuillez remplir ce champ.'),
 
     });
@@ -63,18 +65,20 @@ const ModificationForm = () => {
                         initialValues={initialValues}
                         validationSchema={validationSchema}
                     >
-                        <Form className="relative grid w-full h-full bg-white md:grid-cols-3 gap-y-4 gap-x-14 auto-rows-min">
-                            <div><FormsTextInput name="nom" label="Nom" /></div>
-                            <div><FormsTextInput name="prenom" label="Prenom" /></div>
-                            <div><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
-                            <div><FormsSelect name="sexe" label="Sexe" options={dropdownOptions} /></div>
-                            <div><FormsTextInput name="telephone" label="Telephone" /></div>
-                            <div><FormsTextInput name="email" label="Email" /></div>
-                            <div><FormsSelect name="typeDiplome" label="Type du diplome" options={dropdownOptions} /></div>
-                            <div><FormsSelect name="laboratoire" label="Laboratoire" options={dropdownOptions} /></div>
-                            <div><FormsSelect name="etablissementOrigine" label="Nom d’Etablissement d’origine " options={dropdownOptions} /></div>
-                            <div><FormsSelect name="option" label="Option" options={dropdownOptions} /></div>
-                            <div><FormsDatePicker name="FCT" label="Date Enregistrement FCT" /></div>
+                        <Form className="relative grid w-full h-full bg-white md:grid-cols-12 gap-y-4 gap-x-14 auto-rows-min">
+                            <div className='  col-span-3'><FormsTextInput name="nom" label="Nom" /></div>
+                            <div className='  col-span-3'><FormsTextInput name="prenom" label="Prenom" /></div>
+                            <div className='  col-span-3'><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
+                            <div className='  col-span-3'><FormsSelect name="sexe" label="Sexe" options={dropdownOptions} /></div>
+                            <div className='col-span-4'><FormsTextInput name="telephone" label="Telephone" /></div>
+                            <div className='col-span-4'><FormsTextInput name="email" label="Email" /></div>
+                            <div className='col-span-4'><FormsSelect name="typeDiplome" label="Type du diplome" options={dropdownOptions} /></div>
+                            <div className='col-span-4'><FormsSelect name="laboratoire" label="Laboratoire" options={dropdownOptions} /></div>
+                            <div className='col-span-4'><FormsSelect name="etablissementOrigine" label="Nom d’Etablissement d’origine " options={dropdownOptions} /></div>
+                            <div className='col-span-4'><FormsSelect name="option" label="Option" options={dropdownOptions} /></div>
+                            <div className='col-span-4'><FormsDatePicker name="FCT" label="Date Enregistrement FCT" /></div>
+                            <div className='col-span-4'><FormsSelect name="directeurPrincipal" label="Directeur Principal" /></div>
+                            <div className='col-span-4'><FormsSelect name="coDirecteur" label="Co Directeur" /></div>
                             <button type="submit" className="md:absolute md:bottom-1.5 md:right-1 bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988]">Confirmer la modification</button>
                         </Form >
                     </Formik >

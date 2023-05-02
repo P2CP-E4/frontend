@@ -6,8 +6,8 @@ import FormsDatePicker from "./FormsDatePicker";
 import FormsSelect from "./FormsSelect";
 const FormulairePage1 = ({ data, next }) => {
     const dropdownOptions = [
-        { label: "Homme", value: "Homme" },
-        { label: "Femme", value: "Femme" },
+        { label: "Homme", value: "M" },
+        { label: "Femme", value: "F" },
     ]
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 

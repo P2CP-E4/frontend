@@ -5,6 +5,9 @@ import FormulairePage3 from "./FormulairePage3";
 import FormulairePage4 from "./FormulairePage4";
 import FormulairePage5 from "./FormulairePage5";
 import ProgressBar from "./ProgressBar";
+import axios from "axios";
+
+
 
 const FormulaireInscription = () => {
     //TODO: make post request on Submit
@@ -15,7 +18,7 @@ const FormulaireInscription = () => {
         nom: '',
         prenom: '',
         sexe: '',
-        dateNaissance: '',
+        dateNaissance: null,
         telephone: '',
         email: '',
         typeDoctorat: 'LMD',
@@ -24,7 +27,7 @@ const FormulaireInscription = () => {
         these: '',
         laboratoire: '',
         option: '',
-        premiereInscription: '',
+        premiereInscription: null,
         nomDirecteur: '',
         etablissementDirecteur: '',
         gradeDirecteur: '',
@@ -33,18 +36,71 @@ const FormulaireInscription = () => {
         nomCoDirecteur: '',
         etablissementCoDirecteur: '',
         gradeCoDirecteur: '',
+        adresseEmailCoDirecteur: '',
+        telephoneCoDirecteur: '',
         codePV: '',
         urlPV: '',
         ordreDuJour: '',
-        dateDuJour: '',
+        dateDuJour: null,
     });
 
     const makeRequest = (formData) => {
-        console.log('Form Submitted', formData);
+        const POST_DOCTORANT = 'http://127.0.0.1:9000/api/Doctorants/ajouter';
+        let codirecteur = null;
+
+        if (formData.nomCoDirecteur && formData.etablissementCoDirecteur && formData.gradeCoDirecteur && formData.adresseEmailCoDirecteur && formData.telephoneCoDirecteur) {
+            codirecteur = {
+                nomComplet: formData.nomDirecteur.toUpperCase(),
+                grade: formData.gradeDirecteur,
+                etablissement: formData.etablissementDirecteur,
+                telephone: formData.telephoneDirecteur,
+                email: formData.adresseEmailDirecteur,
+            }
+        }
+
+        const submitData = {
+            pv: {
+                code: formData.codePV,
+                date: formData.dateDuJour,
+                url: formData.urlPV,
+                ordreDuJour: formData.ordreDuJour,
+            },
+            directeur: {
+                nomComplet: formData.nomDirecteur.toUpperCase(),
+                grade: formData.gradeDirecteur,
+                etablissement: formData.etablissementDirecteur,
+                telephone: formData.telephoneDirecteur,
+                email: formData.adresseEmailDirecteur,
+            },
+            codirecteur: codirecteur,
+            nom: formData.nom.toUpperCase(),
+            prenom: formData.prenom.toUpperCase(),
+            dateNaissance: formData.dateNaissance,
+            sexe: formData.sexe,
+            telephone: formData.telephone,
+            email: formData.email,
+            premiereInscription: formData.premiereInscription,
+            intituleeThese: formData.these,
+            laboratoire: formData.laboratoire,
+            option: formData.option,
+            typeDoctorat: formData.typeDoctorat,
+            typeDiplome: formData.typeDiplome,
+            etablissementOrigine: formData.etablissementOrigine,
+        }
+
+        axios.post(POST_DOCTORANT, submitData)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(submitData)
+                console.log(error);
+            });
     }
 
     const handleNextStep = (newData, final = false) => {
         setData(prev => ({ ...prev, ...newData }));
+        // console.log(final)
         if (final) {
             makeRequest(newData);
             return;

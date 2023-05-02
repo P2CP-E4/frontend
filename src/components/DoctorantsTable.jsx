@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect, useMemo, } from 'react';
 import { useTable, usePagination, useFilters } from 'react-table';
 import { usePopUp } from '../hooks/usePopUp';
 import Pagination from './Pagination';
@@ -10,16 +10,25 @@ import ColumSelectFilter from './ColumnSelectFilter';
 import StatusCustomCard from './StatusCustomCard';
 import more_info_icon from '../assets/images/more_info_icon.svg';
 import doctorant_data from '../data/doctorant_data.json';
+import axios from 'axios';
 
 
 const DoctorantTable = () => {
     //TODO: fetch data from API
+    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableDoctorants';
+    const [tableData, setTableData] = useState([]);
+
+    useEffect(() => {
+        axios.get(DOCTORANT_TABLE_GET_DATA_URL).then((response) => {
+            setTableData(response.data);
+        })
+    }, [])
 
     //* usePopUp is a custom hook made to handle the popUp events
     const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
     const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
 
-    const data = useMemo(() => doctorant_data, []);
+    const data = useMemo(() => tableData, []);
     const columns = useMemo(() => [
         {
             Header: 'Nom et prénom',

@@ -20,13 +20,26 @@ const FormulairePage4 = ({ data, next, back }) => {
         gradeDirecteur: Yup.string()
             .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
+        adresseEmailDirecteur: Yup.string()
+            .email('enter un email valid')
+            .min(3, "Min. 3 characters")
+            .required("veuillez remplir ce champ."),
+        telephoneDirecteur: Yup.string()
+            .min(3, "Min. 3 characters")
+            .required("veuillez remplir ce champ."),
         nomCoDirecteur: Yup.string()
             .min(3, "Min. 3 characters"),
         etablissementCoDirecteur: Yup.string()
             .min(3, "Min. 3 characters"),
         gradeCoDirecteur: Yup.string()
             .min(3, "Min. 3 characters"),
+        adresseEmailCoDirecteur: Yup.string()
+            .email('enter un email valid')
+            .min(3, "Min. 3 characters"),
+        telephoneCoDirecteur: Yup.string()
+            .min(3, "Min. 3 characters"),
     })
+
     const handleSubmitEvent = (values) => {
         next(values);
     }
@@ -79,7 +92,6 @@ const FormulairePage4 = ({ data, next, back }) => {
                     </Form>
                 )
             }
-
         </Formik >
     );
 }
