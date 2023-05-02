@@ -17,11 +17,13 @@ const DoctorantTable = () => {
     //TODO: fetch data from API
     const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableDoctorants';
     const [tableData, setTableData] = useState([]);
-
     useEffect(() => {
-        axios.get(DOCTORANT_TABLE_GET_DATA_URL).then((response) => {
-            setTableData(response.data);
-        })
+        axios.get(DOCTORANT_TABLE_GET_DATA_URL)
+            .then((response) => {
+                setTableData(response.data);
+                console.log(tableData);
+            })
+            .catch(error => console.log(error))
     }, [])
 
     //* usePopUp is a custom hook made to handle the popUp events
@@ -32,7 +34,7 @@ const DoctorantTable = () => {
     const columns = useMemo(() => [
         {
             Header: 'Nom et prénom',
-            accessor: 'nomPrenom',
+            accessor: 'nomComplet',
             placeHolderFilter: 'Nom/prenom',
             width: 200,
             className: "bg-[#F9F9F9] text-left pl-5",
@@ -47,7 +49,7 @@ const DoctorantTable = () => {
         },
         {
             Header: 'Lien PV',
-            accessor: 'code_pv',
+            accessor: 'LienPV',
             placeHolderFilter: 'Lien PV',
             width: 75,
             className: "text-center",
@@ -71,7 +73,7 @@ const DoctorantTable = () => {
         },
         {
             Header: 'Directeur',
-            accessor: 'directeurPrincipal',
+            accessor: 'directeurPrincipal.nomComplet',
             placeHolderFilter: 'Directeur',
             width: 175,
             className: "text-left pl-5",

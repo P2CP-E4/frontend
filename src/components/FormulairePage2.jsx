@@ -6,8 +6,8 @@ import * as Yup from "yup";
 
 const FormulairePage2 = ({ data, next, back }) => {
     const dropdownOptions = [
-        { value: "Master", label: "Mater" },
-        { value: "Majister", label: "Majister" },
+        { value: "Master", label: "Master" },
+        { value: "Magister", label: "Magister" },
         { value: "Ingeniorat", label: "Ingeniorat" },
     ]
 
