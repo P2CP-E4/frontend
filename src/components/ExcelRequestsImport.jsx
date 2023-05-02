@@ -20,11 +20,12 @@ const ExcelRequestsImport = ({ uploadHandler }) => {
                 const { cols, rows } = resp;
                 let newRows = rows.filter(row => row.length);
 
-                for (const row of newRows) {
-                    for (let j = 0; j < row.length; j++) {
-                        if (row[j] && typeof row[j] === 'number' && row[j].toString().length >= 4) {
-                            row[j] = ExcelDateToJSDate(row[j]).toISOString().slice(0, 10)
-                            console.log(row[j])
+                for (let i = 0; i < newRows.length; i++) {
+                    for (let j = 0; j < newRows[i].length; j++) {
+                        // if (typeof newRows[i][j==='number'])
+                        if (newRows[i][j] && typeof newRows[i][j] === 'number' && newRows[i][j].toString().length >= 4) {
+                            newRows[i][j] = ExcelDateToJSDate(newRows[i][j]).toISOString().slice(0, 10)
+                            console.log(newRows[i][j])
                         }
                     }
                 }
@@ -36,13 +37,17 @@ const ExcelRequestsImport = ({ uploadHandler }) => {
     };
 
     return (
-        <div className={styles.excel_import_container}>
-            <div className={styles.file_upload}>
-                <label>Upload File</label>
-                <input type="file" onChange={uploadFile} accept=".xlsx" />
-                <button>+</button>
+        <div className={styles.excel_import_container} >
+            <div className="flex gap-[30px] ml-[250px]"> <div className={styles.file_upload}>
+                <label className=" pl-[15px] text-[#13005A]">Importer un fichier</label>
+                <input type="file" onChange={uploadFile} accept=".xlsx" className=" appearance-none outline-none text-[#838383] " />
+                <button className=" mb-[1px]">+</button>
+            </div>
+                <button className=" flex justify-center items-center w-[120px] h-[40px] bg-[#03C988] rounded-[20px] text-center mt-[16px] mr-[50px]"> <span className="text-white text-[18px]"> Confirmer</span>
+                </button>
             </div>
             <div className={styles.excel_table_wrapper}>
+                <span className="ml-6 font-semibold text-[#13005A]"> Voici le fichier a importer:</span>
                 <OutTable data={rows} columns={cols} tableClassName={styles.excel_table} />
             </div>
         </div >

@@ -1,27 +1,38 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTable, useFilters } from 'react-table';
+import axios from 'axios';
 import ColumnFilter from './ColumnFilter';
-import directeur_stat_data from '../data/directeur_stat_data.json';
+
 const DirecteursStatsTable = () => {
-    //TODO: fetch data from API
-    const data = useMemo(() => directeur_stat_data, []);
+    const DIRECTEUR_STAT_GET_URL = 'http://localhost:9000/api/Statistiques/DocsParEncad';
+    const [tableData, setTableData] = useState([]);
+
+    useEffect(() => {
+        axios.get(DIRECTEUR_STAT_GET_URL)
+            .then((res) => {
+                setTableData(res.data);
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+    const data = useMemo(() => tableData, [tableData]);
     const columns = useMemo(() => [
         {
             Header: 'Nom du Directeur',
-            accessor: 'directeur',
+            accessor: 'nomCompletDirecteur',
             placeHolderFilter: 'Directeur',
             Filter: ColumnFilter,
         },
         {
             Header: 'Directeur Principale',
-            accessor: 'nombreDoctorantAsDirecteur',
+            accessor: 'directeurCount',
             Filter: '',
             width: 100,
             Cell: item => <span className={item.value > 6 ? "text-red-500" : ""}>{item.value}</span>
         },
         {
             Header: 'Co-Directeur',
-            accessor: 'nombreDoctorantAsCoDirecteur',
+            accessor: 'coDirecteurCount',
             Filter: '',
             width: 100,
             Cell: item => <span className={item.value > 6 ? "text-red-500" : ""}>{item.value}</span>

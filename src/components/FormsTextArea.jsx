@@ -12,7 +12,7 @@ const FormsTextArea = ({ name, label, ...rest }) => {
             >
                 {label}
             </label>
-            <Field as="textarea">
+            <Field>
                 {
                     ({ form }) => {
                         return (
