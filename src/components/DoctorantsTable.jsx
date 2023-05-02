@@ -9,28 +9,27 @@ import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
 import StatusCustomCard from './StatusCustomCard';
 import more_info_icon from '../assets/images/more_info_icon.svg';
-import doctorant_data from '../data/doctorant_data.json';
 import axios from 'axios';
 
 
 const DoctorantTable = () => {
-    //TODO: fetch data from API
     const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableDoctorants';
     const [tableData, setTableData] = useState([]);
+
     useEffect(() => {
         axios.get(DOCTORANT_TABLE_GET_DATA_URL)
-            .then((response) => {
-                setTableData(response.data);
-                console.log(tableData);
+            .then((res) => {
+                setTableData(res.data);
             })
-            .catch(error => console.log(error))
+            .catch(err => console.log(err))
     }, [])
+
+    const data = useMemo(() => tableData, [tableData]);
 
     //* usePopUp is a custom hook made to handle the popUp events
     const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
     const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
 
-    const data = useMemo(() => tableData, []);
     const columns = useMemo(() => [
         {
             Header: 'Nom et prénom',
@@ -46,14 +45,19 @@ const DoctorantTable = () => {
             placeHolderFilter: 'Date 1ère insc',
             width: 100,
             className: "",
+            Cell: ({ value }) => {
+                let strDate = value.slice(0, 10);
+                const [year, month, day] = strDate.split('-')
+                return `${day}/${month}/${year}`;
+            }
         },
         {
             Header: 'Lien PV',
-            accessor: 'LienPV',
+            accessor: 'pv',
             placeHolderFilter: 'Lien PV',
             width: 75,
             className: "text-center",
-            Cell: ({ value }) => <a className='text-xs text-[#03C988] ' href="#">Lien</a>,
+            Cell: ({ value }) => <a className='text-xs text-[#03C988]' href={value.url} >{value.code}</a>,
         },
         {
             Header: 'Intitulé thése',
