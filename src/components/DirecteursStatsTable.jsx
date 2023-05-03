@@ -16,6 +16,7 @@ const DirecteursStatsTable = () => {
     }, [])
 
     const data = useMemo(() => tableData, [tableData]);
+
     const columns = useMemo(() => [
         {
             Header: 'Nom du Directeur',
@@ -28,14 +29,14 @@ const DirecteursStatsTable = () => {
             accessor: 'directeurCount',
             Filter: '',
             width: 100,
-            Cell: item => <span className={item.value > 6 ? "text-red-500" : ""}>{item.value}</span>
+            Cell: item => <span className={item?.value > 6 ? "text-red-500" : ""}>{item?.value}</span>
         },
         {
             Header: 'Co-Directeur',
             accessor: 'coDirecteurCount',
             Filter: '',
             width: 100,
-            Cell: item => <span className={item.value > 6 ? "text-red-500" : ""}>{item.value}</span>
+            Cell: item => <span className={item?.value > 6 ? "text-red-500" : ""}>{item?.value}</span>
         },
     ], []);
     const {
@@ -46,13 +47,15 @@ const DirecteursStatsTable = () => {
         prepareRow,
     } = useTable({ columns, data, defaultColumn: { Filter: ColumnFilter } }, useFilters);
     return (
-        <div className='flex flex-col items-center w-fit'>
+        < div className='flex flex-col items-center w-fit' >
             <h1 className='mb-5'>Nombre de Doctorant par directeur</h1>
-            {headerGroups.map((headerGroup) => (
-                <div className='px-10 mb-5' {...headerGroup.getHeaderGroupProps()}>
-                    {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
-                </div >
-            ))}
+            {
+                headerGroups.map((headerGroup) => (
+                    <div className='px-10 mb-5' {...headerGroup.getHeaderGroupProps()}>
+                        {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
+                    </div >
+                ))
+            }
             <div className='overflow-y-auto w-fit max-h-[490px] scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-300'>
                 <table className="m-0 table-fixed" {...getTableProps()}>
                     <thead className='sticky top-0'>
@@ -80,7 +83,7 @@ const DirecteursStatsTable = () => {
                     </tbody>
                 </table >
             </div>
-        </div>
+        </div >
     );
 }
 

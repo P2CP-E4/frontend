@@ -18,6 +18,7 @@ import ModificationPersonalInfo from "./pages/ModificationPersonalInfo";
 import AjoutFCT from "./pages/AjoutFCT";
 import AjoutObservation from "./pages/AjoutObservation";
 import AjoutSiminaire from "./pages/AjoutSiminaire";
+import ReinscriptionDiffere from "./pages/ReinscriptionDiffere";
 function App() {
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/modificationStatus" element={<ModificationStatus />} />
         <Route path="/reinscription" element={<Reinscription />} />
+        <Route path="/reinscriptionDiffere" element={<ReinscriptionDiffere />} />
         <Route path="/importer" element={<Importer />} />
         <Route path="/exporter" element={<Exporter />} />
         <Route path="/profile" element={<Profile />} />

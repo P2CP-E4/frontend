@@ -1,29 +1,15 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
+
 import FormsTextInput from './FormsTextInput'
 import FormsDatePicker from './FormsDatePicker'
 import FormsSelect from './FormsSelect'
-const ModificationForm = () => {
-    const dropdownOptions = [
-        { label: "Homme", value: "Homme" },
-        { label: "Femme", value: "Femme" },
-    ]
-    const initialValues = {
-        nom: '',
-        prenom: '',
-        sexe: '',
-        dateNaissance: '',
-        telephone: '',
-        email: '',
-        typeDiplome: '',
-        laboratoire: '',
-        etablissementOrigine: '',
-        option: '',
-        FCT: '',
-        DirecteurPrincipal: '',
-        coDirecteur: '',
-    }
+import { useGetDropDownOptions } from '../hooks/useGetDropDownOptions'
+
+const ModificationForm = (initialValues) => {
+
+    const { sexeDropDownOptions, typeDiplomeDropDownOptions, laboDropDownOptions, optionDropDownOptions } = useGetDropDownOptions();
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const validationSchema = Yup.object().shape({
@@ -55,7 +41,6 @@ const ModificationForm = () => {
             .required('veuillez remplir ce champ.'),
         coDirecteur: Yup.string()
             .required('veuillez remplir ce champ.'),
-
     });
     return (
         <>
@@ -66,16 +51,16 @@ const ModificationForm = () => {
                         validationSchema={validationSchema}
                     >
                         <Form className="relative grid w-full h-full bg-white md:grid-cols-12 gap-y-4 gap-x-14 auto-rows-min">
-                            <div className='  col-span-3'><FormsTextInput name="nom" label="Nom" /></div>
-                            <div className='  col-span-3'><FormsTextInput name="prenom" label="Prenom" /></div>
-                            <div className='  col-span-3'><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
-                            <div className='  col-span-3'><FormsSelect name="sexe" label="Sexe" options={dropdownOptions} /></div>
+                            <div className='col-span-3 '><FormsTextInput name="nom" label="Nom" /></div>
+                            <div className='col-span-3 '><FormsTextInput name="prenom" label="Prenom" /></div>
+                            <div className='col-span-3 '><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
+                            <div className='col-span-3 '><FormsSelect name="sexe" label="Sexe" options={sexeDropDownOptions} /></div>
                             <div className='col-span-4'><FormsTextInput name="telephone" label="Telephone" /></div>
                             <div className='col-span-4'><FormsTextInput name="email" label="Email" /></div>
-                            <div className='col-span-4'><FormsSelect name="typeDiplome" label="Type du diplome" options={dropdownOptions} /></div>
-                            <div className='col-span-4'><FormsSelect name="laboratoire" label="Laboratoire" options={dropdownOptions} /></div>
-                            <div className='col-span-4'><FormsSelect name="etablissementOrigine" label="Nom d’Etablissement d’origine " options={dropdownOptions} /></div>
-                            <div className='col-span-4'><FormsSelect name="option" label="Option" options={dropdownOptions} /></div>
+                            <div className='col-span-4'><FormsSelect name="typeDiplome" label="Type du diplome" options={typeDiplomeDropDownOptions} /></div>
+                            <div className='col-span-4'><FormsSelect name="laboratoire" label="Laboratoire" options={laboDropDownOptions} /></div>
+                            <div className='col-span-4'><FormsTextInput name="etablissementOrigine" label="Nom d’Etablissement d’origine " /></div>
+                            <div className='col-span-4'><FormsSelect name="option" label="Option" options={optionDropDownOptions} /></div>
                             <div className='col-span-4'><FormsDatePicker name="FCT" label="Date Enregistrement FCT" /></div>
                             <div className='col-span-4'><FormsSelect name="directeurPrincipal" label="Directeur Principal" /></div>
                             <div className='col-span-4'><FormsSelect name="coDirecteur" label="Co Directeur" /></div>

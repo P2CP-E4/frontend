@@ -5,15 +5,7 @@ import * as Yup from "yup";
 import FormsDatePicker from "./FormsDatePicker";
 import FormsCreatableSelect from "./FormsCreatableSelect";
 
-const FormulairePage3 = ({ data, next, back, dropDownOptions }) => {
-
-    const laboDropdownOptions = [...new Set(dropDownOptions.laboratoires, 'LMCS', 'LCSI')].map((item) => {
-        if (item === 'LMCS' || item === 'LCSI') return ({ label: `${item} - ESI`, value: item });
-        return ({ label: item, value: item });
-    });
-
-    const optionDropdownOptions = [...new Set(dropDownOptions.options, 'SIQ', 'SI')].map((item) => ({ label: item, value: item }));
-
+const FormulairePage3 = ({ data, next, back, laboDropDownOptions, optionDropDownOptions }) => {
     const validationSchema = Yup.object().shape({
         these: Yup.string()
             .min(3, "Min. 3 characters")
@@ -49,9 +41,9 @@ const FormulairePage3 = ({ data, next, back, dropDownOptions }) => {
                                     Information de these
                                 </h2>
                                 <div className=""><FormsTextInput name="these" label="Intitulé de these" /></div>
-                                <div className="md:ml-8"><FormsCreatableSelect name="laboratoire" label="Laboratoire" placeholder="" options={laboDropdownOptions} /></div>
+                                <div className="md:ml-8"><FormsCreatableSelect name="laboratoire" label="Laboratoire" placeholder="" options={laboDropDownOptions} /></div>
                                 <div className="md:mr-20"><FormsDatePicker name="premiereInscription" label="Date de la Première Inscription" showYearPicker /></div>
-                                <div className=""><FormsCreatableSelect name="option" label="option" placeholder="" options={optionDropdownOptions} /></div>
+                                <div className=""><FormsCreatableSelect name="option" label="option" placeholder="" options={optionDropDownOptions} /></div>
                                 <button type="submit" className="md:absolute  border-transparent md:bottom-10 md:right-12 rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>
                                 <button type="button" onClick={() => back(values)} className="md:absolute border-transparent md:bottom-10 md:left-12 rounded-3xl bg-[#13005A] text-white text-sm px-5 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Retour</button>
                             </Form>

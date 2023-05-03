@@ -7,7 +7,7 @@ const Reinscription = props => {
             <NavBar />
             <h1 className='text-2xl mx-auto mb-8 mt-6 w-2/3 text-[#13005A]'>Tableau des Doctorants a reinscrire :</h1>
             <div className='flex flex-col items-center w-screen'>
-                <ReinscriptionTable />
+                <ReinscriptionTable status='inscrit' />
             </div>
         </main>
     )

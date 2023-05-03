@@ -178,7 +178,7 @@ const Statistique = () => {
         ],
     };
     return (
-        <div className='w-fit h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
+        <div className='w-screen h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />
             <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
             <Carousel />

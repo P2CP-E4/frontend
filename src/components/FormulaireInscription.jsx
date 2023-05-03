@@ -6,14 +6,13 @@ import FormulairePage4 from "./FormulairePage4";
 import FormulairePage5 from "./FormulairePage5";
 import ProgressBar from "./ProgressBar";
 import axios from "axios";
-import { useEffect } from "react";
-
-
-
+import { useGetDropDownOptions } from "../hooks/useGetDropDownOptions";
 const FormulaireInscription = () => {
-    //TODO: make post request on Submit
+
     //TODO: comfirm page ,after Submit
 
+    const { sexeDropDownOptions, typeDiplomeDropDownOptions, laboDropDownOptions, optionDropDownOptions } = useGetDropDownOptions();
+    console.log(sexeDropDownOptions)
     const [currentStep, setCurrentStep] = useState(0);
     const [data, setData] = useState({
         nom: '',
@@ -45,17 +44,9 @@ const FormulaireInscription = () => {
         ordreDuJour: '',
         dateDuJour: null,
     });
-    const [dropDownOptions, setDropDownOptions] = useState({});
-    useEffect(() => {
-        const GET_DROPDOWN_OPTIONS = 'http://localhost:9000/api/Doctorants/recupLaboOpt'
-        axios.get(GET_DROPDOWN_OPTIONS)
-            .then(res => {
-                setDropDownOptions(res.data);
-            })
-            .catch(err => console.log(err))
-    }, []);
 
     const makeRequest = (formData) => {
+
         const POST_DOCTORANT = 'http://127.0.0.1:9000/api/Doctorants/ajouter';
         let codirecteur = null;
 
@@ -123,9 +114,9 @@ const FormulaireInscription = () => {
     }
 
     const steps = [
-        <FormulairePage1 key={1} data={data} next={handleNextStep} />,
-        <FormulairePage2 key={2} data={data} next={handleNextStep} back={handlePreviousStep} />,
-        <FormulairePage3 key={3} data={data} next={handleNextStep} back={handlePreviousStep} dropDownOptions={dropDownOptions} />,
+        <FormulairePage1 key={1} data={data} next={handleNextStep} sexeDropDownOptions={sexeDropDownOptions} />,
+        <FormulairePage2 key={2} data={data} next={handleNextStep} back={handlePreviousStep} typeDiplomeDropDownOptions={typeDiplomeDropDownOptions} />,
+        <FormulairePage3 key={3} data={data} next={handleNextStep} back={handlePreviousStep} laboDropDownOptions={laboDropDownOptions} optionDropDownOptions={optionDropDownOptions} />,
         <FormulairePage4 key={4} data={data} next={handleNextStep} back={handlePreviousStep} />,
         <FormulairePage5 key={5} data={data} next={handleNextStep} back={handlePreviousStep} />,
     ]

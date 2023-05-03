@@ -25,7 +25,6 @@ const DoctorantTable = () => {
     }, [])
 
     const data = useMemo(() => tableData, [tableData]);
-
     //* usePopUp is a custom hook made to handle the popUp events
     const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
     const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
@@ -46,6 +45,7 @@ const DoctorantTable = () => {
             width: 100,
             className: "",
             Cell: ({ value }) => {
+                if (!value) return '';
                 let strDate = value.slice(0, 10);
                 const [year, month, day] = strDate.split('-')
                 return `${day}/${month}/${year}`;
@@ -89,6 +89,12 @@ const DoctorantTable = () => {
             placeHolderFilter: 'Date FCT',
             width: 100,
             className: "text-center",
+            Cell: ({ value }) => {
+                if (!value) return '';
+                let strDate = value.slice(0, 10);
+                const [year, month, day] = strDate.split('-')
+                return `${day}/${month}/${year}`;
+            }
         },
         {
             Header: 'Status',

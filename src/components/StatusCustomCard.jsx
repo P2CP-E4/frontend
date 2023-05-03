@@ -1,7 +1,6 @@
 import React from 'react'
 
 const StatusCustomCard = ({ value }) => {
-    console.log(value);
     switch (value) {
         case 'inscrit':
             return <span className='bg-[#79E4B180] text-[#2BB573] text-center px-9 py-0.5 rounded-lg'>{value}</span>

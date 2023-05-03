@@ -4,20 +4,17 @@ import FormsTextInput from "./FormsTextInput";
 import FormsSelect from "./FormsSelect";
 import * as Yup from "yup";
 
-const FormulairePage2 = ({ data, next, back }) => {
-    const dropdownOptions = [
-        { value: "Master", label: "Master" },
-        { value: "Magister", label: "Magister" },
-        { value: "Ingeniorat", label: "Ingeniorat" },
-    ]
+const FormulairePage2 = ({ data, next, back, typeDiplomeDropDownOptions }) => {
 
     const validationSchema = Yup.object().shape({
         typeDiplome: Yup.string().required("veuillez remplir ce champ."),
         etablissementOrigine: Yup.string().required("veuillez remplir ce champ."),
     });
+
     const handleSubmitEvent = (values) => {
         next(values);
     }
+
     return (
         <Formik
             initialValues={data}
@@ -48,7 +45,7 @@ const FormulairePage2 = ({ data, next, back }) => {
                                     </label>
                                 </div>
                                 <div className="mt-4">
-                                    <FormsSelect name="typeDiplome" placeholder="" label="Type de diplôme" options={dropdownOptions} />
+                                    <FormsSelect name="typeDiplome" placeholder="" label="Type de diplôme" options={typeDiplomeDropDownOptions} />
                                 </div>
                                 <div className="mt-6">
                                     <FormsTextInput name="etablissementOrigine" label="Nom d’Etablissement d’origine" />

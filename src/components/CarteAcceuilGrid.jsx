@@ -49,7 +49,7 @@ const CarteAcceuilGrid = () => {
                 <CarteAcceuil
                     title='Réinscription diff'
                     description='Réinscrire différé des doctorants existants.'
-                    path='/reinscription'
+                    path='/reinscriptionDiffere'
                 />
             </motion.div>
             <motion.div variants={item}>

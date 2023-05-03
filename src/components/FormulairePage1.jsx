@@ -4,11 +4,10 @@ import FormsTextInput from "./FormsTextInput";
 import * as Yup from "yup";
 import FormsDatePicker from "./FormsDatePicker";
 import FormsSelect from "./FormsSelect";
-const FormulairePage1 = ({ data, next }) => {
-    const dropdownOptions = [
-        { label: "Homme", value: "M" },
-        { label: "Femme", value: "F" },
-    ]
+const FormulairePage1 = ({ data, next, sexeDropDownOptions }) => {
+
+    console.log(sexeDropDownOptions)
+
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const validationSchema = Yup.object().shape({
@@ -55,7 +54,7 @@ const FormulairePage1 = ({ data, next }) => {
 
                     <div className="mb-6 -mx-3 md:flex">
                         <div className="px-3 mb-6 md:mb-0 md:w-1/2">
-                            <FormsSelect name="sexe" label="Sexe" placeholder="" options={dropdownOptions} />
+                            <FormsSelect name="sexe" label="Sexe" placeholder="" options={sexeDropDownOptions} />
                         </div>
                         <div className="px-3 md:w-1/2">
                             <FormsDatePicker name="dateNaissance" label="Date de naissance" />
