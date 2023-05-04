@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react'
-import { useTable, useFilters, usePagination, useRowSelect } from 'react-table'
+import React, { useState, useEffect, useMemo } from 'react';
+import axios from 'axios';
+import { useTable, useFilters, usePagination } from 'react-table'
 import { usePopUp } from '../hooks/usePopUp'
 import Pagination from './Pagination'
 import PopUp from './PopUp'
@@ -8,25 +9,33 @@ import CartesInformationsDirecteur from './CarteInformationDirecteur'
 import ColumnFilter from './ColumnFilter'
 import ColumSelectFilter from './ColumnSelectFilter'
 import StatusCustomCard from './StatusCustomCard'
-import CheckBox from './CheckBox'
+import ExporterCheckBoxes from './ExporterCheckBoxes';
 import more_info_icon from '../assets/images/more_info_icon.svg'
-import doctorant_data from '../data/doctorant_data.json'
 
 const ExporterTable = () => {
-    //TODO: fetch data from API
-    //* usePopUp is a custom hook made to handle the popUp events
-    const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
-    const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
+    //* fetch data from API
+    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableDoctorants';
+    const [tableData, setTableData] = useState([]);
 
-    const data = useMemo(() => doctorant_data, []);
+    useEffect(() => {
+        axios.get(DOCTORANT_TABLE_GET_DATA_URL)
+            .then((res) => {
+                setTableData(res.data);
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+    const data = useMemo(() => tableData, [tableData]);
+
+
     const columns = useMemo(() => [
         {
             Header: 'Nom et prénom',
-            accessor: 'nomPrenom',
+            accessor: 'nomComplet',
             placeHolderFilter: 'Nom/prenom',
-            width: 175,
+            width: 200,
             className: "bg-[#F9F9F9] text-left pl-5",
-            Cell: ({ value }) => < span className='flex justify-between' ><span className='text-xs'>{value}</span><img src={more_info_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDoctorantPopUp} /></span >,
+            Cell: ({ value }) => < span className='flex justify-between items-center w-[175px] p-0' ><span className='text-sm '>{value}</span><img src={more_info_icon} alt='edit' className='w-4 h-4 cursor-pointer' onClick={openDoctorantPopUp} /></span >,
         },
         {
             Header: 'Date 1ére inscription',
@@ -34,36 +43,44 @@ const ExporterTable = () => {
             placeHolderFilter: 'Date 1ère insc',
             width: 100,
             className: "",
+            Cell: ({ value }) => {
+                if (!value) return '';
+                let strDate = value.slice(0, 10);
+                const [year, month, day] = strDate.split('-')
+                return `${day}/${month}/${year}`;
+            }
+        },
+        {
+            Header: 'Lien PV',
+            accessor: 'pv',
+            placeHolderFilter: 'Lien PV',
+            width: 75,
+            className: "text-center",
+            Cell: ({ value }) => <a className='text-xs text-[#03C988]' href={value.url} >{value.code}</a>,
         },
         {
             Header: 'Intitulé thése',
             accessor: 'intituleeThese',
             placeHolderFilter: 'Intitué thése',
-            width: 175,
+            width: 220,
+            Cell: ({ value }) => <span className='text-xs '>{value}</span>,
             className: "text-left pl-5",
         },
         {
             Header: 'Laboratoire',
             accessor: 'laboratoire',
             placeHolderFilter: 'Laboratoire',
-            width: 100,
+            width: 80,
             className: "text-center",
             Filter: ColumSelectFilter,
         },
         {
             Header: 'Directeur',
-            accessor: 'directeurPrincipal',
+            accessor: 'directeurPrincipal.nomComplet',
             placeHolderFilter: 'Directeur',
             width: 175,
             className: "text-left pl-5",
-            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-xs '>{value}</span><img src={more_info_icon} alt='edit' className='w-5 h-5 cursor-pointer' onClick={openDirecteurPopUp} /></span>,
-        },
-        {
-            Header: 'Code PV',
-            accessor: 'code_pv',
-            placeHolderFilter: 'Code PV',
-            width: 150,
-            className: "text-center",
+            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-sm'>{value}</span><img src={more_info_icon} alt='edit' className='w-4 h-4 cursor-pointer' onClick={openDirecteurPopUp} /></span>,
         },
         {
             Header: 'Date FCT',
@@ -71,6 +88,12 @@ const ExporterTable = () => {
             placeHolderFilter: 'Date FCT',
             width: 100,
             className: "text-center",
+            Cell: ({ value }) => {
+                if (!value) return '';
+                let strDate = value.slice(0, 10);
+                const [year, month, day] = strDate.split('-')
+                return `${day}/${month}/${year}`;
+            }
         },
         {
             Header: 'Status',
@@ -95,41 +118,17 @@ const ExporterTable = () => {
         state,
         gotoPage,
         pageCount,
-        allColumns,
-        getToggleHideAllColumnsProps,
-    } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, usePagination, useRowSelect, (hooks) => {
-        hooks.visibleColumns.push((columns) => [
-            {
-                id: 'selection',
-                Header: ({ getToggleAllRowsSelectedProps }) => <CheckBox {...getToggleAllRowsSelectedProps()} />,
-                width: 40,
-                className: "bg-[#F9F9F9] border-r-[#F9F9F9]",
-                Cell: ({ row }) => <CheckBox {...row.getToggleRowSelectedProps()} />,
-            },
-            ...columns,
-        ])
-    });
+    } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, usePagination,);
     const { pageIndex } = state;
+
+    //* usePopUp is a custom hook made to handle the popUp events
+    const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
+    const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
+
     return (
         <>
-            <div>
-                <div>
-                    <CheckBox {...getToggleHideAllColumnsProps()} />ToggleAll
-                </div>
-                {
-                    allColumns.map(column => {
-                        if (column.id === 'selection') return null;
-                        return (
-                            <div key={column.id}>
-                                <label>
-                                    <input type='checkbox' {...column.getToggleHiddenProps()} />
-                                    {column.Header}
-                                </label>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+            <h2 className='pb-2'>Veuillez selectionner les champs a exporter </h2>
+            <ExporterCheckBoxes />
             {headerGroups.map((headerGroup) => (
                 <div className='flex w-11/12 gap-1 mb-3' {...headerGroup.getHeaderGroupProps()} >
                     {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}

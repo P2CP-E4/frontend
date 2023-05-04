@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useTable, useFilters, usePagination, useRowSelect } from 'react-table';
+import axios from 'axios';
 import Pagination from './Pagination';
 import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
@@ -8,25 +9,34 @@ import ModificationStatusCheckBox from './ModificationStatusCheckBox';
 import CheckBox from './CheckBox';
 import CarteWarning from './CarteWarning';
 import CarteSuccess from './CarteSuccess'
-import doctorant_data from '../data/doctorant_data.json';
 import { usePopUp } from '../hooks/usePopUp';
 import PopUp from './PopUp';
 const ModificationStatusTable = () => {
-    //TODO: fetch data from API
+    //* fetch data from API
+
+    const MAJ_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableauModifStatus';
+    const [tableData, setTableData] = useState([]);
+
+    useEffect(() => {
+        axios.get(MAJ_TABLE_GET_DATA_URL)
+            .then((res) => {
+                setTableData(res.data);
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+    const data = useMemo(() => tableData, [tableData]);
 
     const [showModificationStatusCheckBox, setShowModificationStatusCheckBox] = useState(false);
-
     const handleClickCheckBoxEvent = (e) => {
         if (!showModificationStatusCheckBox) {
             setShowModificationStatusCheckBox(!showModificationStatusCheckBox);
         }
     }
-
-    const data = useMemo(() => doctorant_data, []);
     const columns = useMemo(() => [
         {
             Header: 'Nom et prénom',
-            accessor: 'nomPrenom',
+            accessor: 'nomComplet',
             placeHolderFilter: 'Nom/prenom',
             width: 210,
             Filter: ColumnFilter,
@@ -37,6 +47,12 @@ const ModificationStatusTable = () => {
             placeHolderFilter: 'Date 1ère insc',
             width: 180,
             Filter: ColumnFilter,
+            Cell: ({ value }) => {
+                if (!value) return '';
+                let strDate = value.slice(0, 10);
+                const [year, month, day] = strDate.split('-')
+                return `${day}/${month}/${year}`;
+            }
         },
         {
             Header: 'Directeur',
@@ -47,7 +63,7 @@ const ModificationStatusTable = () => {
         },
         {
             Header: 'Lien PV',
-            accessor: 'code_pv',
+            accessor: 'LienPV',
             width: 80,
             placeHolderFilter: 'Code PV',
         },

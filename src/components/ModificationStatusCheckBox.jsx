@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion';
 const ModificationStatusCheckBox = ({ visibility, defaultValue, className, onClick, ...rest }) => {
-    const [selectedOption, setSelectedOption] = useState(defaultValue);
-
-    useEffect(() => {
-        setSelectedOption(defaultValue);
-    }, [defaultValue]);
+    const [selectedOption, setSelectedOption] = useState('');
 
     const handleChangeEvent = (e) => {
         setSelectedOption(e.target.value);
     }
-
     const checkboxes = [{
         label: 'Inscrit',
         value: 'Inscrit',
@@ -34,7 +29,9 @@ const ModificationStatusCheckBox = ({ visibility, defaultValue, className, onCli
         value: 'Soutenu',
         textColor: '#1858A1',
         backgroundColor: '#6FB1FC80',
-    }]
+    }].filter(checkbox => checkbox.value.toLowerCase() !== defaultValue.toLowerCase());
+
+
     return (
         <AnimatePresence>
             {
