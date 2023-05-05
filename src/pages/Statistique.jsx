@@ -10,11 +10,12 @@ import Carousel from '../components/CarouselStats';
 import DoctorantTable from '../components/DoctorantsTable'
 
 const Statistique = () => {
-    const [circleChartsData, setCircleChartsData] = useState([])
-    const [lineChartData, setLineChartData] = useState([])
-    const [barChartData, setBarChartData] = useState([])
-    const LINE_DATA_URL = 'http://localhost:9000/api/Statistiques/inscritParY'
-    const BAR_DATA_URL = 'http://localhost:9000/api/Statistiques/totalInscriParDoc'
+    const [statsData, setstatsDataData] = useState([]);
+    const [lineChartData, setLineChartData] = useState([]);
+    const [barChartData, setBarChartData] = useState([]);
+    const STATS_DATA_URL = 'http://localhost:9000/api/Statistiques/StatNumerique';
+    const LINE_DATA_URL = 'http://localhost:9000/api/Statistiques/inscritParY';
+    const BAR_DATA_URL = 'http://localhost:9000/api/Statistiques/totalInscriParDoc';
     useEffect(() => {
         axios.get(LINE_DATA_URL)
             .then(res => setLineChartData(res.data))
@@ -22,7 +23,11 @@ const Statistique = () => {
         axios.get(BAR_DATA_URL)
             .then(res => setBarChartData(res.data))
             .catch(err => console.log(err))
+        axios.get(STATS_DATA_URL)
+            .then(res => setstatsDataData(res.data))
+            .catch(err => console.log(err))
     }, [])
+    console.log(statsData)
     const barData = {
         labels: barChartData.map(data => data._id),
         datasets: [{
@@ -84,9 +89,9 @@ const Statistique = () => {
         cutout: '75%',
     }
     const laboData = {
-        labels: ['LMCS  12%', 'LCSI  27%', 'AUTRES  61%'],
+        labels: [`LMCS  ${(statsData.totalLMCS * 100) / statsData.totalDoctorants}%`, `LCSI  ${(statsData.totalLCSI * 100) / statsData.totalAutre}%`, `AUTRES  ${(statsData.totalLCSI * 100) / statsData.totalDoctorants}%`],
         datasets: [{
-            data: [12, 27, 61],
+            data: [statsData.totalLMCS, statsData.totalLCSI, statsData.totalAutre],
             backgroundColor: ['#FF008A', '#1C82AD', '#F6DC4E'],
             borderColor: ['#FF008A', '#1C82AD', '#F6DC4E'],
             label: '%',
@@ -110,11 +115,11 @@ const Statistique = () => {
         cutout: '75%',
     }
     const statusData = {
-        labels: ['Inscrits 12% ', 'Abondons  27%', 'Différeé  61%'],
+        labels: [`Inscrits ${(statsData.inscrit * 100) / statsData.totalDoctorants} % `, `Abondons  ${(statsData.radie * 100) / statsData.totalDoctorants}%`, `Différeé  ${(statsData.differe * 100) / statsData.totalDoctorants} % `, `Soutenu ${(statsData.soutenu * 100) / statsData.totalDoctorants}%`],
         datasets: [{
-            data: [12, 27, 61],
-            backgroundColor: ['#03C988', '#FF008A', '#F6DC4E'],
-            borderColor: ['#03C988', '#FF008A', '#F6DC4E'],
+            data: [statsData.inscrit, statsData.radie, statsData.differe, statsData.soutenu],
+            backgroundColor: ['#03C988', '#FF008A', '#F6DC4E', '#1C82AD'],
+            borderColor: ['#03C988', '#FF008A', '#F6DC4E', '#1C82AD'],
             label: '%',
         }]
     };
@@ -146,7 +151,7 @@ const Statistique = () => {
         labels: ['Lmd', 'Doctorat'],
         datasets: [
             {
-                data: [61, 39],
+                data: [statsData.LMDtotal * 100 / statsData.totalDoctorants, statsData.totalClassique * 100 / statsData.totalDoctorants],
                 backgroundColor: ['#F6DC4E', '#6044B6'],
                 borderColor: ['#F6DC4E', '#6044B6'],
                 label: '%',
@@ -182,7 +187,7 @@ const Statistique = () => {
         labels: ['Homme', 'Femme'],
         datasets: [
             {
-                data: [61, 39],
+                data: [statsData.totalM * 100 / statsData.totalDoctorants, statsData.totalF * 100 / statsData.totalDoctorants],
                 backgroundColor: ['#6044B6', '#03C988'],
                 borderColor: ['#6044B6', '#03C988'],
                 label: '%',
