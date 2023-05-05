@@ -3,17 +3,18 @@ import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import FormsTextInput from './FormsTextInput'
 import FormsDatePicker from './FormsDatePicker'
+import axios from 'axios'
 
 const CarteChangementThese = ({ data }) => {
   const initialValues = {
-    nouveauThese: '',
+    nouveauIntituleThese: '',
     codePv: '',
     urlPv: '',
     ordreDuJour: '',
-    datePv: '',
+    datePv: null,
   }
   const validationSchema = Yup.object().shape({
-    nouveauThese: Yup.string()
+    nouveauIntituleThese: Yup.string()
       .min(3, 'Min. 3 characters')
       .required('veuillez remplir ce champ.'),
     codePv: Yup.string()
@@ -27,7 +28,21 @@ const CarteChangementThese = ({ data }) => {
       .required('veuillez remplir ce champ.'),
   });
   const handleSubmitEvent = (values) => {
-    console.log(values)
+    const { nouveauIntituleThese, codePv, urlPv, ordreDuJour, datePv } = values;
+    const submitData = {
+      doctorantId: data?.id,
+      nouveauIntituleThese: nouveauIntituleThese,
+      pv: {
+        code: codePv,
+        url: urlPv,
+        ordreDuJour: ordreDuJour,
+        date: datePv,
+      }
+    }
+    const url = `http://localhost:9000/api/Doctorants/changementThese`
+    axios.put(url, submitData)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
   }
   return (
     <div className=' w-4/6 h-fit px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
@@ -39,7 +54,7 @@ const CarteChangementThese = ({ data }) => {
         >
           <Form className="grid w-full grid-cols-2 mt-4 gap-x-20 gap-y-4 md:px-10">
             <div className='flex col-span-2'><h2 className='text-[#13005A] mr-2'>Intitulé de these Actuelle:</h2><p>{data?.intituleeThese}</p></div>
-            <div className='col-span-2 mr-40'><FormsTextInput name="nouveauThese" label="Nouveau Intitulé de these :" /></div>
+            <div className='col-span-2 mr-40'><FormsTextInput name="nouveauIntituleThese" label="Nouveau Intitulé de these :" /></div>
             <div><FormsTextInput name="codePv" label="Code" /></div>
             <div><FormsTextInput name="urlPv" label="Url" /></div>
             <div><FormsTextInput name="ordreDuJour" label="Ordre du jour" /></div>
