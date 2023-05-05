@@ -22,7 +22,7 @@ const FormsTextArea = ({ name, label, ...rest }) => {
                                     type="textarea"
                                     name={name}
                                     id={name}
-                                    value={form.values[name]}
+                                    value={form.values[name] || ''}
                                     onChange={form.handleChange}
                                     onBlur={form.handleBlur}
                                     {...rest}

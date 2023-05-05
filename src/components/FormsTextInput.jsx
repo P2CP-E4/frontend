@@ -21,7 +21,7 @@ const FormsInput = ({ name, label, ...rest }) => {
                                     type="text"
                                     name={name}
                                     id={name}
-                                    value={form.values[name]}
+                                    value={form.values[name] || ''}
                                     onChange={form.handleChange}
                                     onBlur={form.handleBlur}
                                     {...rest}

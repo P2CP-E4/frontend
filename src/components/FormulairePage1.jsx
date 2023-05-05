@@ -6,8 +6,6 @@ import FormsDatePicker from "./FormsDatePicker";
 import FormsSelect from "./FormsSelect";
 const FormulairePage1 = ({ data, next, sexeDropDownOptions }) => {
 
-    console.log(sexeDropDownOptions)
-
     const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
     const validationSchema = Yup.object().shape({

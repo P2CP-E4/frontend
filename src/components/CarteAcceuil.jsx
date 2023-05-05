@@ -14,13 +14,13 @@ const CarteAcceuil = ({ title, description, path }) => {
             onClick={handleClickEvent}
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.03 }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
 
         >
             <div className='flex flex-col  items-center justify-center w-full h-full bg-[#F3F9FF] rounded-[26px] px-2 pt-4 pb-5 text-center  hover:bg-white'>
-                <span className=' text-2xl font-semibold mb-3.5'>{title}</span>
-                <span className='text-sm font-light '>{description}</span>
+                <span className=' text-[18px] font-semibold mb-3.5'>{title}</span>
+                <span className='text-[13px] font-light '>{description}</span>
             </div>
         </motion.div>
 

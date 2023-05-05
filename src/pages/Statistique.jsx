@@ -1,21 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import NavBar from '../components/NavBar'
 import LineChart from '../components/LineChart';
 import BarChart from '../components/BarChart';
 import DoughnutChart from '../components/DoughnutChart';
 import GaugeChart from '../components/GaugeChart';
-import line_chart_data from '../data/line_chart_data.json';
-import bar_chart_data from '../data/bar_chart_data.json';
 import DirecteursStatsTable from '../components/DirecteursStatsTable';
 import Carousel from '../components/CarouselStats';
 import DoctorantTable from '../components/DoctorantsTable'
 
 const Statistique = () => {
+    const [circleChartsData, setCircleChartsData] = useState([])
+    const [lineChartData, setLineChartData] = useState([])
+    const [barChartData, setBarChartData] = useState([])
+    const LINE_DATA_URL = 'http://localhost:9000/api/Statistiques/inscritParY'
+    const BAR_DATA_URL = 'http://localhost:9000/api/Statistiques/totalInscriParDoc'
+    useEffect(() => {
+        axios.get(LINE_DATA_URL)
+            .then(res => setLineChartData(res.data))
+            .catch(err => console.log(err))
+        axios.get(BAR_DATA_URL)
+            .then(res => setBarChartData(res.data))
+            .catch(err => console.log(err))
+    }, [])
     const barData = {
-        labels: bar_chart_data.map(data => data.year),
+        labels: barChartData.map(data => data._id),
         datasets: [{
             label: "nombre d'inscrit",
-            data: bar_chart_data.map(data => data.inscrit),
+            data: barChartData.map(data => data.count),
             backgroundColor: '#1C82AD',
             borderColor: '#8744E1',
             pointBorderColor: 'transparent',
@@ -35,10 +47,10 @@ const Statistique = () => {
 
     };
     const lineData = {
-        labels: line_chart_data.map(data => data.year),
+        labels: Object.keys(lineChartData),
         datasets: [{
             label: "nombre d'inscrit",
-            data: line_chart_data.map(data => data.inscrit),
+            data: Object.values(lineChartData),
             backgroundColor: 'transparent',
             borderColor: '#8744E1',
             pointBorderColor: 'transparent',
