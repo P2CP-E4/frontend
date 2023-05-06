@@ -193,6 +193,7 @@ const Statistique = () => {
         ],
     };
 
+    //Asma
     const Labltab = [
         'femme', 'homme'
     ];
@@ -202,8 +203,8 @@ const Statistique = () => {
     ];
 
     const num = 3;
-
     const titres = ['LMCS', 'LCSI', 'autre'];
+
     return (
         <div className='w-screen h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />
@@ -214,12 +215,12 @@ const Statistique = () => {
                 <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Status' subTitle='Status' />
                 <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
             </div>
-            <div className='flex gap-4 px-3 mb-16 ml-8'>
+            <div className='md:flex gap-4 px-3 mb-16 ml-8'>
                 <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
                 <BarChart chartData={barData} chartOptions={optionsBarChart} title='Nombre de Doctorants par nombre d’inscriptions' />
                 <LineChart chartData={lineData} chartOptions={OptionsLineChart} title='Nombre d’inscrits par années' />
             </div>
-            <div className='flex flex-row justify-around w-full h-fit'>
+            <div className='md:flex justify-around w-full h-fit'>
                 <div className='flex flex-col items-center mb-20'>
                     <StatsGenerator />
                     <MultiBarChart LabelArray={Labltab} DataArray={Datatab} NumCritere1={num} titles={titres} />
