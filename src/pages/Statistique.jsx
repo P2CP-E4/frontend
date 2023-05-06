@@ -8,6 +8,8 @@ import GaugeChart from '../components/GaugeChart';
 import DirecteursStatsTable from '../components/DirecteursStatsTable';
 import Carousel from '../components/CarouselStats';
 import DoctorantTable from '../components/DoctorantsTable'
+import StatsGenerator from '../components/StatsGenerator';
+import MultiBarChart from '../components/MultiBarChart';
 
 const Statistique = () => {
     const [statsData, setstatsDataData] = useState([]);
@@ -27,7 +29,7 @@ const Statistique = () => {
             .then(res => setstatsDataData(res.data))
             .catch(err => console.log(err))
     }, [])
-    console.log(statsData)
+
     const barData = {
         labels: barChartData.map(data => data._id),
         datasets: [{
@@ -46,10 +48,6 @@ const Statistique = () => {
                 display: false,
             },
         },
-        scales: {
-
-        }
-
     };
     const lineData = {
         labels: Object.keys(lineChartData),
@@ -194,6 +192,18 @@ const Statistique = () => {
             },
         ],
     };
+
+    const Labltab = [
+        'femme', 'homme'
+    ];
+
+    const Datatab = [
+        [6, 9], [10, 15], [2, 5]
+    ];
+
+    const num = 3;
+
+    const titres = ['LMCS', 'LCSI', 'autre'];
     return (
         <div className='w-screen h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />
@@ -205,19 +215,16 @@ const Statistique = () => {
                 <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
             </div>
             <div className='flex gap-4 px-3 mb-16 ml-8'>
-                <div className='flex flex-col gap-5'>
-                    <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
-                    <div className='bg-yellow-500 h-60 w-80'>Stat Multi</div>
-                    <div className='bg-pink-500 h-80 w-80'>Stat Multi</div>
+                <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
+                <BarChart chartData={barData} chartOptions={optionsBarChart} title='Nombre de Doctorants par nombre d’inscriptions' />
+                <LineChart chartData={lineData} chartOptions={OptionsLineChart} title='Nombre d’inscrits par années' />
+            </div>
+            <div className='flex flex-row justify-around w-full h-fit'>
+                <div className='flex flex-col items-center mb-20'>
+                    <StatsGenerator />
+                    <MultiBarChart LabelArray={Labltab} DataArray={Datatab} NumCritere1={num} titles={titres} />
                 </div>
-                <div className='flex flex-col items-center justify-between '>
-                    <BarChart chartData={barData} chartOptions={optionsBarChart} title='Nombre de Doctorants par nombre d’inscriptions' />
-                    <div className='bg-red-500 h-96 w-96'>Stat Multi</div>
-                </div>
-                <div className='flex flex-col gap-8'>
-                    <LineChart chartData={lineData} chartOptions={OptionsLineChart} title='Nombre d’inscrits par années' />
-                    <DirecteursStatsTable />
-                </div>
+                <DirecteursStatsTable />
             </div>
             <DoctorantTable />
         </div >
