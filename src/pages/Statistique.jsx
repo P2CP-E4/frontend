@@ -209,18 +209,18 @@ const Statistique = () => {
         <div className='w-screen h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />
             <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
-            <Carousel />
+            <Carousel data={statsData} />
             <div className='mt-10 mb-10 md:flex md:gap-10'>
                 <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Labo' />
                 <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Status' subTitle='Status' />
                 <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
             </div>
-            <div className='md:flex gap-4 px-3 mb-16 ml-8'>
+            <div className='gap-4 px-3 mb-16 ml-8 md:flex'>
                 <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
                 <BarChart chartData={barData} chartOptions={optionsBarChart} title='Nombre de Doctorants par nombre d’inscriptions' />
                 <LineChart chartData={lineData} chartOptions={OptionsLineChart} title='Nombre d’inscrits par années' />
             </div>
-            <div className='md:flex justify-around w-full h-fit'>
+            <div className='justify-around w-full md:flex h-fit'>
                 <div className='flex flex-col items-center mb-20'>
                     <StatsGenerator />
                     <MultiBarChart LabelArray={Labltab} DataArray={Datatab} NumCritere1={num} titles={titres} />

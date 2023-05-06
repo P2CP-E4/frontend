@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 import StatistiqueNumBox from "./CarouselBoxStats";
-import carouselData from "../data/carousel_stats_data.json"
 import SlideFlecheDroite from '../assets/images/SlideFlecheDroite.svg';
 import SlideFlecheGauche from '../assets/images/SlideFlecheGauche.svg';
 import { motion, AnimatePresence } from 'framer-motion';
-const items = [
-    { id: 1, title: "Total", number: carouselData.totalDoctorants, pourcentage: "10" },
-    { id: 2, title: "Nouveaux inscrits", number: carouselData.nouveauInscrit, pourcentage: "-5" },
-    { id: 3, title: "LMD", number: carouselData.LMD, pourcentage: "0" },
-    { id: 4, title: "Classique", number: carouselData.Classique, pourcentage: "15" },
-    { id: 5, title: "Femmes", number: carouselData.F, pourcentage: "-10" },
-    { id: 6, title: "Hommes", number: carouselData.M, pourcentage: "20" },
-    { id: 7, title: "LCSI", number: carouselData.LCSI, pourcentage: "5" },
-    { id: 8, title: "LMCS", number: carouselData.LMCS, pourcentage: "0" },
-    { id: 9, title: "Autre", number: carouselData.Autre, pourcentage: "-15" },
-    { id: 10, title: "Directeurs de thése", number: carouselData.totalDirecteurs, pourcentage: "10" },
-    { id: 11, title: "Inscrits", number: carouselData.inscrit, pourcentage: "5" },
-    { id: 12, title: "Différés", number: carouselData.differe, pourcentage: "-5" },
-    { id: 13, title: "Radiés", number: carouselData.radie, pourcentage: "0" },
-    { id: 14, title: "Soutenu", number: carouselData.soutenu, pourcentage: "15" },
-];
 
-const CarouselStats = () => {
+const CarouselStats = ({ data }) => {
+    const items = [
+        { id: 1, title: "Total", number: data.totalDoctorants, pourcentage: null },
+        { id: 2, title: "Nouveaux inscrits", number: data.nouveauInscrit, pourcentage: null },
+        { id: 3, title: "LMD", number: data.LMDtotal, pourcentage: data.LMDadvancement },
+        { id: 4, title: "Classique", number: data.totalClassique, pourcentage: data.Classiqueadvancement },
+        { id: 5, title: "Femmes", number: data.totalF, pourcentage: data.Fadvancement },
+        { id: 6, title: "Hommes", number: data.totalM, pourcentage: data.Madvancement },
+        { id: 7, title: "LCSI", number: data.totalLCSI, pourcentage: data.LCSIAdvancement },
+        { id: 8, title: "LMCS", number: data.totalLMCS, pourcentage: data.LMCSadvancement },
+        { id: 9, title: "Autre", number: data.totalAutre, pourcentage: data.AutreAdvancement },
+        { id: 10, title: "Directeurs de thése", number: data.totalDirecteurs, pourcentage: null },
+        { id: 11, title: "Inscrits", number: data.inscrit, pourcentage: null },
+        { id: 12, title: "Différés", number: data.differe, pourcentage: null },
+        { id: 13, title: "Radiés", number: data.radie, pourcentage: null },
+        { id: 14, title: "Soutenu", number: data.soutenu, pourcentage: null },
+    ];
+
     const { visibleItems, handlePrevClick, handleNextClick } = useInfiniteCarousel(items);
     return (
         <div className="flex items-center justify-center gap-5 ">
