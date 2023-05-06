@@ -4,7 +4,7 @@ import axios from 'axios';
 import ColumnFilter from './ColumnFilter';
 
 const DirecteursStatsTable = () => {
-    const DIRECTEUR_STAT_GET_URL = 'http://localhost:9000/api/Statistiques/DocsParEncad';
+    const DIRECTEUR_STAT_GET_URL = 'http://localhost:8080/api/Statistiques/DocsParEncad';
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {

@@ -6,7 +6,7 @@ export function useGetNomCompletDropDownOption() {
     const [dropdownOptions, setDropdownOptions] = useState([]);
 
     useEffect(() => {
-        const GET_NOMCOMPLET_URL = 'http://localhost:9000/api/Doctorants/recupNomComplet';
+        const GET_NOMCOMPLET_URL = 'http://localhost:8080/api/Doctorants/recupNomComplet';
 
         axios.get(GET_NOMCOMPLET_URL)
             .then(res => {

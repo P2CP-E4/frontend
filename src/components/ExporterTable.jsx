@@ -17,7 +17,7 @@ import more_info_icon from '../assets/images/more_info_icon.svg'
 
 const ExporterTable = () => {
     //* fetch data from API
-    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableDoctorants';
+    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:8080/api/Doctorants/tableDoctorants';
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
@@ -144,7 +144,7 @@ const ExporterTable = () => {
         setCheckboxState(currentState);
     }
     const makeGetRequest = (data) => {
-        const EXPORTER_XLS_URL = 'http://localhost:9000/api/Doctorants/exporter'
+        const EXPORTER_XLS_URL = 'http://localhost:8080/api/Doctorants/exporter'
         axios.post(EXPORTER_XLS_URL, data, { responseType: 'blob' })
             .then(res => {
                 fileDownload(res.data, 'doctorant.xlsx')

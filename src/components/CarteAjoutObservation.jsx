@@ -6,7 +6,7 @@ import FormsSelect from './FormsSelect'
 import { useHandleSubmitFormAjouts } from '../hooks/useHandleSubmitFormAjouts'
 import { useGetNomCompletDropDownOption } from '../hooks/useGetNomCompletDropDownOptions'
 const CarteAjoutObservation = () => {
-    const POST_OBSERVATION_URL = 'http://localhost:9000/api/Doctorants/observation';
+    const POST_OBSERVATION_URL = 'http://localhost:8080/api/Doctorants/observation';
     const handleSubmitForm = useHandleSubmitFormAjouts(POST_OBSERVATION_URL);
     const dropDownOptions = useGetNomCompletDropDownOption();
 

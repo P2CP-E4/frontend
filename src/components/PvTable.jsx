@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useTable, useFilters, usePagination } from 'react-table';
 import axios from 'axios';
+import { usePopUp } from '../hooks/usePopUp';
+import fileDownload from 'js-file-download';
 import Pagination from './Pagination';
 import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
-import { usePopUp } from '../hooks/usePopUp';
 import PopUp from './PopUp';
 import CarteAjoutPv from './CarteAjoutPv';
 
 const PvTable = () => {
-    const PV_TABLE_GET_DATA_URL = 'http://localhost:9000/api/PVs/allPV';
+    const PV_TABLE_GET_DATA_URL = 'http://localhost:8080/api/PVs/allPV';
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
@@ -75,13 +76,20 @@ const PvTable = () => {
     } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, usePagination,);
     const { pageIndex } = state;
     const [ajoutPvTrigger, openAjoutPv, closeAjoutPv] = usePopUp();
-
+    const handleExport = () => {
+        const EXPORTER_XLS_URL = 'http://localhost:8080/api/PVs/exporter'
+        axios.get(EXPORTER_XLS_URL, { responseType: 'blob' })
+            .then(res => {
+                fileDownload(res.data, 'pv.xlsx')
+            })
+            .catch(err => console.log(err))
+    }
     return (
         <>
             {headerGroups.map((headerGroup) => (
                 <div className='flex justify-center w-[800px] gap-1 mb-3' {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
-                    <button type="button" className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-7 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Exporter</button>
+                    <button type="button" onClick={handleExport} className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-7 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Exporter</button>
                     <button type="button" onClick={openAjoutPv} className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Ajouter PV</button>
                 </div >
             ))}

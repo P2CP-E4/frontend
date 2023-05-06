@@ -12,8 +12,8 @@ import CheckBox from './CheckBox';
 
 const ReinscriptionTable = ({ status }) => {
     const pickURL = (status) => {
-        if (status.toLowerCase() === 'inscrit') return 'http://localhost:9000/api/Doctorants/tableauReinscription'
-        if (status.toLowerCase() === 'differe') return 'http://localhost:9000/api/Doctorants/tableauReinscriptionDiffere'
+        if (status.toLowerCase() === 'inscrit') return 'http://localhost:8080/api/Doctorants/tableauReinscription'
+        if (status.toLowerCase() === 'differe') return 'http://localhost:8080/api/Doctorants/tableauReinscriptionDiffere'
         return ''
     }
 
@@ -115,7 +115,7 @@ const ReinscriptionTable = ({ status }) => {
     }
 
     const handleSubmitEvent = (values) => {
-        const INSCRIPTION_POST_URL = 'http://localhost:9000/api/Doctorants/reinscription'
+        const INSCRIPTION_POST_URL = 'http://localhost:8080/api/Doctorants/reinscription'
         const selectedDoctorants = selectedFlatRows.map((row) => row.original._id);
         const submitData = { doctorants: selectedDoctorants, pv: values };
         axios.post(INSCRIPTION_POST_URL, submitData)

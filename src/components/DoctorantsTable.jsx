@@ -13,7 +13,7 @@ import axios from 'axios';
 
 
 const DoctorantTable = () => {
-    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableDoctorants';
+    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:8080/api/Doctorants/tableDoctorants';
     const [tableData, setTableData] = useState([]);
     useEffect(() => {
         axios.get(DOCTORANT_TABLE_GET_DATA_URL)

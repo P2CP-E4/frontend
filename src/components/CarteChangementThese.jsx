@@ -39,7 +39,7 @@ const CarteChangementThese = ({ data }) => {
         date: datePv,
       }
     }
-    const url = `http://localhost:9000/api/Doctorants/changementThese`
+    const url = `http://localhost:8080/api/Doctorants/changementThese`
     axios.put(url, submitData)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))

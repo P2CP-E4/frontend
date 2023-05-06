@@ -47,7 +47,7 @@ const FormulaireInscription = () => {
 
     const makeRequest = (formData) => {
 
-        const POST_DOCTORANT = 'http://127.0.0.1:9000/api/Doctorants/ajouter';
+        const POST_DOCTORANT = 'http://127.0.0.1:8080/api/Doctorants/ajouter';
         let codirecteur = null;
 
         if (formData.nomCoDirecteur && formData.etablissementCoDirecteur && formData.gradeCoDirecteur && formData.adresseEmailCoDirecteur && formData.telephoneCoDirecteur) {

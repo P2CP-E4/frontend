@@ -7,7 +7,7 @@ import FormsSelect from './FormsSelect'
 import { useGetNomCompletDropDownOption } from '../hooks/useGetNomCompletDropDownOptions'
 import { useHandleSubmitFormAjouts } from '../hooks/useHandleSubmitFormAjouts'
 const CarteAjoutSiminaire = () => {
-    const POST_SIMINAIRE_URL = 'http://localhost:9000/api/Doctorants/siminaire';
+    const POST_SIMINAIRE_URL = 'http://localhost:8080/api/Doctorants/siminaire';
     const handleSubmitForm = useHandleSubmitFormAjouts(POST_SIMINAIRE_URL);
 
     const dropDownOptions = useGetNomCompletDropDownOption();

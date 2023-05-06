@@ -8,7 +8,7 @@ import { useHandleSubmitFormAjouts } from '../hooks/useHandleSubmitFormAjouts'
 import { useGetNomCompletDropDownOption } from '../hooks/useGetNomCompletDropDownOptions'
 
 const CarteAjoutFCT = () => {
-    const POST_FCT_URL = 'http://localhost:9000/api/Doctorants/majFCT';
+    const POST_FCT_URL = 'http://localhost:8080/api/Doctorants/majFCT';
     const handleSubmitForm = useHandleSubmitFormAjouts(POST_FCT_URL);
 
     const dropDownOptions = useGetNomCompletDropDownOption();
