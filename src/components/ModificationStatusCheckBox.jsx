@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion';
 const ModificationStatusCheckBox = ({ visibility, defaultValue, className, onClick, ...rest }) => {
     const [selectedOption, setSelectedOption] = useState('');
@@ -6,32 +6,35 @@ const ModificationStatusCheckBox = ({ visibility, defaultValue, className, onCli
     const handleChangeEvent = (e) => {
         setSelectedOption(e.target.value);
     }
-    const checkboxes = [{
-        label: 'Inscrit',
-        value: 'Inscrit',
-        textColor: '#2BB573',
-        backgroundColor: '#79E4B180'
-    },
-    {
-        label: 'Différé',
-        value: 'Differe',
-        textColor: '#C1A614',
-        backgroundColor: '#F3DF7580'
-    },
-    {
-        label: 'Radié',
-        value: 'Radie',
-        textColor: '#A62929',
-        backgroundColor: '#FF6B6B80'
-    },
-    {
-        label: 'Soutenu',
-        value: 'Soutenu',
-        textColor: '#1858A1',
-        backgroundColor: '#6FB1FC80',
-    }].filter(checkbox => checkbox.value.toLowerCase() !== defaultValue.toLowerCase());
 
-
+    const [checkboxes, setCheckboxes] = useState([])
+    useEffect(() => {
+        const initialCheckboxes = [{
+            label: 'Inscrit',
+            value: 'Inscrit',
+            textColor: '#2BB573',
+            backgroundColor: '#79E4B180'
+        },
+        {
+            label: 'Différé',
+            value: 'Differe',
+            textColor: '#C1A614',
+            backgroundColor: '#F3DF7580'
+        },
+        {
+            label: 'Radié',
+            value: 'Radie',
+            textColor: '#A62929',
+            backgroundColor: '#FF6B6B80'
+        },
+        {
+            label: 'Soutenu',
+            value: 'Soutenu',
+            textColor: '#1858A1',
+            backgroundColor: '#6FB1FC80',
+        }]
+        setCheckboxes(initialCheckboxes.filter(checkbox => checkbox.value.toLowerCase() !== defaultValue.toLowerCase()));
+    }, [defaultValue])
     return (
         <AnimatePresence>
             {

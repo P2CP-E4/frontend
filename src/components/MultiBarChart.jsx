@@ -91,7 +91,7 @@ const MultiBarChart = ({ LabelArray, DataArray, NumCritere1, titles }) => {
             <div className="chartMenu">
                 <p>  <span id="chartVersion" className='text-white'></span></p>
             </div>
-            <div className="chartCard">
+            <div className="chartCard  ">
                 <div className="chartBox">
                     <canvas ref={canvasRef} id="myChart"></canvas>
                 </div>

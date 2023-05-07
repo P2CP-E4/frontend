@@ -41,7 +41,6 @@ const Statistique = () => {
             tension: 0.1,
         }]
     };
-
     const optionsBarChart = {
         plugins: {
             legend: {
@@ -60,7 +59,6 @@ const Statistique = () => {
             tension: 0.1,
         }]
     };
-
     const OptionsLineChart = {
         plugins: {
             legend: {
@@ -69,7 +67,6 @@ const Statistique = () => {
             },
         },
     };
-
     const statusOptionsDoughnutChart = {
         plugins: {
             legend: {
@@ -87,7 +84,7 @@ const Statistique = () => {
         cutout: '75%',
     }
     const laboData = {
-        labels: [`LMCS  ${(statsData.totalLMCS * 100) / statsData.totalDoctorants}%`, `LCSI  ${(statsData.totalLCSI * 100) / statsData.totalAutre}%`, `AUTRES  ${(statsData.totalLCSI * 100) / statsData.totalDoctorants}%`],
+        labels: [`LMCS  ${(statsData.totalLMCS * 100) / statsData.totalDoctorants}%`, `LCSI  ${(statsData.totalLCSI * 100) / statsData.totalDoctorants}%`, `AUTRES  ${(statsData.totalLCSI * 100) / statsData.totalDoctorants}%`],
         datasets: [{
             data: [statsData.totalLMCS, statsData.totalLCSI, statsData.totalAutre],
             backgroundColor: ['#FF008A', '#1C82AD', '#F6DC4E'],
@@ -95,7 +92,6 @@ const Statistique = () => {
             label: '%',
         }]
     };
-
     const laboOptionsDoughnutChart = {
         plugins: {
             legend: {
@@ -221,7 +217,7 @@ const Statistique = () => {
                 <LineChart chartData={lineData} chartOptions={OptionsLineChart} title='Nombre d’inscrits par années' />
             </div>
             <div className='justify-around w-full md:flex h-fit'>
-                <div className='flex flex-col items-center mb-20'>
+                <div className='flex flex-col items-center mb-20 bg-white shadow-lg rounded-md  p-5'>
                     <StatsGenerator />
                     <MultiBarChart LabelArray={Labltab} DataArray={Datatab} NumCritere1={num} titles={titres} />
                 </div>

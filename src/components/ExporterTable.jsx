@@ -28,6 +28,9 @@ const ExporterTable = () => {
             .catch(err => console.log(err))
     }, [])
 
+    const [clickedDotorantData, setClickedDoctorantData] = useState({});
+    const [clickedDirecteurData, setClickedDirecteurData] = useState({});
+
     const data = useMemo(() => tableData, [tableData]);
 
     const columns = useMemo(() => [
@@ -37,7 +40,14 @@ const ExporterTable = () => {
             placeHolderFilter: 'Nom/prenom',
             width: 200,
             className: "bg-[#F9F9F9] text-left pl-5",
-            Cell: ({ value }) => < span className='flex justify-between items-center w-[175px] p-0' ><span className='text-sm '>{value}</span><img src={more_info_icon} alt='edit' className='w-4 h-4 cursor-pointer' onClick={openDoctorantPopUp} /></span >,
+            Cell: (cell) =>
+                <span className='flex justify-between items-center w-[175px] p-0' >
+                    <span className='text-sm '>{cell.value}</span>
+                    <img src={more_info_icon} alt='edit' className='w-4 h-4 cursor-pointer' onClick={() => {
+                        setClickedDoctorantData(cell.data[cell.row.id]);
+                        openDoctorantPopUp();
+                    }} />
+                </span >
         },
         {
             Header: 'Date 1ére inscription',
@@ -82,7 +92,14 @@ const ExporterTable = () => {
             placeHolderFilter: 'Directeur',
             width: 175,
             className: "text-left pl-5",
-            Cell: ({ value }) => <span className='flex items-center justify-between'><span className='text-sm'>{value}</span><img src={more_info_icon} alt='edit' className='w-4 h-4 cursor-pointer' onClick={openDirecteurPopUp} /></span>,
+            Cell: (cell) =>
+                <span className='flex items-center justify-between'>
+                    <span className='text-sm'>{cell.value}</span>
+                    <img src={more_info_icon} alt='edit' className='w-4 h-4 cursor-pointer' onClick={() => {
+                        setClickedDirecteurData(cell.data[cell.row.id].directeurPrincipal);
+                        openDirecteurPopUp();
+                    }} />
+                </span>,
         },
         {
             Header: 'Date FCT',
@@ -211,8 +228,8 @@ const ExporterTable = () => {
                 />
                 <button className='bg-[#03C988] w-44 text-white rounded-xl mr-3 px-3 py-1 font-semibold hover:bg-white border-2 border-[#03C988] hover:text-[#03C988]' type='button' onClick={handleSubmitEvent}>Exporter</button>
             </div>
-            <PopUp trigger={doctorantPopUpTrigger} handleCloseEvent={closeDoctorantPopUp}><CarteInformationDoctorant handleCloseEvent={closeDoctorantPopUp} /></PopUp>
-            <PopUp trigger={directeurPopUpTrigger} handleCloseEvent={closeDirecteurPopUp}><CartesInformationsDirecteur handleCloseEvent={closeDirecteurPopUp} /></PopUp>
+            <PopUp trigger={doctorantPopUpTrigger} handleCloseEvent={closeDoctorantPopUp}><CarteInformationDoctorant handleCloseEvent={closeDoctorantPopUp} data={clickedDotorantData} /></PopUp>
+            <PopUp trigger={directeurPopUpTrigger} handleCloseEvent={closeDirecteurPopUp}><CartesInformationsDirecteur handleCloseEvent={closeDirecteurPopUp} data={clickedDirecteurData} /></PopUp>
         </>
     );
 }
