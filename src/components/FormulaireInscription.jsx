@@ -12,7 +12,6 @@ const FormulaireInscription = () => {
     //TODO: comfirm page ,after Submit
 
     const { sexeDropDownOptions, typeDiplomeDropDownOptions, laboDropDownOptions, optionDropDownOptions } = useGetDropDownOptions();
-    console.log(sexeDropDownOptions)
     const [currentStep, setCurrentStep] = useState(0);
     const [data, setData] = useState({
         nom: '',

@@ -29,7 +29,7 @@ const ExporterTable = () => {
 
     const [clickedDotorantData, setClickedDoctorantData] = useState({});
     const [clickedDirecteurData, setClickedDirecteurData] = useState({});
-    console.log(tableData)
+
     const data = useMemo(() => tableData, [tableData]);
 
     const columns = useMemo(() => [

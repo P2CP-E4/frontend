@@ -9,8 +9,8 @@ const WelcomePage = () => {
         <div className="flex flex-col justify-between w-screen h-screen py-6 pl-16 bg-[url('/src/assets/images/welcomePage.jpg')] bg-cover">
             <nav className="flex ml-10">
                 <ul className="flex gap-10">
-                    <li className=" text-[#13005A] font-semibold hover:text-[#03C988]"><a href="/welcomepage" >Acceuil</a></li>
-                    <li className="text-[#13005A] font-semibold hover:text-[#03C988]"><a href="/" onClick={openLoginPopUp}>Se Connecter</a></li>
+                    <li className=" text-[#13005A] font-semibold hover:text-[#03C988]">Acceuil</li>
+                    <li className="text-[#13005A] font-semibold hover:text-[#03C988] cursor-pointer" onClick={openLoginPopUp}>Se Connecter</li>
                 </ul>
             </nav>
             <div className='ml-10'>
@@ -31,7 +31,7 @@ const WelcomePage = () => {
                 <p className='text-xs text-[#13005A]'>Ecole nationale Supérieure d’Informatique ESI</p>
             </div>
             <PopUp trigger={loginClicked} handleCloseEvent={closeLoginPopUp}><Login handleCloseEvent={closeLoginPopUp} /></PopUp>
-        </div>
+        </div >
 
     );
 }

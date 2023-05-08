@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.svg"
 import crois from "../assets/images/crois.svg"
 import passwordVisibleEye from "../assets/images/passwordvisible.svg"
 import passwordInvisibleEye from "../assets/images/passwordinvisible.svg"
-
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const Login = ({ handleCloseEvent }) => {
+    const navigate = useNavigate();
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const togglePasswordVisibility = () => {
         setIsPasswordVisible(!isPasswordVisible);
@@ -30,6 +32,35 @@ const Login = ({ handleCloseEvent }) => {
             console.log(values);
         }
     })
+
+    const [user, setUser] = useState([]);
+
+    const login = useGoogleLogin({
+        onSuccess: (codeResponse) => setUser(codeResponse),
+        onError: (error) => console.log('Login Failed:', error)
+    });
+
+    const logOut = () => {
+        googleLogout();
+        localStorage.setItem('profile', null);
+    };
+
+
+    useEffect(() => {
+        if (user.access_token) {
+            axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+                headers: {
+                    Authorization: `Bearer ${user.access_token}`,
+                    Accept: 'application/json'
+                }
+            })
+                .then((res) => {
+                    localStorage.setItem('profile', JSON.stringify({ ...res.data }));
+                    navigate('/acceuil')
+                })
+                .catch((err) => console.log(err));
+        }
+    }, [navigate, user]);
 
     return (
         <div
@@ -78,18 +109,17 @@ const Login = ({ handleCloseEvent }) => {
                     </div>
                     <a href="/" className="text-xs underline font-medium text-[#13005A]">Mot de passe oublié ?</a>
                     <div className="flex flex-col items-center mt-12 mb-3">
-                        <Link to="/" className="w-fit h-fir">
-                            <button
-                                className="bg-[#03C988] rounded-3xl font-semibold text-center text-white text-base px-6 py-1.5 hover:bg-white hover:text-[#03C988] border-2 w-64 border-[#03C988] "
-                                type="submit"
-                            >
-                                Se connecter
-                            </button>
-                        </Link>
+                        <button
+                            className="bg-[#03C988] rounded-3xl font-semibold text-center text-white text-base px-6 py-1.5 hover:bg-white hover:text-[#03C988] border-2 w-64 border-[#03C988] "
+                            type="submit"
+                        >
+                            Se connecter
+                        </button>
                         <span className="py-3 text-sm font-semibold">OU</span>
                         <button
                             className="flex flex-wrap justify-between rounded-3xl w-full border border-[#1C82AD] bg-[#EEF1F2] px-4 py-2.5 "
                             type="button"
+                            onClick={() => login()}
                         >
                             <small className="text-gray-500 ">Continuer en tant que ...</small>
                             <img

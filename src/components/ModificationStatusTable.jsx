@@ -9,7 +9,9 @@ import ModificationStatusCheckBox from './ModificationStatusCheckBox';
 import CheckBox from './CheckBox';
 import CarteWarning from './CarteWarning';
 import CarteSuccess from './CarteSuccess'
+import CarteAjoutPv from './CarteAjoutPv';
 import { usePopUp } from '../hooks/usePopUp';
+
 import PopUp from './PopUp';
 const ModificationStatusTable = () => {
     //* fetch data from API
@@ -28,6 +30,7 @@ const ModificationStatusTable = () => {
     const data = useMemo(() => tableData, [tableData]);
 
     const [showModificationStatusCheckBox, setShowModificationStatusCheckBox] = useState(false);
+
     const handleClickCheckBoxEvent = (e) => {
         if (!showModificationStatusCheckBox) {
             setShowModificationStatusCheckBox(!showModificationStatusCheckBox);
@@ -132,14 +135,42 @@ const ModificationStatusTable = () => {
         return false;
     }
 
+    const [showAjoutPv, openAjoutPv, closeAjoutPv] = usePopUp();
+
+    const [newStatus, setNewStatus] = useState('');
+
+    const handleSubmitEvent = (values) => {
+        const { code, url, ordreDuJour, date } = values;
+        const submitData = {
+            doctorants: selectedFlatRows.map(row => row.original._id),
+            status: newStatus.toLowerCase(),
+            pv: {
+                code: code,
+                url: url,
+                ordreDuJour: ordreDuJour,
+                date: date,
+            }
+
+        }
+        const MODIFIER_STATUS_URL = 'http://localhost:9000/api/Doctorants/modifierstatus'
+        console.log(submitData)
+        axios.post(MODIFIER_STATUS_URL, submitData)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     const handleClickSubmitButtonEvent = (e) => {
+        setNewStatus(e.target.value);
         if (!selectedStatus) return openWaning();
         if (selectedFlatRows.length === 0) return openWaning();
-        console.log(submissionState(e.target.value))
-        if (!submissionState(e.target.value)) return openWaning();
-        openSuccess();
-        console.log(JSON.stringify(selectedFlatRows.map((row) => row.original), null, 2));
+        // if (!submissionState(e.target.value)) return openWaning();
+        openAjoutPv();
     }
+
     return (
         <>
             {headerGroups.map((headerGroup) => (
@@ -189,6 +220,7 @@ const ModificationStatusTable = () => {
             </div >
             <PopUp trigger={showWarning} handleCloseEvent={closeWarning}><CarteWarning onClick={closeWarning} /></PopUp>
             <PopUp trigger={showSuccess} handleCloseEvent={closeSuccess}><CarteSuccess onClick={closeSuccess} /></PopUp>
+            <PopUp trigger={showAjoutPv} handleCloseEvent={closeAjoutPv}><CarteAjoutPv onClick={closeAjoutPv} customSubmitRequest={handleSubmitEvent} /></PopUp>
         </>
     );
 }

@@ -33,19 +33,19 @@ const CarteChangementThese = ({ data }) => {
   }
 
   const handleSubmitEvent = (values) => {
-    const { nouveauIntituleThese, codePv, urlPv, ordreDuJour, datePv } = values;
+    const { nouveauIntituleThese, code, url, ordreDuJour, date } = values;
     const submitData = {
       doctorantId: data?.id,
       nouveauIntituleThese: nouveauIntituleThese,
       pv: {
-        code: codePv,
-        url: urlPv,
+        code: code,
+        url: url,
         ordreDuJour: ordreDuJour,
-        date: datePv,
+        date: date,
       }
     }
-    const url = `http://localhost:9000/api/Doctorants/changementThese`
-    axios.put(url, submitData)
+    const CHANGEMENT_THESE_URL = `http://localhost:9000/api/Doctorants/changementThese`
+    axios.put(CHANGEMENT_THESE_URL, submitData)
       .then(res => {
         setStatus('success');
         console.log(res.data)
@@ -55,6 +55,7 @@ const CarteChangementThese = ({ data }) => {
         console.log(err)
       })
   }
+
   return (
     <div className=' w-4/6 md:h-full px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[rgb(151,71,255)]'>
       <div className='flex flex-col pb-4 w-full px-10  bg-white rounded-[45px] md:h-full'>

@@ -10,6 +10,7 @@ import Carousel from '../components/CarouselStats';
 import DoctorantTable from '../components/DoctorantsTable'
 import StatsGenerator from '../components/StatsGenerator';
 import MultiBarChart from '../components/MultiBarChart';
+import GenererStatsNumerique from '../components/GenererStatsNumerique';
 
 const Statistique = () => {
     const [statsData, setstatsDataData] = useState([]);
@@ -84,7 +85,7 @@ const Statistique = () => {
         cutout: '75%',
     }
     const laboData = {
-        labels: [`LMCS  ${(statsData.totalLMCS * 100) / statsData.totalDoctorants}%`, `LCSI  ${(statsData.totalLCSI * 100) / statsData.totalDoctorants}%`, `AUTRES  ${(statsData.totalLCSI * 100) / statsData.totalDoctorants}%`],
+        labels: [`LMCS  ${Math.round((statsData.totalLMCS * 100) / statsData.totalDoctorants)}%`, `LCSI  ${Math.round((statsData.totalLCSI * 100) / statsData.totalDoctorants)}%`, `AUTRES  ${Math.round((statsData.totalLCSI * 100) / statsData.totalDoctorants)}%`],
         datasets: [{
             data: [statsData.totalLMCS, statsData.totalLCSI, statsData.totalAutre],
             backgroundColor: ['#FF008A', '#1C82AD', '#F6DC4E'],
@@ -109,7 +110,7 @@ const Statistique = () => {
         cutout: '75%',
     }
     const statusData = {
-        labels: [`Inscrits ${(statsData.inscrit * 100) / statsData.totalDoctorants} % `, `Abondons  ${(statsData.radie * 100) / statsData.totalDoctorants}%`, `Différeé  ${(statsData.differe * 100) / statsData.totalDoctorants} % `, `Soutenu ${(statsData.soutenu * 100) / statsData.totalDoctorants}%`],
+        labels: [`Inscrits ${Math.round((statsData.inscrit * 100) / statsData.totalDoctorants)} % `, `Radiée  ${Math.round((statsData.radie * 100) / statsData.totalDoctorants)}%`, `Différeé  ${Math.round((statsData.differe * 100) / statsData.totalDoctorants)} % `, `Soutenu ${Math.round((statsData.soutenu * 100) / statsData.totalDoctorants)}%`],
         datasets: [{
             data: [statsData.inscrit, statsData.radie, statsData.differe, statsData.soutenu],
             backgroundColor: ['#03C988', '#FF008A', '#F6DC4E', '#1C82AD'],
@@ -145,7 +146,7 @@ const Statistique = () => {
         labels: ['Lmd', 'Doctorat'],
         datasets: [
             {
-                data: [statsData.LMDtotal * 100 / statsData.totalDoctorants, statsData.totalClassique * 100 / statsData.totalDoctorants],
+                data: [Math.round(statsData.LMDtotal * 100 / statsData.totalDoctorants), Math.round(statsData.totalClassique * 100 / statsData.totalDoctorants)],
                 backgroundColor: ['#F6DC4E', '#6044B6'],
                 borderColor: ['#F6DC4E', '#6044B6'],
                 label: '%',
@@ -181,7 +182,7 @@ const Statistique = () => {
         labels: ['Homme', 'Femme'],
         datasets: [
             {
-                data: [statsData.totalM * 100 / statsData.totalDoctorants, statsData.totalF * 100 / statsData.totalDoctorants],
+                data: [Math.round(statsData.totalM * 100 / statsData.totalDoctorants), Math.round(statsData.totalF * 100 / statsData.totalDoctorants)],
                 backgroundColor: ['#6044B6', '#03C988'],
                 borderColor: ['#6044B6', '#03C988'],
                 label: '%',
@@ -206,6 +207,7 @@ const Statistique = () => {
             <NavBar />
             <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
             <Carousel data={statsData} />
+            <GenererStatsNumerique />
             <div className='mt-10 mb-10 md:flex md:gap-10'>
                 <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Labo' />
                 <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Status' subTitle='Status' />
