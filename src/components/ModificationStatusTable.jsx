@@ -14,7 +14,7 @@ import PopUp from './PopUp';
 const ModificationStatusTable = () => {
     //* fetch data from API
 
-    const MAJ_TABLE_GET_DATA_URL = 'http://localhost:8080/api/Doctorants/tableauModifStatus';
+    const MAJ_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableauModifStatus';
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {

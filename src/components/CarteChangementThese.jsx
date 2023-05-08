@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import FormsTextInput from './FormsTextInput'
 import FormsDatePicker from './FormsDatePicker'
 import axios from 'axios'
-
+import SubmitCarte from './SubmitCarte'
 const CarteChangementThese = ({ data }) => {
   const initialValues = {
     nouveauIntituleThese: '',
@@ -27,6 +27,11 @@ const CarteChangementThese = ({ data }) => {
     datePv: Yup.string()
       .required('veuillez remplir ce champ.'),
   });
+  const [status, setStatus] = useState('');
+  const clearStatus = () => {
+    setStatus('');
+  }
+
   const handleSubmitEvent = (values) => {
     const { nouveauIntituleThese, codePv, urlPv, ordreDuJour, datePv } = values;
     const submitData = {
@@ -39,29 +44,39 @@ const CarteChangementThese = ({ data }) => {
         date: datePv,
       }
     }
-    const url = `http://localhost:8080/api/Doctorants/changementThese`
+    const url = `http://localhost:9000/api/Doctorants/changementThese`
     axios.put(url, submitData)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err))
+      .then(res => {
+        setStatus('success');
+        console.log(res.data)
+      })
+      .catch(err => {
+        setStatus('error');
+        console.log(err)
+      })
   }
   return (
-    <div className=' w-4/6 h-fit px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
+    <div className=' w-4/6 md:h-full px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[rgb(151,71,255)]'>
       <div className='flex flex-col pb-4 w-full px-10  bg-white rounded-[45px] md:h-full'>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmitEvent}
-        >
-          <Form className="grid w-full grid-cols-2 mt-4 gap-x-20 gap-y-4 md:px-10">
-            <div className='flex col-span-2'><h2 className='text-[#13005A] mr-2'>Intitulé de these Actuelle:</h2><p>{data?.intituleeThese}</p></div>
-            <div className='col-span-2 mr-40'><FormsTextInput name="nouveauIntituleThese" label="Nouveau Intitulé de these :" /></div>
-            <div><FormsTextInput name="codePv" label="Code" /></div>
-            <div><FormsTextInput name="urlPv" label="Url" /></div>
-            <div><FormsTextInput name="ordreDuJour" label="Ordre du jour" /></div>
-            <div><FormsDatePicker name="datePv" label="Date du proces verbal" /></div>
-            <button type="submit" className=" col-start-2 ml-12 rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border border-transparent hover:border-[#03C988]">Confirmer la modification</button>
-          </Form >
-        </Formik >
+        {
+          status ? <SubmitCarte state={status} clear={clearStatus} titre={status === 'success' ? 'Changement avec success' : ' Echec dans le changement de these'} message={status === 'success' ? "Le changement de these a été effectuée avec succées." : "Désolé , nous n'avons pas pu effectuer le changement de these, veuillez réessayez plus tard, ou contacter l'administrateur pour obtenir de l'aide"} />
+            :
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={handleSubmitEvent}
+            >
+              <Form className="grid w-full grid-cols-2 mt-4 gap-x-20 gap-y-4 md:px-10">
+                <div className='flex col-span-2'><h2 className='text-[#13005A] mr-2'>Intitulé de these Actuelle:</h2><p>{data?.intituleeThese}</p></div>
+                <div className='col-span-2 mr-40'><FormsTextInput name="nouveauIntituleThese" label="Nouveau Intitulé de these :" /></div>
+                <div><FormsTextInput name="codePv" label="Code" /></div>
+                <div><FormsTextInput name="urlPv" label="Url" /></div>
+                <div><FormsTextInput name="ordreDuJour" label="Ordre du jour" /></div>
+                <div><FormsDatePicker name="datePv" label="Date du proces verbal" /></div>
+                <button type="submit" className=" col-start-2 ml-12 rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border border-transparent hover:border-[#03C988]">Confirmer la modification</button>
+              </Form >
+            </Formik >
+        }
       </div>
     </div >
   )

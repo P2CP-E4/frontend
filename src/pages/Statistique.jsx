@@ -15,9 +15,9 @@ const Statistique = () => {
     const [statsData, setstatsDataData] = useState([]);
     const [lineChartData, setLineChartData] = useState([]);
     const [barChartData, setBarChartData] = useState([]);
-    const STATS_DATA_URL = 'http://localhost:8080/api/Statistiques/StatNumerique';
-    const LINE_DATA_URL = 'http://localhost:8080/api/Statistiques/inscritParY';
-    const BAR_DATA_URL = 'http://localhost:8080/api/Statistiques/totalInscriParDoc';
+    const STATS_DATA_URL = 'http://localhost:9000/api/Statistiques/StatNumerique';
+    const LINE_DATA_URL = 'http://localhost:9000/api/Statistiques/inscritParY';
+    const BAR_DATA_URL = 'http://localhost:9000/api/Statistiques/totalInscriParDoc';
     useEffect(() => {
         axios.get(LINE_DATA_URL)
             .then(res => setLineChartData(res.data))

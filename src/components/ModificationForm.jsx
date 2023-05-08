@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import axios from 'axios'
-
+import SubmitCarte from './SubmitCarte'
 import FormsTextInput from './FormsTextInput'
 import FormsDatePicker from './FormsDatePicker'
 import FormsSelect from './FormsSelect'
@@ -58,38 +58,56 @@ const ModificationForm = ({ newData }) => {
         option: Yup.string()
             .required('veuillez remplir ce champ.'),
     });
-    const handleSubmitEvent = (values) => {
 
-        const UPDATE_DOCTORANT_URL = `http://localhost:8080/api/Doctorants/modifierInfoDoc`
+    const [status, setStatus] = useState('');
+
+    const clearStatus = () => {
+        setStatus('');
+    }
+
+
+    const handleSubmitEvent = (values) => {
+        const UPDATE_DOCTORANT_URL = `http://localhost:9000/api/Doctorants/modifierInfoDoc`
         console.log(UPDATE_DOCTORANT_URL)
         axios.put(UPDATE_DOCTORANT_URL, values)
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
+            .then(res => {
+                setStatus('success');
+                console.log(res.data)
+            })
+            .catch(err => {
+                setStatus('error');
+                console.log(err)
+            })
     }
+
     return (
         <>
             <div className='w-3/4 md:h-[330px] px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
                 <div className='flex flex-col w-full py-3 md:px-16 bg-white rounded-[45px] md:h-full'>
-                    <Formik
-                        initialValues={formValues || initialValues}
-                        validationSchema={validationSchema}
-                        onSubmit={handleSubmitEvent}
-                        enableReinitialize
-                    >
-                        <Form className="relative grid w-full h-full bg-white md:grid-cols-12 gap-y-4 gap-x-14 auto-rows-min">
-                            <div className='col-span-3'><FormsTextInput name="nom" label="Nom" /></div>
-                            <div className='col-span-3'><FormsTextInput name="prenom" label="Prenom" /></div>
-                            <div className='col-span-3 '><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
-                            <div className='col-span-3 '><FormsSelect name="sexe" label="Sexe" options={sexeDropDownOptions} /></div>
-                            <div className='col-span-4'><FormsTextInput name="telephone" label="Telephone" /></div>
-                            <div className='col-span-4'><FormsTextInput name="email" label="Email" /></div>
-                            <div className='col-span-4'><FormsSelect name="typeDiplome" label="Type du diplome" options={typeDiplomeDropDownOptions} /></div>
-                            <div className='col-span-4'><FormsSelect name="laboratoire" label="Laboratoire" options={laboDropDownOptions} /></div>
-                            <div className='col-span-4'><FormsTextInput name="etablissementOrigine" label="Nom d’Etablissement d’origine " /></div>
-                            <div className='col-span-4'><FormsSelect name="option" label="Option" options={optionDropDownOptions} /></div>
-                            <button type="submit" className="md:absolute md:bottom-1.5 md:right-0 bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border border-transparent hover:border-[#03C988]">Confirmer la modification</button>
-                        </Form >
-                    </Formik >
+                    {
+                        status ? <SubmitCarte state={status} clear={clearStatus} titre={status === 'success' ? 'Modification avec success' : ' Echec dans la modifcation du doctorant'} message={status === 'success' ? "La modification des informations personnelles on été effectuée avec succées." : "Désolé , nous n'avons pas pu effectuer le changement de these, veuillez réessayez plus tard, ou contacter l'administrateur pour obtenir de l'aide"} />
+                            :
+                            <Formik
+                                initialValues={formValues || initialValues}
+                                validationSchema={validationSchema}
+                                onSubmit={handleSubmitEvent}
+                                enableReinitialize
+                            >
+                                <Form className="relative grid w-full h-full bg-white md:grid-cols-12 gap-y-4 gap-x-14 auto-rows-min">
+                                    <div className='col-span-3'><FormsTextInput name="nom" label="Nom" /></div>
+                                    <div className='col-span-3'><FormsTextInput name="prenom" label="Prenom" /></div>
+                                    <div className='col-span-3 '><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
+                                    <div className='col-span-3 '><FormsSelect name="sexe" label="Sexe" options={sexeDropDownOptions} /></div>
+                                    <div className='col-span-4'><FormsTextInput name="telephone" label="Telephone" /></div>
+                                    <div className='col-span-4'><FormsTextInput name="email" label="Email" /></div>
+                                    <div className='col-span-4'><FormsSelect name="typeDiplome" label="Type du diplome" options={typeDiplomeDropDownOptions} /></div>
+                                    <div className='col-span-4'><FormsSelect name="laboratoire" label="Laboratoire" options={laboDropDownOptions} /></div>
+                                    <div className='col-span-4'><FormsTextInput name="etablissementOrigine" label="Nom d’Etablissement d’origine " /></div>
+                                    <div className='col-span-4'><FormsSelect name="option" label="Option" options={optionDropDownOptions} /></div>
+                                    <button type="submit" className="md:absolute md:bottom-1.5 md:right-0 bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border border-transparent hover:border-[#03C988]">Confirmer la modification</button>
+                                </Form >
+                            </Formik >
+                    }
                 </div>
             </div>
         </>

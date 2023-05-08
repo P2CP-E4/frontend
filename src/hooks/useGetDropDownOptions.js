@@ -5,7 +5,7 @@ export function useGetDropDownOptions() {
     const [dropDownOptions, setDropDownOptions] = useState({});
 
     useEffect(() => {
-        const GET_DROPDOWN_OPTIONS = 'http://localhost:8080/api/Doctorants/recupLaboOpt'
+        const GET_DROPDOWN_OPTIONS = 'http://localhost:9000/api/Doctorants/recupLaboOpt'
         axios.get(GET_DROPDOWN_OPTIONS)
             .then(res => {
                 setDropDownOptions(res.data);

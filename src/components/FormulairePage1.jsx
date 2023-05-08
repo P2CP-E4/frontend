@@ -36,39 +36,19 @@ const FormulairePage1 = ({ data, next, sexeDropDownOptions }) => {
             validationSchema={validationSchema}
             onSubmit={handleSubmitEvent}
         >
-            <Form className="relative flex flex-col items-center w-full h-full">
-                <div className="w-2/3">
-                    <h2 className="text-lg font-semibold leading-10 text-[#03C988] mb-3">
-                        Informations personnelles
-                    </h2>
-                    <div className="mb-6 -mx-3 md:flex">
-                        <div className="relative px-4 pb-2 mb-6 md:mb-0 md:w-1/2" >
-                            <FormsTextInput name="nom" label="Nom" />
-                        </div>
-                        <div className="px-3 md:w-1/2">
-                            <FormsTextInput name="prenom" label="Prenom" />
-                        </div>
-                    </div>
-
-                    <div className="mb-6 -mx-3 md:flex">
-                        <div className="px-3 mb-6 md:mb-0 md:w-1/2">
-                            <FormsSelect name="sexe" label="Sexe" placeholder="" options={sexeDropDownOptions} />
-                        </div>
-                        <div className="px-3 md:w-1/2">
-                            <FormsDatePicker name="dateNaissance" label="Date de naissance" />
-                        </div>
-                    </div>
-
-                    <div className="mt-6 mb-6 -mx-3 md:flex">
-                        <div className="px-3 mb-6 md:mb-0 md:w-1/2">
-                            <FormsTextInput name="telephone" label="Telephone" />
-                        </div>
-                        <div className="px-3 md:w-1/2">
-                            <FormsTextInput name="email" label="Email" />
-                        </div>
-                    </div>
+            <Form className="relative flex flex-col items-center w-2/3 h-full">
+                <h2 className="text-lg font-semibold leading-10 self-start text-[#03C988] mb-3">
+                    Informations personnelles
+                </h2>
+                <div className="w-full  md:grid md:grid-cols-2 md:gap-y-10 md:gap-x-5">
+                    <div><FormsTextInput name="nom" label="Nom" /></div>
+                    <div><FormsTextInput name="prenom" label="Prenom" /></div>
+                    <div><FormsSelect name="sexe" label="Sexe" placeholder="" options={sexeDropDownOptions} /></div>
+                    <div><FormsDatePicker name="dateNaissance" label="Date de naissance" /></div>
+                    <div><FormsTextInput name="telephone" label="Telephone" /></div>
+                    <div><FormsTextInput name="email" label="Email" /></div>
                 </div >
-                <button type="submit" className="md:absolute border-transparent md:bottom-10 md:right-12 rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>
+                <button type="submit" className="md:absolute border-transparent md:bottom-10 md:-right-[112px] rounded-3xl bg-[#13005A] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Suivant</button>
             </Form >
         </Formik >
     );

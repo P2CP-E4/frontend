@@ -13,7 +13,7 @@ const ModificationPersonalInfo = () => {
     const [editedDoctorantInformations, setEditedDoctorantInformations] = useState(null);
 
     const handleChangeEvent = (selectedOption) => {
-        const DOCTORANT_INFORMATIONS_URL = `http://localhost:8080/api/Doctorants/doctorantParId/${selectedOption.value}`;
+        const DOCTORANT_INFORMATIONS_URL = `http://localhost:9000/api/Doctorants/doctorantParId/${selectedOption.value}`;
         axios.get(DOCTORANT_INFORMATIONS_URL)
             .then(res => {
                 const { __v, _id, ...rest } = res.data;

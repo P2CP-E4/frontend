@@ -24,7 +24,7 @@ const CarteAjoutPv = ({ operation, customSubmitRequest }) => {
     });
 
     const ajoutPvRequest = (values) => {
-        const POST_PV_URL = 'http://localhost:8080/api/PVs/ajouter'
+        const POST_PV_URL = 'http://localhost:9000/api/PVs/ajouter'
         axios.post(POST_PV_URL, values)
             .then(res => {
                 console.log(res.data)

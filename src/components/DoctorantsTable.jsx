@@ -13,8 +13,10 @@ import axios from 'axios';
 
 
 const DoctorantTable = () => {
-    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:8080/api/Doctorants/tableDoctorants';
+    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableDoctorants';
+
     const [tableData, setTableData] = useState([]);
+
     useEffect(() => {
         axios.get(DOCTORANT_TABLE_GET_DATA_URL)
             .then((res) => {
@@ -24,12 +26,14 @@ const DoctorantTable = () => {
     }, [])
 
     const data = useMemo(() => tableData, [tableData]);
+
     //* usePopUp is a custom hook made to handle the popUp events
     const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
     const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
 
     const [clickedDotorantData, setClickedDoctorantData] = useState({});
     const [clickedDirecteurData, setClickedDirecteurData] = useState({});
+
     const columns = useMemo(() => [
         {
             Header: 'Nom et prénom',
@@ -93,7 +97,7 @@ const DoctorantTable = () => {
                 <span className='flex items-center justify-between'>
                     <span className='text-sm'>{cell.value}</span>
                     <img src={more_info_icon} alt='edit' className='w-4 h-4 cursor-pointer' onClick={() => {
-                        setClickedDirecteurData(cell.data[cell.row.id].directeurPrincipal);
+                        setClickedDirecteurData(cell.data[cell.row.id]?.directeurPrincipal);
                         openDirecteurPopUp();
                     }} />
                 </span>,
@@ -137,8 +141,6 @@ const DoctorantTable = () => {
         pageCount,
     } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, usePagination,);
 
-
-    console.log(page);
     const { pageIndex } = state;
     return (
         <>

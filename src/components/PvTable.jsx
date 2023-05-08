@@ -10,7 +10,7 @@ import PopUp from './PopUp';
 import CarteAjoutPv from './CarteAjoutPv';
 
 const PvTable = () => {
-    const PV_TABLE_GET_DATA_URL = 'http://localhost:8080/api/PVs/allPV';
+    const PV_TABLE_GET_DATA_URL = 'http://localhost:9000/api/PVs/allPV';
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
@@ -77,7 +77,7 @@ const PvTable = () => {
     const { pageIndex } = state;
     const [ajoutPvTrigger, openAjoutPv, closeAjoutPv] = usePopUp();
     const handleExport = () => {
-        const EXPORTER_XLS_URL = 'http://localhost:8080/api/PVs/exporter'
+        const EXPORTER_XLS_URL = 'http://localhost:9000/api/PVs/exporter'
         axios.get(EXPORTER_XLS_URL, { responseType: 'blob' })
             .then(res => {
                 fileDownload(res.data, 'pv.xlsx')

@@ -11,13 +11,12 @@ import ColumSelectFilter from './ColumnSelectFilter'
 import StatusCustomCard from './StatusCustomCard'
 import ExporterCheckBoxes from './ExporterCheckBoxes';
 import CheckBox from './CheckBox';
-import { saveAs } from 'file-saver';
 import fileDownload from 'js-file-download';
 import more_info_icon from '../assets/images/more_info_icon.svg'
 
 const ExporterTable = () => {
     //* fetch data from API
-    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:8080/api/Doctorants/tableDoctorants';
+    const DOCTORANT_TABLE_GET_DATA_URL = 'http://localhost:9000/api/Doctorants/tableauExporter';
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
@@ -30,7 +29,7 @@ const ExporterTable = () => {
 
     const [clickedDotorantData, setClickedDoctorantData] = useState({});
     const [clickedDirecteurData, setClickedDirecteurData] = useState({});
-
+    console.log(tableData)
     const data = useMemo(() => tableData, [tableData]);
 
     const columns = useMemo(() => [
@@ -68,7 +67,7 @@ const ExporterTable = () => {
             placeHolderFilter: 'Lien PV',
             width: 75,
             className: "text-center",
-            Cell: ({ value }) => <a className='text-xs text-[#03C988]' href={value.url} >{value.code}</a>,
+            Cell: ({ value }) => <a className='text-xs text-[#03C988]' href={value?.url} >{value?.code}</a>,
         },
         {
             Header: 'Intitulé thése',
@@ -161,7 +160,7 @@ const ExporterTable = () => {
         setCheckboxState(currentState);
     }
     const makeGetRequest = (data) => {
-        const EXPORTER_XLS_URL = 'http://localhost:8080/api/Doctorants/exporter'
+        const EXPORTER_XLS_URL = 'http://localhost:9000/api/Doctorants/exporter'
         axios.post(EXPORTER_XLS_URL, data, { responseType: 'blob' })
             .then(res => {
                 fileDownload(res.data, 'doctorant.xlsx')
