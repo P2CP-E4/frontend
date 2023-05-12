@@ -9,7 +9,7 @@ const StatusCustomCard = ({ value }) => {
         case 'radie':
             return <span className='bg-[#FF6B6B80] text-[#A62929] text-center px-9 py-0.5 rounded-lg'>{value}</span>
         case 'soutenu':
-            return <span className='bg-[#6FB1FC80] text-[#1858A1] text-center px-9 py-0.5 rounded-lg'>{value}</span>
+            return <span className='bg-[#6FB1FC80] text-[#1858A1] text-center px-7 py-0.5 rounded-lg'>{value}</span>
         default:
             return null;
     }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.svg"
 import crois from "../assets/images/crois.svg"
 import passwordVisibleEye from "../assets/images/passwordvisible.svg"
@@ -29,7 +29,16 @@ const Login = ({ handleCloseEvent }) => {
                 .required()
         }),
         onSubmit: values => {
-            console.log(values);
+            axios.post('http://localhost:9000/api/Auth/login', values)
+                .then(res => {
+                    if (res.data?.success) {
+                        localStorage.setItem('', res.data.email || null);
+                        navigate('/acceuil');
+                    } else {
+                        alert('access non autorisé');
+                    }
+                })
+                .catch(err => console.log(err))
         }
     })
 
@@ -42,7 +51,7 @@ const Login = ({ handleCloseEvent }) => {
 
     const logOut = () => {
         googleLogout();
-        localStorage.setItem('profile', null);
+        localStorage.setItem('', null);
     };
 
 
@@ -73,7 +82,7 @@ const Login = ({ handleCloseEvent }) => {
                 <h1 className="text-2xl text-[#13005A]">Bienvenue à la DPGR!</h1>
             </div>
             <div className="w-64">
-                <form className="mt-4" onSubmit={formik.onSubmit}>
+                <form className="mt-4" onSubmit={formik.handleSubmit}>
                     <div className="mb-8">
                         <label className="mb-2 block text-xs font-normal text-[#13005A]">Adresse email</label>
                         <input

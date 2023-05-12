@@ -33,15 +33,15 @@ const CarteChangementThese = ({ data }) => {
   }
 
   const handleSubmitEvent = (values) => {
-    const { nouveauIntituleThese, code, url, ordreDuJour, date } = values;
+    const { nouveauIntituleThese, codePv, urlPv, ordreDuJour, datePv } = values;
     const submitData = {
       doctorantId: data?.id,
       nouveauIntituleThese: nouveauIntituleThese,
       pv: {
-        code: code,
-        url: url,
+        code: codePv,
+        url: urlPv,
         ordreDuJour: ordreDuJour,
-        date: date,
+        date: datePv,
       }
     }
     const CHANGEMENT_THESE_URL = `http://localhost:9000/api/Doctorants/changementThese`

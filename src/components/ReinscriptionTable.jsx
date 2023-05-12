@@ -56,7 +56,7 @@ const ReinscriptionTable = ({ status }) => {
         },
         {
             Header: 'Directeur',
-            accessor: 'directeurPrincipale',
+            accessor: 'directeurPrincipal',
             placeHolderFilter: 'Directeur',
             width: 150,
             className: "text-center",
@@ -64,10 +64,11 @@ const ReinscriptionTable = ({ status }) => {
         },
         {
             Header: 'Code PV',
-            accessor: 'LienPV',
+            accessor: 'pv',
             placeHolderFilter: 'Code PV',
             width: 100,
             className: "text-center",
+            Cell: ({ value }) => <a className='text-xs text-[#03C988]' href={value?.url} >{value?.code}</a>,
         },
         {
             Header: 'Status',

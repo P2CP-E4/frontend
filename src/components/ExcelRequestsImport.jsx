@@ -32,7 +32,7 @@ const ExcelRequestsImport = ({ uploadHandler }) => {
 
                 for (const element of newRows) {
                     for (let j = 0; j < element.length; j++) {
-                        if (element[j] && typeof element[j] === 'number' && element[j].toString().length >= 4 && !element[j].toString().includes(',') && !element[j].toString().includes('.') && !element[j].toString().includes('-')) {
+                        if (element[j] && typeof element[j] === 'number' && element[j].toString().length >= 4) {
                             element[j] = ExcelDateToJSDate(element[j]).toISOString().slice(0, 10)
                         }
                     }

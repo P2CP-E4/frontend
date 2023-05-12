@@ -5,9 +5,25 @@ import FormsSelect from '../components/FormsSelect'
 import { useGetNomCompletDropDownOption } from '../hooks/useGetNomCompletDropDownOptions'
 import { Form, Formik } from 'formik'
 import axios from 'axios'
-
+import SousPagesController from '../components/SousPagesController'
 const ModificationPersonalInfo = () => {
-    //TODO:finish l'integration de la modification des infos personnelles
+    const sousPages = [
+        {
+            id: 1,
+            title: 'Modification du Status',
+            path: '/modificationStatus'
+        },
+        {
+            id: 2,
+            title: 'Changement du titre de these',
+            path: '/changementThese'
+        },
+        {
+            id: 3,
+            title: 'Modification des informations personnelles des doctorants',
+            path: '/modificationPersonnelInformations'
+        },
+    ]
     const dropDownOptions = useGetNomCompletDropDownOption();
 
     const [editedDoctorantInformations, setEditedDoctorantInformations] = useState(null);
@@ -27,7 +43,7 @@ const ModificationPersonalInfo = () => {
     return (
         <div className='relative flex flex-col items-center w-screen h-screen pb-8'>
             <NavBar />
-            <h1 className='text-2xl text-center my-3 text-[#03C988]'>Modification Informations personnelles du Doctorant :</h1>
+            <SousPagesController sousPages={sousPages} initialPage={3} />
             <h3 className='text-sm text-center '>Veuillez entrer le nom complet du doctorant :</h3>
             <Formik
                 initialValues={{

@@ -3,8 +3,10 @@ import { Formik, Form } from "formik";
 import FormsTextInput from "./FormsTextInput";
 import FormsDatePicker from "./FormsDatePicker";
 import * as Yup from "yup";
+import { useNavigate } from 'react-router-dom';
 
 const FormulairePage5 = ({ data, next, back }) => {
+    const navigate = useNavigate();
     const validationSchema = Yup.object().shape({
         codePV: Yup.string()
             .min(3, "Min. 3 characters")
@@ -21,6 +23,7 @@ const FormulairePage5 = ({ data, next, back }) => {
 
     const handleSubmitEvent = (values) => {
         next(values, true);
+        navigate('/acceuil')
     }
 
     return (

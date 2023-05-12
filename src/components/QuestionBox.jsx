@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import question_mark from '../assets/images/question_mark.svg'
 import green_arrow from '../assets/images/green_arrow.svg'
-const QuestionBox = ({ question }) => {
+const QuestionBox = ({ question, answer }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [hasBox, setHasBox] = useState(false);
 
@@ -30,12 +30,12 @@ const QuestionBox = ({ question }) => {
 
     return (
         <div className='relative'>
-            <div className='flex items-center text-start w-[300px] h-[35px] bg-white shadow-lg cursor-pointer'
+            <div className='flex items-center text-start w-[300px] h-[35px] bg-white shadow-lg  cursor-pointer'
                 onClick={toggleDrawer}
                 style={{
                     borderRadius: isOpen ? '0.5rem 0.5rem  0rem 0rem' : '0.5rem',
                 }}>
-                <span className='ml-5 text-sm'>{question}</span>
+                <span className='ml-5 text-[10px]'>{question}</span>
                 <img src={question_mark} alt="question" className="ml-[5px] w-3 h-3" />
                 <button onClick={toggleDrawer} className="w-5 h-5 ml-auto mr-3 focus:outline-none">
                     <motion.img
@@ -61,8 +61,8 @@ const QuestionBox = ({ question }) => {
                     onMouseEnter={handleBoxEnter}
                     onMouseLeave={handleBoxLeave}
                 >
-                    <div className="p-2">
-                        <p>Drawer content goes here...
+                    <div className="p-5 ">
+                        <p className='text-[12px] '  >{answer}
                         </p>
                     </div>
                 </motion.div>

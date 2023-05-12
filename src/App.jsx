@@ -1,8 +1,8 @@
 import React from "react";
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Acceuil from "./pages/Acceuil";
 import Doctorant from "./pages/Doctorant";
-import Statistique from "./pages/Statistique";
+import StatistiquePredefinie from "./pages/StatistiquePredefinie";
 import Pv from "./pages/Pv";
 import Aide from "./pages/Aide";
 import NoPage from "./pages/NoPage";
@@ -18,15 +18,8 @@ import AjoutFCT from "./pages/AjoutFCT";
 import AjoutObservation from "./pages/AjoutObservation";
 import AjoutSiminaire from "./pages/AjoutSiminaire";
 import ReinscriptionDiffere from "./pages/ReinscriptionDiffere";
-import { useEffect } from "react";
+import StatistiquePersonnalisee from "./pages/StatistiquePersonalisee";
 function App() {
-  const navigate = useNavigate();
-  const currentPath = useLocation().pathname;
-  useEffect(() => {
-    if (currentPath !== "/" && !localStorage.getItem('profile')) {
-      navigate('/');
-    }
-  })
 
   return (
     <>
@@ -36,7 +29,8 @@ function App() {
         <Route path="/doctorant" element={<Doctorant />} />
         <Route path="/aide" element={<Aide />} />
         <Route path="/pv" element={<Pv />} />
-        <Route path="/statistique" element={<Statistique />} />
+        <Route path="/statistiquePredefinie" element={<StatistiquePredefinie />} />
+        <Route path="/statistiquePersonnalisee" element={<StatistiquePersonnalisee />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path="/modificationStatus" element={<ModificationStatus />} />
         <Route path="/reinscription" element={<Reinscription />} />

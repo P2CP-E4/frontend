@@ -69,6 +69,7 @@ const ModificationStatusTable = () => {
             accessor: 'LienPV',
             width: 80,
             placeHolderFilter: 'Code PV',
+            Cell: ({ value }) => <a href={value} className='text-[#03C988]'>Lien vers PV</a>
         },
         {
             Header: 'Status',

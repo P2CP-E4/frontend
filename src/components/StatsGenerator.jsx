@@ -1,41 +1,37 @@
 import { useState } from 'react';
 
 
-function StatsGenerator({ options, years }) {
+function StatsGenerator({ options, years, onSubmit }) {
     const [selectedOption1, setSelectedOption1] = useState(null);
     const [selectedOption2, setSelectedOption2] = useState(null);
-    const [isOpen1, setIsOpen1] = useState(false);
-    const [isOpen2, setIsOpen2] = useState(false);
 
     const [selectedYear1, setSelectedYear1] = useState(null);
     const [selectedYear2, setSelectedYear2] = useState(null);
 
     const handleYear1Click = (year) => {
         setSelectedYear1(year);
-        setIsOpen1(false);
     };
 
     const handleYear2Click = (year) => {
         setSelectedYear2(year);
-        setIsOpen2(false);
     };
 
     const handleOption1Click = (option) => {
         setSelectedOption1(option);
-        setIsOpen1(false);
     };
 
     const handleOption2Click = (option) => {
         setSelectedOption2(option);
-        setIsOpen2(false);
     };
 
-    const options2 = options.filter(option => option !== selectedOption1);
-    const option2 = years.filter(option => parseInt(option) >= parseInt(selectedYear1));
+    const options2 = options.filter(option => option.value !== selectedOption1);
+    const option2 = years.filter(option => parseInt(option) > parseInt(selectedYear1));
+
+
     return (
         <div>
             <h1 className='mb-5'>{'Générer une representation graphique (statistique multi-criteres)'} :</h1>
-            <div className='bg-white rounded-xl mb-10 p-5 pt-3 w-full h-40 shadow-lg'>
+            <div className='w-full h-40 p-5 pt-3 mb-10 bg-white shadow-lg rounded-xl'>
                 <div>
                     <span className='text-[#13005A] font-semibold'>Representation graphique de</span>
                     <span className='relative text-[#03C988] font-semibold'>
@@ -46,7 +42,7 @@ function StatsGenerator({ options, years }) {
                         >
                             <option className='text-black ' value=''>Critere 1</option>
                             {options.map((option) => (
-                                <option className='text-black' key={option} value={option}>{option}</option>
+                                <option className='text-black' key={option.value} value={option.value}>{option.label}</option>
                             ))}
                         </select>
                     </span>
@@ -60,7 +56,7 @@ function StatsGenerator({ options, years }) {
                         >
                             <option className='text-black' value=''>Critere 2</option>
                             {options2.map((option) => (
-                                <option className='text-black' key={option} value={option}>{option}</option>
+                                <option className='text-black' key={option.value} value={option.value}>{option.label}</option>
                             ))}
                         </select>
                     </span>
@@ -95,11 +91,15 @@ function StatsGenerator({ options, years }) {
                         </select>
                     </span>
                 </div>
-                <div className="flex justify-between items-center">
+                <div className="flex items-center justify-between">
                     <div>
                     </div>
                     <div className="ml-auto">
-                        <button className="bg-[#03C988] text-white hover:bg-white hover:text-[#03C988] border-[#03C988] border-2 py-2 px-4 rounded-full">
+                        <button
+                            className="bg-[#03C988] text-white hover:bg-white hover:text-[#03C988] border-[#03C988] border-2 py-2 px-4 rounded-full"
+                            type='button'
+                            onClick={() => onSubmit(selectedOption1, selectedOption2, selectedYear1, selectedYear2)}
+                        >
                             Générer
                         </button>
                     </div>
@@ -124,7 +124,14 @@ StatsGenerator.defaultProps = {
         return option;
     })(),
 
-    options: ['Status', 'Laboratoire', 'Option', 'Type doctorat', 'Type diplome', 'sexe', 'durrée'],
+    options: [
+        { value: 'status', label: 'Status' },
+        { value: 'laboratoire', label: 'Laboratoire' },
+        { value: 'option', label: 'Option' },
+        { value: 'typeDoctorat', label: 'Type doctorat' },
+        { value: 'typeDiplome', label: 'Type diplome' },
+        { value: 'sexe', label: 'sexe' },
+    ],
 
 };
 

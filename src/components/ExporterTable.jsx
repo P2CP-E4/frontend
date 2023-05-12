@@ -12,7 +12,6 @@ import StatusCustomCard from './StatusCustomCard'
 import ExporterCheckBoxes from './ExporterCheckBoxes';
 import CheckBox from './CheckBox';
 import fileDownload from 'js-file-download';
-import more_info_icon from '../assets/images/more_info_icon.svg'
 
 const ExporterTable = () => {
     //* fetch data from API
@@ -27,9 +26,6 @@ const ExporterTable = () => {
             .catch(err => console.log(err))
     }, [])
 
-    const [clickedDotorantData, setClickedDoctorantData] = useState({});
-    const [clickedDirecteurData, setClickedDirecteurData] = useState({});
-
     const data = useMemo(() => tableData, [tableData]);
 
     const columns = useMemo(() => [
@@ -39,14 +35,7 @@ const ExporterTable = () => {
             placeHolderFilter: 'Nom/prenom',
             width: 200,
             className: "bg-[#F9F9F9] text-left pl-5",
-            Cell: (cell) =>
-                <span className='flex justify-between items-center w-[175px] p-0' >
-                    <span className='text-sm '>{cell.value}</span>
-                    <img src={more_info_icon} alt='edit' className='w-4 h-4 cursor-pointer' onClick={() => {
-                        setClickedDoctorantData(cell.data[cell.row.id]);
-                        openDoctorantPopUp();
-                    }} />
-                </span >
+            Cell: (cell) => <span className='text-sm '>{cell.value}</span>
         },
         {
             Header: 'Date 1ére inscription',
@@ -87,18 +76,10 @@ const ExporterTable = () => {
         },
         {
             Header: 'Directeur',
-            accessor: 'directeurPrincipal.nomComplet',
+            accessor: 'directeurPrincipal',
             placeHolderFilter: 'Directeur',
             width: 175,
             className: "text-left pl-5",
-            Cell: (cell) =>
-                <span className='flex items-center justify-between'>
-                    <span className='text-sm'>{cell.value}</span>
-                    <img src={more_info_icon} alt='edit' className='w-4 h-4 cursor-pointer' onClick={() => {
-                        setClickedDirecteurData(cell.data[cell.row.id].directeurPrincipal);
-                        openDirecteurPopUp();
-                    }} />
-                </span>,
         },
         {
             Header: 'Date FCT',
@@ -152,15 +133,13 @@ const ExporterTable = () => {
     const { pageIndex } = state;
 
     //* usePopUp is a custom hook made to handle the popUp events
-    const [doctorantPopUpTrigger, openDoctorantPopUp, closeDoctorantPopUp] = usePopUp();
-    const [directeurPopUpTrigger, openDirecteurPopUp, closeDirecteurPopUp] = usePopUp();
     //*submit-Logique
     const [checkboxStates, setCheckboxState] = useState([]);
     const retrieveCheckBoxesValue = (currentState) => {
         setCheckboxState(currentState);
     }
     const makeGetRequest = (data) => {
-        const EXPORTER_XLS_URL = 'http://localhost:9000/api/Doctorants/exporter'
+        const EXPORTER_XLS_URL = 'http://localhost:9000/api/Doctorants/exporter';
         axios.post(EXPORTER_XLS_URL, data, { responseType: 'blob' })
             .then(res => {
                 fileDownload(res.data, 'doctorant.xlsx')
@@ -227,8 +206,6 @@ const ExporterTable = () => {
                 />
                 <button className='bg-[#03C988] w-44 text-white rounded-xl mr-3 px-3 py-1 font-semibold hover:bg-white border-2 border-[#03C988] hover:text-[#03C988]' type='button' onClick={handleSubmitEvent}>Exporter</button>
             </div>
-            <PopUp trigger={doctorantPopUpTrigger} handleCloseEvent={closeDoctorantPopUp}><CarteInformationDoctorant handleCloseEvent={closeDoctorantPopUp} data={clickedDotorantData} /></PopUp>
-            <PopUp trigger={directeurPopUpTrigger} handleCloseEvent={closeDirecteurPopUp}><CartesInformationsDirecteur handleCloseEvent={closeDirecteurPopUp} data={clickedDirecteurData} /></PopUp>
         </>
     );
 }

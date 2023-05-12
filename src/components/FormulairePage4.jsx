@@ -1,15 +1,11 @@
-import React, { useState } from "react";
-import { Formik, Form } from "formik";
+import React, { useEffect, useState } from "react";
+import { Formik, Form, Field } from "formik";
 import FormsTextInput from "./FormsTextInput";
 import * as Yup from "yup";
 import Arrow from "./Arrow"
 import { motion, AnimatePresence } from "framer-motion";
 
-const FormulairePage4 = ({ data, next, back }) => {
-    const [showCoDirecteur, setShowCoDirecteur] = useState(false);
-    const handleClickEvent = () => {
-        setShowCoDirecteur(!showCoDirecteur);
-    }
+const FormulairePage4 = ({ data, handleCoDirecteurExistence, next, back }) => {
     const validationSchema = Yup.object().shape({
         nomDirecteur: Yup.string()
             .min(3, "Min. 3 characters")
@@ -27,6 +23,7 @@ const FormulairePage4 = ({ data, next, back }) => {
         telephoneDirecteur: Yup.string()
             .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
+        isCoDirecteurExist: Yup.boolean(),
         nomCoDirecteur: Yup.string()
             .min(3, "Min. 3 characters"),
         etablissementCoDirecteur: Yup.string()
@@ -44,6 +41,8 @@ const FormulairePage4 = ({ data, next, back }) => {
         next(values);
     }
 
+    console.log(data);
+
     return (
         <Formik
             initialValues={data}
@@ -55,24 +54,23 @@ const FormulairePage4 = ({ data, next, back }) => {
                     <Form className="relative flex flex-col items-center w-full h-full">
                         <div className="w-4/5 h-full">
                             <h2 className="text-lg font-semibold text-[#03C988] ml-16">Information de directeur</h2>
-                            <div className="grid grid-cols-6 gap-x-6">
-                                <div className="col-span-2 "><FormsTextInput name='nomDirecteur' label='Nom du Directeur' /></div>
+                            <div className="md:grid grid-cols-6 gap-x-6">
+                                <div className="col-span-2"><FormsTextInput name='nomDirecteur' label='Nom du Directeur' /></div>
                                 <div className="col-span-2"><FormsTextInput name='etablissementDirecteur' label="Nom d'Etablissement du Directeur" /></div>
                                 <div className="col-span-2"><FormsTextInput name='gradeDirecteur' label='Grade du Directeur' /></div>
                                 <div className='col-span-3'><FormsTextInput name='adresseEmailDirecteur' label="Adresse email" /></div>
                                 <div className='col-span-3'><FormsTextInput name='telephoneDirecteur' label='N° de telephone' /></div>
                             </div>
-                            <div
-                                className="cursor-pointer flex items-center w-fit rounded-3xl border border-[#1C82AD] py-1 px-4 my-2 text-sm text-[#13005A]"
-                                onClick={handleClickEvent}
-                            >
-                                Information du Co-directeur <span className="text-[#03C988] pl-1 pr-5">(optionnelle)</span>
-                                <Arrow fill='#03C988' className="w-4" state={showCoDirecteur} />
-                            </div>
+                            <label className="cursor-pointer flex items-center w-fit rounded-3xl border border-[#1C82AD] py-1 px-4 my-2 text-sm text-[#13005A]">
+                                <Field type="checkbox" name="isCoDirecteurExist" className='hidden' />
+                                Information du Co-directeur
+                                <span className="text-[#03C988] pl-1 pr-5">(optionnelle)</span>
+                                <Arrow fill='#03C988' className="w-4" state={values.isCoDirecteurExist} />
+                            </label>
                             <AnimatePresence>
                                 {
-                                    showCoDirecteur && <motion.div
-                                        className="grid grid-cols-6 gap-x-6"
+                                    values.isCoDirecteurExist && <motion.div
+                                        className="md:grid grid-cols-6 gap-x-6"
                                         initial={{ opacity: 0, x: 100, scale: 0.8 }}
                                         animate={{ opacity: 1, x: 0, scale: 1 }}
                                         exit={{ opacity: 0, x: 100, scale: 0.8 }}

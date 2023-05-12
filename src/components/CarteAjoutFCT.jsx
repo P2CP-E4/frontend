@@ -29,11 +29,10 @@ const CarteAjoutFCT = () => {
         <div className='relative w-4/6 md:h-[80%] h-fit mt-5 px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'
             onClick={e => e.stopPropagation()}
         >
-            <div className='flex flex-col w-full py-10 px-5  bg-white rounded-[45px] md:h-full'>
+            <div className='flex flex-col w-full justify-between bg-white rounded-[45px] md:h-full'>
                 {
                     status ? <SubmitCarte state={status} clear={clearStatus} titre={status === 'success' ? 'Ajout avec success' : ' Echec dans l\'ajout'} message={status === 'success' ? "L'ajout de FCT a été effectuée avec succées." : "Désolé , nous n'avons pas pu enregistrer votre Ajout veuillez réessayez plus tard, ou contacter l'administrateur pour obtenir de l'aide"} />
                         : <>
-                            <h1 className='text-[#03C988] text-xl font-black text-center'>Ajout de la Date d’enregistrement du fichier central</h1>
                             <Formik
                                 initialValues={initialValues}
                                 validationSchema={validationSchema}
