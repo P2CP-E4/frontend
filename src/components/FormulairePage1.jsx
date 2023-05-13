@@ -10,10 +10,8 @@ const FormulairePage1 = ({ data, next, sexeDropDownOptions }) => {
 
     const validationSchema = Yup.object().shape({
         nom: Yup.string()
-            .min(3, 'Min. 3 characters')
             .required('veuillez remplir ce champ.'),
         prenom: Yup.string()
-            .min(3, 'Min. 3 characters')
             .required('veuillez remplir ce champ.'),
         sexe: Yup.string()
             .required('veuillez remplir ce champ.'),
@@ -40,7 +38,7 @@ const FormulairePage1 = ({ data, next, sexeDropDownOptions }) => {
                 <h2 className="text-lg font-semibold leading-10 self-start text-[#03C988] mb-3">
                     Informations personnelles
                 </h2>
-                <div className=" md:grid md:grid-cols-2 md:gap-y-10 md:gap-x-5  w-full">
+                <div className="w-full  md:grid md:grid-cols-2 md:gap-y-10 md:gap-x-5">
                     <div><FormsTextInput name="nom" label="Nom" /></div>
                     <div><FormsTextInput name="prenom" label="Prenom" /></div>
                     <div><FormsSelect name="sexe" label="Sexe" placeholder="" options={sexeDropDownOptions} /></div>

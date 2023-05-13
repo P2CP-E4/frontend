@@ -10,33 +10,23 @@ import FormsCreatableSelect from "./FormsCreatableSelect";
 const FormulairePage4 = ({ data, handleCoDirecteurExistence, next, back }) => {
     const validationSchema = Yup.object().shape({
         nomDirecteur: Yup.string()
-            .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
         etablissementDirecteur: Yup.string()
-            .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
         gradeDirecteur: Yup.string()
-            .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
         adresseEmailDirecteur: Yup.string()
             .email('enter un email valid')
-            .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
         telephoneDirecteur: Yup.string()
-            .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
         isCoDirecteurExist: Yup.boolean(),
-        nomCoDirecteur: Yup.string()
-            .min(3, "Min. 3 characters"),
-        etablissementCoDirecteur: Yup.string()
-            .min(3, "Min. 3 characters"),
-        gradeCoDirecteur: Yup.string()
-            .min(3, "Min. 3 characters"),
+        nomCoDirecteur: Yup.string(),
+        etablissementCoDirecteur: Yup.string(),
+        gradeCoDirecteur: Yup.string(),
         adresseEmailCoDirecteur: Yup.string()
-            .email('enter un email valid')
-            .min(3, "Min. 3 characters"),
-        telephoneCoDirecteur: Yup.string()
-            .min(3, "Min. 3 characters"),
+            .email('enter un email valid'),
+        telephoneCoDirecteur: Yup.string(),
     })
 
     const handleSubmitEvent = (values) => {

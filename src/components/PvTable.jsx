@@ -8,6 +8,7 @@ import ColumnFilter from './ColumnFilter';
 import ColumSelectFilter from './ColumnSelectFilter';
 import PopUp from './PopUp';
 import CarteAjoutPv from './CarteAjoutPv';
+import CarteMajPv from './CarteMajPv';
 
 const PvTable = () => {
     const PV_TABLE_GET_DATA_URL = 'http://localhost:9000/api/PVs/allPV';
@@ -76,6 +77,7 @@ const PvTable = () => {
     } = useTable({ columns, data, initialState: { pageSize: 7 }, defaultColumn: { Filter: ColumnFilter } }, useFilters, usePagination,);
     const { pageIndex } = state;
     const [ajoutPvTrigger, openAjoutPv, closeAjoutPv] = usePopUp();
+    const [MAJTrigger, openMAJ, closeMAJ] = usePopUp();
     const handleExport = () => {
         const EXPORTER_XLS_URL = 'http://localhost:9000/api/PVs/exporter'
         axios.get(EXPORTER_XLS_URL, { responseType: 'blob' })
@@ -87,16 +89,17 @@ const PvTable = () => {
     return (
         <>
             {headerGroups.map((headerGroup) => (
-                <div className='flex justify-center w-[800px] gap-1 mb-3' {...headerGroup.getHeaderGroupProps()}>
+                <div className='flex justify-center w-[850px] gap-1 mb-3' {...headerGroup.getHeaderGroupProps()}>
                     {headerGroup.headers.map((column) => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
-                    <button type="button" onClick={handleExport} className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-7 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Exporter</button>
-                    <button type="button" onClick={openAjoutPv} className="w-fit border-transparent rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988] whitespace-nowrap">Ajouter PV</button>
+                    <button type="button" onClick={openAjoutPv} className="w-fit border-transparent rounded-3xl bg-[#00337C] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#00337C] border hover:border-[#00337C] whitespace-nowrap">Ajouter PV</button>
+                    <button type="button" onClick={openMAJ} className="w-fit border-transparent rounded-3xl bg-[#00337C] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#00337C] border hover:border-[#00337C] whitespace-nowrap">Mise à jour PV</button>
+                    <button type="button" onClick={handleExport} className="w-fit border-transparent rounded-3xl bg-[#00337C] text-white text-sm px-7 py-2 hover:bg-white hover:text-[#00337C] border hover:border-[#00337C] whitespace-nowrap">Exporter</button>
                 </div >
             ))}
             <table className="table-fixed " {...getTableProps()}>
                 <thead>
                     {headerGroups.map((headerGroup) => (
-                        <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10  text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
+                        <tr className='bg-[#F9F9F9] border-[#D9D9D9] border h-10 text-black text-xs font-normal' {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
                                 <th className='text-center border'{...column.getHeaderProps({ width: column.width, })}>
                                     {column.render("Header")}
@@ -130,6 +133,7 @@ const PvTable = () => {
                 />
             </div>
             <PopUp trigger={ajoutPvTrigger} handleCloseEvent={closeAjoutPv}><CarteAjoutPv /></PopUp>
+            <PopUp trigger={MAJTrigger} handleCloseEvent={closeMAJ}><CarteMajPv /></PopUp>
         </>
     );
 }

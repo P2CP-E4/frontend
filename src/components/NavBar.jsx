@@ -20,7 +20,7 @@ const NavBar = () => {
     const profileData = JSON.parse(localStorage.getItem('profile'));
     return (
         <>
-            <nav className=" bg-[#13005A] sticky top-0 z-40 h-16 w-screen shadow">
+            <nav className=" bg-[#13005A] sticky top-0 z-20 h-16 w-screen shadow">
                 <div className="flex items-center justify-around py-4">
                     <img src={logo} alt='logo' className='w-24 cursor-pointer' onClick={() => navigate('/acceuil')} />
                     <ul className="hidden gap-12 sm:flex sm:items-center ml-28">

@@ -22,7 +22,7 @@ const StatistiquePersonnalisee = () => {
         {
             id: 3,
             title: 'Tableau des doctorants',
-            path: '/tableauDoctorants'
+            path: '/doctorant'
         },
         {
             id: 4,
@@ -55,10 +55,7 @@ const StatistiquePersonnalisee = () => {
         setCriter1Lables(labels[selectedOption1])
         setCriter2Lables(labels[selectedOption2])
         axios.get('http://localhost:9000/api/Statistiques/statistiquesMulticriteres', { params })
-            .then(res => {
-                setData(res.data);
-                console.log(res.data)
-            })
+            .then(res => setData(res.data))
             .catch(err => console.log(err))
 
     }

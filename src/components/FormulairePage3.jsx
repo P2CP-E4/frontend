@@ -8,14 +8,10 @@ import FormsCreatableSelect from "./FormsCreatableSelect";
 const FormulairePage3 = ({ data, next, back, laboDropDownOptions, optionDropDownOptions }) => {
     const validationSchema = Yup.object().shape({
         these: Yup.string()
-            .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
-        laboratoire: Yup.string()
-            .required("veuillez remplir ce champ."),
-        premiereInscription: Yup.date()
-            .required("veuillez remplir ce champ."),
-        option: Yup.string()
-            .required("veuillez remplir ce champ."),
+        laboratoire: Yup.string(),
+        premiereInscription: Yup.date(),
+        option: Yup.string(),
     })
 
     const handleSubmitEvent = (values) => {

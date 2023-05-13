@@ -5,15 +5,11 @@ import LineChart from '../components/LineChart';
 import BarChart from '../components/BarChart';
 import DoughnutChart from '../components/DoughnutChart';
 import GaugeChart from '../components/GaugeChart';
-import DirecteursStatsTable from '../components/DirecteursStatsTable';
 import Carousel from '../components/CarouselStats';
-import StatsGenerator from '../components/StatsGenerator';
-import MultiBarChart from '../components/MultiBarChart';
-import GenererStatsNumerique from '../components/GenererStatsNumerique';
 import SousPagesController from '../components/SousPagesController';
 
 const StatistiquePredefinie = () => {
-    const [statsData, setstatsDataData] = useState([]);
+    const [statsData, setStatsData] = useState([]);
     const [lineChartData, setLineChartData] = useState([]);
     const [barChartData, setBarChartData] = useState([]);
     const STATS_DATA_URL = 'http://localhost:9000/api/Statistiques/StatNumerique';
@@ -27,7 +23,7 @@ const StatistiquePredefinie = () => {
             .then(res => setBarChartData(res.data))
             .catch(err => console.log(err))
         axios.get(STATS_DATA_URL)
-            .then(res => setstatsDataData(res.data))
+            .then(res => setStatsData(res.data))
             .catch(err => console.log(err))
     }, [])
 
@@ -190,18 +186,6 @@ const StatistiquePredefinie = () => {
         ],
     };
 
-    //Asma
-    const Labltab = [
-        'femme', 'homme'
-    ];
-
-    const Datatab = [
-        [6, 9], [10, 15], [2, 5]
-    ];
-
-    const num = 3;
-    const titres = ['LMCS', 'LCSI', 'autre'];
-
     const sousPages = [
         {
             id: 1,
@@ -213,7 +197,18 @@ const StatistiquePredefinie = () => {
             title: 'Statistique personnalisée',
             path: '/statistiquePersonnalisee'
         },
+        {
+            id: 3,
+            title: 'Tableau des doctorants',
+            path: '/doctorant'
+        },
+        {
+            id: 4,
+            title: 'Tableau des PVs',
+            path: '/pv'
+        },
     ]
+
     return (
         <div className='w-screen h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />

@@ -84,7 +84,7 @@ const CarteAcceuilGrid = () => {
             description={
               <ul className='list-disc'>
                 <li>Statistiques numeriques et graphiques</li>
-                <li>Tableau des doctorants et directeurs</li>
+                <li>Tableau des doctorants</li>
                 <li>Tableau des PVs</li>
               </ul>}
             path='/statistiquePredefinie'
@@ -104,16 +104,7 @@ const CarteAcceuilGrid = () => {
             assetNumber={5}
           />
         </motion.div>
-
-
       </div>
-
-
-
-
-
-
-
     </motion.div>
   );
 };

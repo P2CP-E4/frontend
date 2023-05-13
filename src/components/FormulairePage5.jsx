@@ -11,16 +11,11 @@ const FormulairePage5 = ({ data, next, back }) => {
     const navigate = useNavigate();
     const validationSchema = Yup.object().shape({
         codePV: Yup.string()
-            .min(3, "Min. 3 characters")
             .required("veuillez remplir ce champ."),
-        urlPV: Yup.string()
-            .min(3, "Min. 3 characters")
-            .required("veuillez remplir ce champ."),
-        ordreDuJour: Yup.string()
-            .min(3, "Min. 3 characters")
-            .required("veuillez remplir ce champ."),
+        urlPV: Yup.string(),
+        ordreDuJour: Yup.string(),
         dateDuJour: Yup.date()
-            .min(3, "Min. 3 characters"),
+            .required("veuillez remplir ce champ."),
     })
 
     const handleSubmitEvent = (values) => {
@@ -68,9 +63,9 @@ const FormulairePage5 = ({ data, next, back }) => {
                                     }}
                                 />
                             </div>
-                            <div><FormsTextInput name="urlPV" label="Url" /></div>
-                            <div><FormsTextInput name="ordreDuJour" label="Ordre du jour" /></div>
                             <div><FormsDatePicker name="dateDuJour" label="Date du proces verbal" /></div>
+                            <div><FormsTextInput name="urlPV" label="Url (optionnelle)" /></div>
+                            <div><FormsTextInput name="ordreDuJour" label="Ordre du jour (optionnelle)" /></div>
                             <button type="submit" className="md:absolute border-transparent md:bottom-10 md:right-12 bg-[#03C988] rounded-3xl text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988]">Inscrire</button>
                             <button type="button" onClick={() => back(values)} className="md:absolute border-transparent md:bottom-10 md:left-12 rounded-3xl bg-[#13005A] text-white text-sm px-5 py-2 hover:bg-white hover:text-[#13005A] border hover:border-[#13005A]">Retour</button>
                         </Form>

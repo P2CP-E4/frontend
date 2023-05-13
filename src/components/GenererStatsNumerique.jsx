@@ -5,29 +5,35 @@ import FormsSelect from './FormsSelect';
 
 const GenererStatsNumerique = () => {
     const sexeDropDownOptions = [
+        { value: '', label: 'Tous choix' },
         { value: 'M', label: 'Homme' },
         { value: 'F', label: 'Femme' },
     ]
     const laboDropDownOptions = [
+        { value: '', label: 'Tous choix' },
         { value: 'LMCS', label: 'LMCS' },
         { value: 'LCSI', label: 'LCSI' },
     ]
     const typeDiplomeDropDownOptions = [
+        { value: '', label: 'Tous les choix' },
         { value: "Master", label: "Master" },
         { value: "Magister", label: "Magister" },
         { value: "Ingeniorat", label: "Ingeniorat" },
     ]
     const typeDoctoratDropDownOptions = [
+        { value: '', label: 'Tous les choix' },
         { value: 'LMD', label: 'LMD' },
         { value: 'Classique', label: 'Classique' },
     ]
     const statusDropDownOptions = [
+        { value: '', label: 'Tous les choix' },
         { value: 'inscrit', label: 'inscrit' },
         { value: 'radie', label: 'radie' },
         { value: 'soutenu', label: 'soutenu' },
         { value: 'differe', label: 'differe' },
     ]
     const optionDropDownOptions = [
+        { value: '', label: 'Tous les choix' },
         { value: 'SIQ', label: 'SIQ' },
         { value: 'SI', label: 'SI' },
     ]
@@ -46,15 +52,16 @@ const GenererStatsNumerique = () => {
                 typeDiplome: '',
 
             }}
+
             onSubmit={values => {
                 axios.get('http://localhost:9000/api/Statistiques/filtre', { params: values })
-                    .then(res => setFilteringResult(res.data?.count)
-                    )
+                    .then(res => setFilteringResult(res.data?.count))
                     .catch(err => console.log(err))
             }}
         >
-            <Form className=' w-11/12 my-5 flex flex-col justify-center items-center h-fit shadow-xl rounded-xl bg-white p-6'>
-                <div className='flex w-full gap-5 justify-center mb-5'>
+            <Form className='flex flex-col items-center justify-center w-11/12 p-6 my-5 bg-white shadow-xl h-fit rounded-xl'>
+                <h2 className='self-start mb-5 text-lg text-black ml-14 font-semi bold'>Generer une representation numerique</h2>
+                <div className='flex justify-center w-full gap-5 mb-5'>
                     <div><FormsSelect name='status' label='Status' options={statusDropDownOptions} /></div>
                     <div><FormsSelect name='option' label='Option' options={optionDropDownOptions} /></div>
                     <div><FormsSelect name='typeDiplome' label='Type de diplome' options={typeDiplomeDropDownOptions} /></div>
@@ -62,7 +69,7 @@ const GenererStatsNumerique = () => {
                     <div><FormsSelect name='laboratoire' label='Laboratoire' options={laboDropDownOptions} /></div>
                     <div><FormsSelect name='sexe' label='Sexe' options={sexeDropDownOptions} /></div>
                 </div>
-                <div className='flex h-fit w-full justify-around items-center'>
+                <div className='flex items-center justify-around w-full h-fit'>
                     <div className='flex flex-col items-center'>
                         <DatePickerHere name='date1' label='date 1' />
                         <DatePickerHere name='date2' label='date 2' />

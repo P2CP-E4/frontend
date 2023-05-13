@@ -4,7 +4,7 @@ import logo from "../assets/images/logo.svg"
 import crois from "../assets/images/crois.svg"
 import passwordVisibleEye from "../assets/images/passwordvisible.svg"
 import passwordInvisibleEye from "../assets/images/passwordinvisible.svg"
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -49,12 +49,6 @@ const Login = ({ handleCloseEvent }) => {
         onError: (error) => console.log('Login Failed:', error)
     });
 
-    const logOut = () => {
-        googleLogout();
-        localStorage.setItem('', null);
-    };
-
-
     useEffect(() => {
         if (user.access_token) {
             axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
@@ -93,6 +87,7 @@ const Login = ({ handleCloseEvent }) => {
                             value={formik.values.email}
                             onBlur={formik.handleBlur}
                             autoComplete="email"
+                            placeholder="Adresse email"
                         />
                     </div>
 
@@ -101,7 +96,7 @@ const Login = ({ handleCloseEvent }) => {
                         <input
                             type={isPasswordVisible ? "text" : "password"}
                             id="password"
-                            placeholder="••••••••"
+                            placeholder="Mot de passe"
                             className="outline-none block w-full text-[#13005A] text-sm appearance-none rounded-lg border py-2 px-4 border-[#1C82AD]"
                             onChange={formik.handleChange}
                             value={formik.values.password}

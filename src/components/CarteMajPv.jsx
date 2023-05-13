@@ -6,8 +6,9 @@ import FormsTextInput from './FormsTextInput';
 import FormsCreatableSelect from './FormsCreatableSelect';
 import FormsDatePicker from './FormsDatePicker';
 
-const CarteAjoutPv = ({ operation, customSubmitRequest }) => {
+const CarteMajPv = () => {
     const initialValues = {
+        _id: '',
         code: '',
         url: '',
         ordreDuJour: '',
@@ -16,18 +17,18 @@ const CarteAjoutPv = ({ operation, customSubmitRequest }) => {
     const validationSchema = Yup.object().shape({
         code: Yup.string()
             .required('veuillez remplir ce champ.'),
-        url: Yup.string(),
-        ordreDuJour: Yup.string(),
+        url: Yup.string()
+            .required('veuillez remplir ce champ.'),
+        ordreDuJour: Yup.string()
+            .required('veuillez remplir ce champ.'),
         date: Yup.date()
             .required('veuillez remplir ce champ.'),
     });
 
-    const ajoutPvRequest = (values) => {
-        const POST_PV_URL = 'http://localhost:9000/api/PVs/ajouter'
-        axios.post(POST_PV_URL, values)
-            .then(res => {
-                console.log(res.data)
-            })
+    const MajPvRequest = (values) => {
+        const MAJ_PV_URL = 'http://localhost:9000/api/PVs/majPV'
+        axios.post(MAJ_PV_URL, values)
+            .then(res => console.log(res.data))
             .catch(err => console.log(err))
     }
 
@@ -44,11 +45,11 @@ const CarteAjoutPv = ({ operation, customSubmitRequest }) => {
             onClick={e => e.stopPropagation()}
         >
             <div className='flex flex-col w-full py-4 px-5  bg-white rounded-[45px] md:h-full'>
-                <h1 className='text-[#03C988] text-xl font-black text-center'>{`Information du proces verbal ${operation ? (`de ${operation}`) : ''}`}</h1>
+                <h1 className='text-[#03C988] text-xl font-black text-center'>Mise à jour du proces verbal</h1>
                 <Formik
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    onSubmit={customSubmitRequest || ajoutPvRequest}
+                    onSubmit={MajPvRequest}
                 >
                     {
                         (form) => {
@@ -71,12 +72,13 @@ const CarteAjoutPv = ({ operation, customSubmitRequest }) => {
                                             setFieldValue('url', PV.url);
                                             setFieldValue('ordreDuJour', PV.ordreDuJour);
                                             setFieldValue('date', new Date(PV.date));
+                                            setFieldValue('_id', PV._id);
                                         }}
                                     />
                                 </div>
                                 <div><FormsDatePicker name="date" label="Date du proces verbal" /></div>
-                                <div><FormsTextInput name="url" label="Url (optionnelle)" /></div>
-                                <div><FormsTextInput name="ordreDuJour" label="Ordre du jour (optionnelle)" popperPlacement="left" /></div>
+                                <div><FormsTextInput name="url" label="Url" /></div>
+                                <div><FormsTextInput name="ordreDuJour" label="Ordre du jour" popperPlacement="left" /></div>
                                 <button type="submit" className="md:absolute  border-transparent md:-bottom-20 md:right-6 rounded-3xl bg-[#03C988] text-white text-sm px-6 py-2 hover:bg-white hover:text-[#03C988] border hover:border-[#03C988]">Confirmer</button>
                             </Form >
                         }
@@ -88,4 +90,4 @@ const CarteAjoutPv = ({ operation, customSubmitRequest }) => {
     );
 }
 
-export default CarteAjoutPv
+export default CarteMajPv
