@@ -41,7 +41,7 @@ function App() {
         <Route path="/modificationPersonnelInformations" element={<ModificationPersonalInfo />} />
         <Route path="/ajoutFCT" element={<AjoutFCT />} />
         <Route path="/ajoutObservation" element={<AjoutObservation />} />
-        <Route path="/ajoutSiminaire" element={<AjoutSiminaire />} />
+        <Route path="/ajoutSeminaire" element={<AjoutSiminaire />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </>

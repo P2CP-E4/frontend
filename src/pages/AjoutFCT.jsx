@@ -7,7 +7,7 @@ const AjoutFCT = () => {
         {
             id: 1,
             title: "Ajout d'un Séminaire",
-            path: '/ajoutSiminaire',
+            path: '/ajoutSeminaire',
         },
         {
             id: 2,

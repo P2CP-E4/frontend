@@ -19,6 +19,16 @@ const StatistiquePersonnalisee = () => {
             title: 'Statistique personnalisée',
             path: '/statistiquePersonnalisee'
         },
+        {
+            id: 3,
+            title: 'Tableau des doctorants',
+            path: '/tableauDoctorants'
+        },
+        {
+            id: 4,
+            title: 'Tableau des PVs',
+            path: '/pv'
+        },
     ]
 
     const labels = {
@@ -57,7 +67,6 @@ const StatistiquePersonnalisee = () => {
     return (
         <div className='w-screen h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />
-            <h1 className='my-6 text-2xl text-[#13005A] text-center'>Statistique</h1>
             <div className='self-start ml-24'>
                 <SousPagesController sousPages={sousPages} initialPage={2} />
             </div>

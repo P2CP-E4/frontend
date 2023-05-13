@@ -68,11 +68,9 @@ const ModificationForm = ({ newData }) => {
 
     const handleSubmitEvent = (values) => {
         const UPDATE_DOCTORANT_URL = `http://localhost:9000/api/Doctorants/modifierInfoDoc`
-        console.log(UPDATE_DOCTORANT_URL)
         axios.put(UPDATE_DOCTORANT_URL, values)
             .then(res => {
                 setStatus('success');
-                console.log(res.data)
             })
             .catch(err => {
                 setStatus('error');

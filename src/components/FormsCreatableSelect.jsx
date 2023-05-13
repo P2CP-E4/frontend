@@ -4,8 +4,6 @@ import CreatableSelect from 'react-select/creatable';
 import FormsErrorMessage from './FormsErrorMessage';
 
 const FormsCreatableSelect = ({ name, label, options, placeholder, ...rest }) => {
-    //TODO:  API request to get the options
-    //TODO:  API request to add the new option
     return (
         <>
             <label
