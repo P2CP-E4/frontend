@@ -26,13 +26,10 @@ const CarteAjoutSiminaire = () => {
   const validationSchema = Yup.object().shape({
     doctorantId: Yup.string().required("veuillez vous choisir un doctorant."),
     titre: Yup.string()
-      .min(3, "Min. 3 characters")
       .required("veuillez remplir ce champ."),
     animateur: Yup.string()
-      .min(3, "Min. 3 characters")
       .required("veuillez remplir ce champ."),
     resume: Yup.string()
-      .min(10, "Min. 3 characters")
       .required("veuillez remplir ce champ."),
   });
 

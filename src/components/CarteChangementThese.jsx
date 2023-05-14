@@ -16,15 +16,11 @@ const CarteChangementThese = ({ data }) => {
   }
   const validationSchema = Yup.object().shape({
     nouveauIntituleThese: Yup.string()
-      .min(3, 'Min. 3 characters')
       .required('veuillez remplir ce champ.'),
     codePv: Yup.string()
-      .min(3, 'Min. 3 characters')
       .required('veuillez remplir ce champ.'),
-    urlPv: Yup.string()
-      .required('veuillez remplir ce champ.'),
-    ordreDuJour: Yup.string()
-      .required('veuillez remplir ce champ.'),
+    urlPv: Yup.string(),
+    ordreDuJour: Yup.string(),
     datePv: Yup.string()
       .required('veuillez remplir ce champ.'),
   });

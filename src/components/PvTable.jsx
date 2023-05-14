@@ -5,7 +5,6 @@ import { usePopUp } from '../hooks/usePopUp';
 import fileDownload from 'js-file-download';
 import Pagination from './Pagination';
 import ColumnFilter from './ColumnFilter';
-import ColumSelectFilter from './ColumnSelectFilter';
 import PopUp from './PopUp';
 import CarteAjoutPv from './CarteAjoutPv';
 import CarteMajPv from './CarteMajPv';

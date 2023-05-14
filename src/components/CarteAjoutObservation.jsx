@@ -20,7 +20,6 @@ const CarteAjoutObservation = () => {
         doctorantId: Yup.string()
             .required('veuillez remplir ce champ.'),
         observation: Yup.string()
-            .min(10, 'Min. 3 characters')
             .required('veuillez remplir ce champ.'),
     });
 
