@@ -83,7 +83,7 @@ const ModificationForm = ({ newData }) => {
             <div className='w-3/4 md:h-[330px] px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF]'>
                 <div className='flex flex-col w-full py-3 md:px-16 bg-white rounded-[45px] md:h-full'>
                     {
-                        status ? <SubmitCarte state={status} clear={clearStatus} titre={status === 'success' ? 'Modification avec success' : ' Echec dans la modifcation du doctorant'} message={status === 'success' ? "La modification des informations personnelles on été effectuée avec succées." : "Désolé , nous n'avons pas pu effectuer le changement de these, veuillez réessayez plus tard, ou contacter l'administrateur pour obtenir de l'aide"} />
+                        status ? <SubmitCarte state={status} clear={clearStatus} titre={status === 'success' ? 'Modification avec succès' : ' Echec dans la modifcation du doctorant'} message={status === 'success' ? "La modification des informations personnelles on été effectuée avec succès." : "Désolé , nous n'avons pas pu effectuer le changement de these, veuillez réessayez plus tard, ou contacter l'administrateur pour obtenir de l'aide"} />
                             :
                             <Formik
                                 initialValues={formValues || initialValues}

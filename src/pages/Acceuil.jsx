@@ -18,10 +18,10 @@ function Acceuil() {
                 <NavBar />
                 <h1 className=' mb-[15px] text-[28px] font-bold text-[#03C988] mt-[23px]'> Bienvenue!</h1>
                 <div className='flex gap-[70px] mb-[40px]'>
-                    <CarouselBoxStats title="Total" number={statsData.totalDoctorants} pourcentage={null} />
-                    <CarouselBoxStats title="Nouveaux inscrits" number={statsData.nouveauInscrit} pourcentage={null} />
-                    <CarouselBoxStats title="Femmes" number={statsData.totalF} pourcentage={statsData.Fadvancement} />
-                    <CarouselBoxStats title="Hommes" number={statsData.totalM} pourcentage={statsData.Madvancement} />
+                    <CarouselBoxStats title="Total" number={statsData.totalDoctorants} />
+                    <CarouselBoxStats title="Nouveaux inscrits" number={statsData.nouveauInscrit} />
+                    <CarouselBoxStats title="Femmes" number={statsData.totalF} />
+                    <CarouselBoxStats title="Hommes" number={statsData.totalM} />
                 </div>
                 <span className='mr-[720px] mb-[20px] font-semibold'> Veuillez choisir l’action que vous voulez faire :</span>
                 <CarteAcceuilGrid />

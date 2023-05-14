@@ -8,7 +8,6 @@ import FormsCreatableSelect from './FormsCreatableSelect';
 import axios from 'axios';
 
 const FormulairePage5 = ({ data, next, back }) => {
-    const navigate = useNavigate();
     const validationSchema = Yup.object().shape({
         codePV: Yup.string()
             .required("veuillez remplir ce champ."),
@@ -20,7 +19,6 @@ const FormulairePage5 = ({ data, next, back }) => {
 
     const handleSubmitEvent = (values) => {
         next(values, true);
-        navigate('/acceuil')
     }
     const [PVs, setPVs] = useState([])
     useEffect(() => {
@@ -39,8 +37,8 @@ const FormulairePage5 = ({ data, next, back }) => {
                 (form) => {
                     const { values, setFieldValue } = form;
                     return (
-                        <Form className="relative w-full h-full md:px-40 md:gap-y-10 md:gap-x-10 md:auto-rows-min md:grid md:grid-cols-2">
-                            <h2 className=" md:col-span-2 text-lg font-semibold text-left leading-10 text-[#03C988] mb-6">
+                        <Form className="relative w-full h-full md:px-40 md:gap-y-6 md:gap-x-10 md:auto-rows-min md:grid md:grid-cols-2">
+                            <h2 className=" md:col-span-2 text-lg font-semibold text-left leading-10 text-[#03C988]">
                                 Information du proces verbal
                             </h2>
                             <div>

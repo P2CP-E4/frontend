@@ -7,7 +7,8 @@ import DoughnutChart from '../components/DoughnutChart';
 import GaugeChart from '../components/GaugeChart';
 import Carousel from '../components/CarouselStats';
 import SousPagesController from '../components/SousPagesController';
-
+import DoctorantTable from '../components/DoctorantsTable';
+import DirecteursStatsTable from '../components/DirecteursStatsTable';
 const StatistiquePredefinie = () => {
     const [statsData, setStatsData] = useState([]);
     const [lineChartData, setLineChartData] = useState([]);
@@ -210,7 +211,7 @@ const StatistiquePredefinie = () => {
     ]
 
     return (
-        <div className='w-screen h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
+        <div className='w-screen h-fit bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />
             <div className='self-start mb-10 ml-24'>
                 <SousPagesController sousPages={sousPages} initialPage={1} />
@@ -221,19 +222,14 @@ const StatistiquePredefinie = () => {
                 <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Status' subTitle='Status' />
                 <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
             </div>
-            <div className='gap-4 px-3 mb-16 ml-8 md:flex'>
+            <div className='gap-4 px-3 mb-10 ml-8 md:flex'>
                 <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
                 <BarChart chartData={barData} chartOptions={optionsBarChart} title='Nombre de Doctorants par nombre d’inscriptions' />
                 <LineChart chartData={lineData} chartOptions={OptionsLineChart} title='Nombre d’inscrits par années' />
             </div>
-            {/* <div className='justify-around w-full md:flex h-fit'>
-                <div className='flex flex-col items-center p-5 mb-20 bg-white rounded-md shadow-lg'>
-                    <StatsGenerator />
-                    <MultiBarChart LabelArray={Labltab} DataArray={Datatab} NumCritere1={num} titles={titres} />
-                </div>
-                <DirecteursStatsTable />
-            </div> */}
+            <DirecteursStatsTable />
         </div >
+
     )
 }
 

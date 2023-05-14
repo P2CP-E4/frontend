@@ -32,7 +32,7 @@ const Login = ({ handleCloseEvent }) => {
             axios.post('http://localhost:9000/api/Auth/login', values)
                 .then(res => {
                     if (res.data?.success) {
-                        localStorage.setItem('', res.data.email || null);
+                        localStorage.setItem('profile', JSON.stringify({ email: res.data.email }) || null);
                         navigate('/acceuil');
                     } else {
                         alert('access non autorisé');
@@ -48,7 +48,7 @@ const Login = ({ handleCloseEvent }) => {
         onSuccess: (codeResponse) => setUser(codeResponse),
         onError: (error) => console.log('Login Failed:', error)
     });
-
+    const [googleUser, setGoogleUser] = useState({});
     useEffect(() => {
         if (user.access_token) {
             axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
@@ -58,8 +58,17 @@ const Login = ({ handleCloseEvent }) => {
                 }
             })
                 .then((res) => {
-                    localStorage.setItem('profile', JSON.stringify({ ...res.data }));
-                    navigate('/acceuil')
+                    setGoogleUser(res.data);
+                    axios.get('http://localhost:9000/api/Auth/testGmail', { params: { email: res.data.email } })
+                        .then((res) => {
+                            if (res.data.status === 200) {
+                                localStorage.setItem('profile', JSON.stringify({ ...googleUser }));
+                                navigate('/acceuil');
+                            } else {
+                                alert('access non autorisé');
+                            }
+                        })
+                        .catch(err => console.log(err))
                 })
                 .catch((err) => console.log(err));
         }

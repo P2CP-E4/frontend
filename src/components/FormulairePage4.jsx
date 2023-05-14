@@ -54,11 +54,10 @@ const FormulairePage4 = ({ data, handleCoDirecteurExistence, next, back }) => {
                         <Form className="relative flex flex-col items-center w-full h-full">
                             <div className="w-4/5 h-full">
                                 <h2 className="text-lg font-semibold text-[#03C988] ml-16">Information de directeur</h2>
-                                <div className="grid-cols-6 md:grid gap-x-6">
-                                    <div className="col-span-2"><FormsCreatableSelect
+                                <div className="grid-cols-6 md:grid gap-y-2 gap-x-6">
+                                    <div className="col-span-2 inline-flex"><FormsCreatableSelect
                                         options={encadrants.map((encadrant) => { return { label: encadrant.nomComplet, value: encadrant.nomComplet } })}
                                         name='nomDirecteur'
-                                        label='Nom du Directeur'
                                         placeholder='Nom du Directeur'
                                         onChange={selectedOption => {
                                             form.setFieldValue('nomDirecteur', selectedOption.value)
@@ -76,10 +75,10 @@ const FormulairePage4 = ({ data, handleCoDirecteurExistence, next, back }) => {
                                             setFieldValue('telephoneDirecteur', encadrant.telephone)
                                         }}
                                     /></div>
-                                    <div className="col-span-2"><FormsTextInput name='etablissementDirecteur' label="Nom d'Etablissement du Directeur" /></div>
-                                    <div className="col-span-2"><FormsTextInput name='gradeDirecteur' label='Grade du Directeur' /></div>
-                                    <div className='col-span-3'><FormsTextInput name='adresseEmailDirecteur' label="Adresse email" /></div>
-                                    <div className='col-span-3'><FormsTextInput name='telephoneDirecteur' label='N° de telephone' /></div>
+                                    <div className="col-span-2"><FormsTextInput name='etablissementDirecteur' placeholder="Nom d'Etablissement du Directeur" /></div>
+                                    <div className="col-span-2"><FormsTextInput name='gradeDirecteur' placeholder='Grade du Directeur' /></div>
+                                    <div className='col-span-3'><FormsTextInput name='adresseEmailDirecteur' placeholder="Adresse email" /></div>
+                                    <div className='col-span-3'><FormsTextInput name='telephoneDirecteur' placeholder='N° de telephone' /></div>
                                 </div>
                                 <label className="cursor-pointer flex items-center w-fit rounded-3xl border border-[#1C82AD] py-1 px-4 my-2 text-sm text-[#13005A]">
                                     <Field type="checkbox" name="isCoDirecteurExist" className='hidden' />
@@ -90,15 +89,14 @@ const FormulairePage4 = ({ data, handleCoDirecteurExistence, next, back }) => {
                                 <AnimatePresence>
                                     {
                                         values.isCoDirecteurExist && <motion.div
-                                            className="grid-cols-6 md:grid gap-x-6"
+                                            className="grid-cols-6 md:grid gap-x-6 gap-y-2"
                                             initial={{ opacity: 0, x: 100, scale: 0.8 }}
                                             animate={{ opacity: 1, x: 0, scale: 1 }}
                                             exit={{ opacity: 0, x: 100, scale: 0.8 }}
                                             transition={{ duration: 0.1 }}
                                         >
-                                            <div className="col-span-2"><FormsCreatableSelect
+                                            <div className="col-span-2 flex"><FormsCreatableSelect
                                                 name='nomCoDirecteur'
-                                                label='Nom du Directeur'
                                                 placeholder='Nom du Directeur'
                                                 onChange={selectedOption => {
                                                     form.setFieldValue('nomCoDirecteur', selectedOption.value)
@@ -118,10 +116,10 @@ const FormulairePage4 = ({ data, handleCoDirecteurExistence, next, back }) => {
                                                 options={encadrants.map((encadrant, index) => { return { label: encadrant.nomComplet, value: encadrant.nomComplet } }
                                                 )}
                                             /></div>
-                                            <div className='col-span-2'><FormsTextInput name='etablissementCoDirecteur' label="Nom d'Etablissement du Co-Directeur" /></div>
-                                            <div className='col-span-2'><FormsTextInput name='gradeCoDirecteur' label='Grade du Co-Directeur' /></div>
-                                            <div className='col-span-3'><FormsTextInput name='adresseEmailCoDirecteur' label='Adresse email' /></div>
-                                            <div className='col-span-3'><FormsTextInput name='telephoneCoDirecteur' label='N° de telephone' /></div>
+                                            <div className='col-span-2'><FormsTextInput name='etablissementCoDirecteur' placeholder="Nom d'Etablissement du Co-Directeur" /></div>
+                                            <div className='col-span-2'><FormsTextInput name='gradeCoDirecteur' placeholder='Grade du Co-Directeur' /></div>
+                                            <div className='col-span-3'><FormsTextInput name='adresseEmailCoDirecteur' placeholder='Adresse email' /></div>
+                                            <div className='col-span-3'><FormsTextInput name='telephoneCoDirecteur' placeholder='N° de telephone' /></div>
                                         </motion.div>
                                     }
                                 </AnimatePresence>

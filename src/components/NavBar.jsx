@@ -8,13 +8,14 @@ import { googleLogout } from '@react-oauth/google';
 const NavBar = () => {
     const navigate = useNavigate();
     const [dropDownIsOpen, setDropDownIsOpenState] = useState(false);
+
     const handleClickEvent = () => {
         setDropDownIsOpenState(!dropDownIsOpen);
     }
     const logOut = () => {
         googleLogout();
         localStorage.setItem('profile', null);
-        navigate('/')
+        navigate('/');
     };
 
     const profileData = JSON.parse(localStorage.getItem('profile'));
@@ -36,7 +37,7 @@ const NavBar = () => {
                         onClick={handleClickEvent}
                     >
                         <div className='flex items-center justify-center gap-1'>
-                            <img src={profileData?.picture || profilePic} alt='profile-pic' className='rounded-full w-9' />
+                            <img src={profileData?.picture || profilePic} alt='pdp' className='rounded-full w-9' />
                             {profileData?.given_name || 'Admin'}
                             <Arrow state={dropDownIsOpen} fill="#03C988" className="h-2" />
                         </div>
@@ -47,7 +48,7 @@ const NavBar = () => {
                         <li className='flex justify-around items-center px-4 py-3 text-[#4E4E4E] border-b border-[#1C82AD]'>
                             <img src={profileData?.picture || profilePic} alt='pdp' className='rounded-full w-14 h-14' />
                             <div className='block'>
-                                <p className='text-base font-semibold text-left text-black '>{profileData?.given_name || 'NOM-PRENOM'}</p>
+                                <p className='text-base font-semibold text-left text-black '>{profileData?.given_name || 'DPGR'}</p>
                                 <p className='text-sm text-left'>{profileData?.email || 'loremIpsum@esi.dz'}</p>
                             </div>
                         </li >

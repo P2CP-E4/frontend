@@ -31,7 +31,7 @@ const CarteAjoutFCT = () => {
         >
             <div className='flex flex-col w-full justify-between bg-white rounded-[45px] md:h-full'>
                 {
-                    status ? <SubmitCarte state={status} clear={clearStatus} titre={status === 'success' ? 'Ajout avec success' : ' Echec dans l\'ajout'} message={status === 'success' ? "L'ajout de FCT a été effectuée avec succées." : "Désolé , nous n'avons pas pu enregistrer votre Ajout veuillez réessayez plus tard, ou contacter l'administrateur pour obtenir de l'aide"} />
+                    status ? <SubmitCarte state={status} clear={clearStatus} titre={status === 'success' ? 'Ajout avec succès' : ' Echec dans l\'ajout'} message={status === 'success' ? "L'ajout de FCT a été effectuée avec succès." : "Désolé , nous n'avons pas pu enregistrer votre Ajout veuillez réessayez plus tard, ou contacter l'administrateur pour obtenir de l'aide"} />
                         : <>
                             <Formik
                                 initialValues={initialValues}

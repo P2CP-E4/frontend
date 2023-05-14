@@ -57,18 +57,17 @@ const StatistiquePersonnalisee = () => {
         axios.get('http://localhost:9000/api/Statistiques/statistiquesMulticriteres', { params })
             .then(res => setData(res.data))
             .catch(err => console.log(err))
-
     }
 
 
     return (
-        <div className='w-screen h-fit pb-10 bg-[#F5F5F5] flex flex-col items-center' >
+        <div className='w-screen h-fit bg-[#F5F5F5] flex flex-col items-center' >
             <NavBar />
             <div className='self-start ml-24'>
                 <SousPagesController sousPages={sousPages} initialPage={2} />
             </div>
             <GenererStatsNumerique />
-            <div className='flex flex-col items-center self-start p-5 mb-20 ml-24 bg-white rounded-md shadow-lg'>
+            <div className='flex flex-col items-center mb-10 self-start p-5 ml-24 bg-white rounded-md shadow-lg'>
                 <StatsGenerator onSubmit={generateGraphData} />
                 <MultiBarChart LabelArray={critere2Labels} DataArray={data} NumCritere1={critere1Labels.length} titles={critere1Labels} />
             </div>

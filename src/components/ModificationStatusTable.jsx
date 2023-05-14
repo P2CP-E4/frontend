@@ -36,6 +36,7 @@ const ModificationStatusTable = () => {
             setShowModificationStatusCheckBox(!showModificationStatusCheckBox);
         }
     }
+    console.log(data)
     const columns = useMemo(() => [
         {
             Header: 'Nom et prénom',
@@ -54,7 +55,7 @@ const ModificationStatusTable = () => {
                 if (!value) return '';
                 let strDate = value.slice(0, 10);
                 const [year, month, day] = strDate.split('-')
-                return `${day}/${month}/${year}`;
+                return `${year}/${parseInt(year) + 1}`;
             }
         },
         {
@@ -66,10 +67,10 @@ const ModificationStatusTable = () => {
         },
         {
             Header: 'Lien PV',
-            accessor: 'LienPV',
+            accessor: 'pv',
             width: 80,
-            placeHolderFilter: 'Code PV',
-            Cell: ({ value }) => <a href={value} className='text-[#03C988]'>Lien vers PV</a>
+            Filter: '',
+            Cell: ({ value }) => <a href={value.url} target='_blank' className='text-[#03C988]'>Lien vers PV</a>
         },
         {
             Header: 'Status',
@@ -139,7 +140,7 @@ const ModificationStatusTable = () => {
     const [showAjoutPv, openAjoutPv, closeAjoutPv] = usePopUp();
 
     const [newStatus, setNewStatus] = useState('');
-
+    const [requestStatus, setRequestStatus] = useState('');
     const handleSubmitEvent = (values) => {
         const { code, url, ordreDuJour, date } = values;
         const submitData = {
@@ -154,24 +155,24 @@ const ModificationStatusTable = () => {
 
         }
         const MODIFIER_STATUS_URL = 'http://localhost:9000/api/Doctorants/modifierstatus'
-        console.log(submitData)
+
         axios.post(MODIFIER_STATUS_URL, submitData)
             .then(res => {
                 console.log(res.data)
+                setRequestStatus('success');
             })
             .catch(err => {
                 console.log(err)
+                setRequestStatus('error')
             })
     }
 
     const handleClickSubmitButtonEvent = (e) => {
+        if (!e.target.value) return alert('veuillez choisir un status')
+        if (selectedFlatRows.length === 0) return alert('veuillez vous selectioner au moins un doctorant');
         setNewStatus(e.target.value);
-        if (!selectedStatus) return openWaning();
-        if (selectedFlatRows.length === 0) return openWaning();
-        // if (!submissionState(e.target.value)) return openWaning();
         openAjoutPv();
     }
-
     return (
         <>
             {headerGroups.map((headerGroup) => (
@@ -221,8 +222,8 @@ const ModificationStatusTable = () => {
             </div >
             <PopUp trigger={showWarning} handleCloseEvent={closeWarning}><CarteWarning onClick={closeWarning} /></PopUp>
             <PopUp trigger={showSuccess} handleCloseEvent={closeSuccess}><CarteSuccess onClick={closeSuccess} /></PopUp>
-            <PopUp trigger={showAjoutPv} handleCloseEvent={closeAjoutPv}><CarteAjoutPv onClick={closeAjoutPv} customSubmitRequest={handleSubmitEvent} /></PopUp>
+            <PopUp trigger={showAjoutPv} handleCloseEvent={closeAjoutPv}><CarteAjoutPv onClick={closeAjoutPv} customSubmitRequest={handleSubmitEvent} handleCloseEvent={closeAjoutPv} requestStatus={requestStatus} /></PopUp>
         </>
     );
 }
-export default ModificationStatusTable
+export default ModificationStatusTable;

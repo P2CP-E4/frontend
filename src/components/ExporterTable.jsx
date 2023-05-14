@@ -47,7 +47,7 @@ const ExporterTable = () => {
                 if (!value) return '';
                 let strDate = value.slice(0, 10);
                 const [year, month, day] = strDate.split('-')
-                return `${day}/${month}/${year}`;
+                return `${year}/${parseInt(year) + 1}`;
             }
         },
         {

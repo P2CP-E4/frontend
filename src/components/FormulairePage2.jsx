@@ -26,7 +26,7 @@ const FormulairePage2 = ({ data, next, back, typeDiplomeDropDownOptions }) => {
                     return (
                         <Form className="relative flex flex-col items-center w-full h-full">
                             <div className="w-2/3">
-                                <h2 className="text-lg font-semibold leading-10 mb-6 text-[#03C988]">
+                                <h2 className="text-lg font-semibold leading-10 mb-1 text-[#03C988]">
                                     Cursus universitaire
                                 </h2>
                                 <h6 className="text-xs mb-3 text-[#13005A] ">Type du doctorat : </h6>

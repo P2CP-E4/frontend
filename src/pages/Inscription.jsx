@@ -23,7 +23,7 @@ const Inscription = () => {
     ]
     return (
         <>
-            <div className='flex flex-col items-center justify-between w-screen h-screen pb-8'>
+            <div className='flex flex-col items-center justify-start w-screen h-screen pb-8'>
                 <NavBar />
                 <SousPagesController sousPages={sousPages} initialPage={1} />
                 <FormulaireInscription />

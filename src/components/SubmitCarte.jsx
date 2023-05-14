@@ -18,7 +18,7 @@ const SubmitCarte = ({ state, clear, titre, message }) => {
         color = 'text-[#FCF6D2]'
     }
     return (
-        <div className="relative flex flex-col items-center justify-center w-full h-full bg-white gap-y-2">
+        <div className="relative flex flex-col items-center justify-center w-full h-full bg-transparent gap-y-2">
             <img src={crois} alt='exit' className='absolute w-6 cursor-pointer top-4 right-8' onClick={clear} />
             <img src={icon} alt='icon' className="w-20 mx-auto mb-2" />
             <h1 className={`font-bold text-3xl text-center mb-4 ${color}`}>{titre}</h1>

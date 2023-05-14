@@ -46,18 +46,18 @@ const DoctorantTable = () => {
         width: 200,
         className: "bg-[#F9F9F9] text-left pl-5",
         Cell: (cell) => (
-          <span className="flex justify-between items-center w-[175px] p-0">
+          <div className="flex justify-between items-center relative w-[175px] p-0">
             <span className="text-sm ">{cell.value}</span>
             <img
               src={more_info_icon}
               alt="edit"
-              className="w-4 h-4 cursor-pointer"
+              className="w-4 h-4 cursor-pointer absolute -right-2"
               onClick={() => {
                 setClickedDoctorantData(cell.data[cell.row.id]);
                 openDoctorantPopUp();
               }}
             />
-          </span>
+          </div>
         ),
       },
       {
@@ -70,7 +70,7 @@ const DoctorantTable = () => {
           if (!value) return "";
           let strDate = value.slice(0, 10);
           const [year, month, day] = strDate.split("-");
-          return `${year}`;
+          return `${year}/${parseInt(year) + 1}`;
         },
       },
       {
@@ -80,9 +80,7 @@ const DoctorantTable = () => {
         width: 75,
         className: "text-center",
         Cell: ({ value }) => (
-          <a className="text-xs text-[#03C988]" href={value.url}>
-            {"PV" || value.code}
-          </a>
+          <a className="text-xs text-[#03C988] underline" target='_blank' href={value.url}>Lien </a>
         ),
       },
       {
@@ -108,13 +106,13 @@ const DoctorantTable = () => {
         width: 175,
         className: "text-left pl-5",
         Cell: (cell) => (
-          <span className="flex items-center justify-between text-center">
-            <span className="text-sm">{cell.value}</span>
+          <span className="flex items-center justify-between relative text-center">
+            <span className="text-xs">{cell.value}</span>
             {cell.value ? (
               <img
                 src={more_info_icon}
                 alt="edit"
-                className="w-4 h-4 cursor-pointer"
+                className="w-4 h-4 cursor-pointer absolute -right-3"
                 onClick={() => {
                   setClickedDirecteurData(
                     cell.data[cell.row.id]?.directeurPrincipal

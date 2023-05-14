@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Redirect } from 'react-router-dom';
 import Acceuil from "./pages/Acceuil";
 import Doctorant from "./pages/Doctorant";
 import StatistiquePredefinie from "./pages/StatistiquePredefinie";
@@ -19,33 +19,33 @@ import AjoutObservation from "./pages/AjoutObservation";
 import AjoutSiminaire from "./pages/AjoutSiminaire";
 import ReinscriptionDiffere from "./pages/ReinscriptionDiffere";
 import StatistiquePersonnalisee from "./pages/StatistiquePersonalisee";
-function App() {
 
+function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/acceuil" element={<Acceuil />} />
-        <Route path="/doctorant" element={<Doctorant />} />
-        <Route path="/aide" element={<Aide />} />
-        <Route path="/pv" element={<Pv />} />
-        <Route path="/statistiquePredefinie" element={<StatistiquePredefinie />} />
-        <Route path="/statistiquePersonnalisee" element={<StatistiquePersonnalisee />} />
-        <Route path="/inscription" element={<Inscription />} />
-        <Route path="/modificationStatus" element={<ModificationStatus />} />
-        <Route path="/reinscription" element={<Reinscription />} />
-        <Route path="/reinscriptionDiffere" element={<ReinscriptionDiffere />} />
-        <Route path="/importer" element={<Importer />} />
-        <Route path="/exporter" element={<Exporter />} />
-        <Route path="/changementThese" element={<ModificationThese />} />
-        <Route path="/modificationPersonnelInformations" element={<ModificationPersonalInfo />} />
-        <Route path="/ajoutFCT" element={<AjoutFCT />} />
-        <Route path="/ajoutObservation" element={<AjoutObservation />} />
-        <Route path="/ajoutSeminaire" element={<AjoutSiminaire />} />
-        <Route path="*" element={<NoPage />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<WelcomePage />} />
+      <Route path="/acceuil" element={<Acceuil />} />
+      <Route path="/doctorant" element={<Doctorant />} />
+      <Route path="/aide" element={<Aide />} />
+      <Route path="/pv" element={<Pv />} />
+      <Route path="/statistiquePredefinie" element={<StatistiquePredefinie />} />
+      <Route path="/statistiquePersonnalisee" element={<StatistiquePersonnalisee />} />
+      <Route path="/inscription" element={<Inscription />} />
+      <Route path="/modificationStatus" element={<ModificationStatus />} />
+      <Route path="/reinscription" element={<Reinscription />} />
+      <Route path="/reinscriptionDiffere" element={<ReinscriptionDiffere />} />
+      <Route path="/importer" element={<Importer />} />
+      <Route path="/exporter" element={<Exporter />} />
+      <Route path="/changementThese" element={<ModificationThese />} />
+      <Route path="/modificationPersonnelInformations" element={<ModificationPersonalInfo />} />
+      <Route path="/ajoutFCT" element={<AjoutFCT />} />
+      <Route path="/ajoutObservation" element={<AjoutObservation />} />
+      <Route path="/ajoutSeminaire" element={<AjoutSiminaire />} />
+      <Route path="*" element={<NoPage />} />
+    </Routes>
   );
 }
 
 export default App;
+
+

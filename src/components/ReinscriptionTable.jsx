@@ -109,21 +109,26 @@ const ReinscriptionTable = ({ status }) => {
     const { pageIndex } = state;
 
     const [ajoutPvTrigger, openAjoutPv, closeAjoutPv] = usePopUp();
+    const [requestStatus, setRequestStatus] = useState('');
 
     const handleClickEvent = () => {
         if (selectedFlatRows.length <= 0) return alert('Veuillez sélectionner au moins un doctorant');
         openAjoutPv();
     }
-
     const handleSubmitEvent = (values) => {
         const INSCRIPTION_POST_URL = 'http://localhost:9000/api/Doctorants/reinscription'
         const selectedDoctorants = selectedFlatRows.map((row) => row.original._id);
         const submitData = { doctorants: selectedDoctorants, pv: values };
         axios.post(INSCRIPTION_POST_URL, submitData)
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
-        console.log(selectedDoctorants);
-        closeAjoutPv();
+            .then(res => {
+                console.log(res.data)
+                setRequestStatus('success');
+            }
+            )
+            .catch(err => {
+                setRequestStatus('error')
+                console.log(err)
+            })
     }
     return (
         <>
@@ -170,7 +175,7 @@ const ReinscriptionTable = ({ status }) => {
                 />
                 <button className='bg-[#03C988] w-44 text-white rounded-xl mr-3 px-3 py-1 font-semibold hover:bg-white border-2 border-[#03C988] hover:text-[#03C988]' type='button' onClick={handleClickEvent}>reinscrire</button>
             </div>
-            <PopUp trigger={ajoutPvTrigger} handleCloseEvent={closeAjoutPv}><CarteAjoutPv operation='réinscription' customSubmitRequest={handleSubmitEvent} /></PopUp>
+            <PopUp trigger={ajoutPvTrigger} handleCloseEvent={closeAjoutPv}><CarteAjoutPv operation='réinscription' customSubmitRequest={handleSubmitEvent} handleCloseEvent={closeAjoutPv} requestStatus={requestStatus} /></PopUp>
         </>
     );
 }

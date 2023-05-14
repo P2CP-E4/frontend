@@ -6,20 +6,20 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const CarouselStats = ({ data }) => {
     const items = [
-        { id: 1, title: "Total", number: data.totalDoctorants, pourcentage: null },
-        { id: 2, title: "Nouveaux inscrits", number: data.nouveauInscrit, pourcentage: null },
-        { id: 3, title: "LMD", number: data.LMDtotal, pourcentage: data.LMDadvancement },
-        { id: 4, title: "Classique", number: data.totalClassique, pourcentage: data.Classiqueadvancement },
-        { id: 5, title: "Femmes", number: data.totalF, pourcentage: data.Fadvancement },
-        { id: 6, title: "Hommes", number: data.totalM, pourcentage: data.Madvancement },
-        { id: 7, title: "LCSI", number: data.totalLCSI, pourcentage: data.LCSIAdvancement },
-        { id: 8, title: "LMCS", number: data.totalLMCS, pourcentage: data.LMCSadvancement },
-        { id: 9, title: "Autre", number: data.totalAutre, pourcentage: data.AutreAdvancement },
-        { id: 10, title: "Directeurs de thése", number: data.totalDirecteurs, pourcentage: null },
-        { id: 11, title: "Inscrits", number: data.inscrit, pourcentage: null },
-        { id: 12, title: "Différés", number: data.differe, pourcentage: null },
-        { id: 13, title: "Radiés", number: data.radie, pourcentage: null },
-        { id: 14, title: "Soutenu", number: data.soutenu, pourcentage: null },
+        { id: 1, title: "Total", number: data.totalDoctorants, },
+        { id: 2, title: "Nouveaux inscrits", number: data.nouveauInscrit, },
+        { id: 3, title: "LMD", number: data.LMDtotal, },
+        { id: 4, title: "Classique", number: data.totalClassique, },
+        { id: 5, title: "Femmes", number: data.totalF, },
+        { id: 6, title: "Hommes", number: data.totalM, },
+        { id: 7, title: "LCSI", number: data.totalLCSI, },
+        { id: 8, title: "LMCS", number: data.totalLMCS, },
+        { id: 9, title: "Autre", number: data.totalAutre, },
+        { id: 10, title: "Directeurs de thése", number: data.totalDirecteurs, },
+        { id: 11, title: "Inscrits", number: data.inscrit, },
+        { id: 12, title: "Différés", number: data.differe, },
+        { id: 13, title: "Radiés", number: data.radie, },
+        { id: 14, title: "Soutenu", number: data.soutenu, },
     ];
 
     const { visibleItems, handlePrevClick, handleNextClick } = useInfiniteCarousel(items);

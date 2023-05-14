@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import { ExcelRenderer, OutTable } from "react-excel-renderer";
 import styles from "../styles/Importer.module.css"
+import axios from "axios";
 
 const ExcelRequestsImport = ({ uploadHandler }) => {
     const [file, setFile] = useState(false);
 
-    const handleUploadClick = () => {
-        if (!file) {
-            return;
+    const handleSubmit = (event) => {
+        if (file) {
+            const formData = new FormData();
+            formData.append("excelFile", file);
+
+            axios.post("http://localhost:9000/api/Importer", formData)
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
         }
-        console.log(file)
     };
+
 
 
     function ExcelDateToJSDate(date) {
@@ -54,7 +60,7 @@ const ExcelRequestsImport = ({ uploadHandler }) => {
                 <button
                     type="button"
                     className=" flex justify-center items-center w-[120px] h-[40px] bg-[#03C988] rounded-[20px] text-center mt-[16px] mr-[50px] text-white text-[18px]"
-                    onClick={handleUploadClick}
+                    onClick={handleSubmit}
                 > Confirmer
                 </button>
             </div>

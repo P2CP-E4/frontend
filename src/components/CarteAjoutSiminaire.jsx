@@ -48,12 +48,12 @@ const CarteAjoutSiminaire = () => {
             clear={clearStatus}
             titre={
               status === "success"
-                ? "Ajout avec success"
+                ? "Ajout avec succés"
                 : " Echec dans l'ajout"
             }
             message={
               status === "success"
-                ? "L'ajout du séminaire a été effectuée avec succées."
+                ? "L'ajout du séminaire a été effectuée avec succés."
                 : "Désolé , nous n'avons pas pu enregistrer votre inscription veuillez réessayez plus tard, ou contacter l'administrateur pour obtenir de l'aide"
             }
           />

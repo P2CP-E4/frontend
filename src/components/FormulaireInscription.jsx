@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import FormulairePage1 from "./FormulairePage1";
 import FormulairePage2 from "./FormulairePage2";
 import FormulairePage3 from "./FormulairePage3";
@@ -7,8 +7,10 @@ import FormulairePage5 from "./FormulairePage5";
 import ProgressBar from "./ProgressBar";
 import axios from "axios";
 import { useGetDropDownOptions } from "../hooks/useGetDropDownOptions";
+import { useNavigate } from "react-router-dom";
+
 const FormulaireInscription = () => {
-    //TODO: comfirm page ,after Submit
+    const navigate = useNavigate();
     const { sexeDropDownOptions, typeDiplomeDropDownOptions, laboDropDownOptions, optionDropDownOptions } = useGetDropDownOptions();
     const [currentStep, setCurrentStep] = useState(0);
     const [data, setData] = useState({
@@ -94,6 +96,7 @@ const FormulaireInscription = () => {
 
         axios.post(POST_DOCTORANT, submitData)
             .then((response) => {
+                navigate('/acceuil');
                 console.log(response);
             })
             .catch((error) => {
@@ -123,7 +126,7 @@ const FormulaireInscription = () => {
     ];
 
     return (
-        <div className='w-3/4 md:h-5/6 px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF] hover:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
+        <div className='w-3/4 md:h-[400px] mt-5 px-1 py-1 rounded-[50px] bg-gradient-to-r from-[#03C988] to-[#9747FF] hover:shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]'>
             <div className="flex flex-col items-center justify-center w-full pt-8 bg-white rounded-[45px] md:h-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]" >
                 <ProgressBar progressValue={((currentStep + 1) / steps.length) * 100 + '%'} />
                 {steps[currentStep]}

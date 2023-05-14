@@ -30,7 +30,7 @@ const PvTable = () => {
             accessor: 'date',
             placeHolderFilter: 'Date PV',
             width: 150,
-            Filter: ColumSelectFilter,
+            Filter: ColumnFilter,
             Cell: ({ value }) => {
                 let strDate = value.slice(0, 10);
                 const [year, month, day] = strDate.split('-')
@@ -121,7 +121,7 @@ const PvTable = () => {
                     })}
                 </tbody>
             </table >
-            <div className='bg-[#F9F9F9] border border-[#D9D9D9] w-[800px] h-12 rounded-b-xl flex justify-between items-center'>
+            <div className='bg-[#F9F9F9] border border-[#D9D9D9] w-[850px] h-12 rounded-b-xl flex justify-between items-center'>
                 <Pagination
                     pageNumber={pageCount}
                     currentPageIndex={pageIndex + 1}
@@ -132,8 +132,8 @@ const PvTable = () => {
                     gotoPage={gotoPage}
                 />
             </div>
-            <PopUp trigger={ajoutPvTrigger} handleCloseEvent={closeAjoutPv}><CarteAjoutPv /></PopUp>
-            <PopUp trigger={MAJTrigger} handleCloseEvent={closeMAJ}><CarteMajPv /></PopUp>
+            <PopUp trigger={ajoutPvTrigger} handleCloseEvent={closeAjoutPv}><CarteAjoutPv handleCloseEvent={closeAjoutPv} /></PopUp>
+            <PopUp trigger={MAJTrigger} handleCloseEvent={closeMAJ}><CarteMajPv handleCloseEvent={closeMAJ} /></PopUp>
         </>
     );
 }

@@ -8,7 +8,6 @@ export function useHandleSubmitFormAjouts(POST_URL) {
         axios.post(POST_URL, formData)
             .then((res) => {
                 setStatus('success');
-                console.log(res);
             })
             .catch(err => setStatus('error'));
     }
