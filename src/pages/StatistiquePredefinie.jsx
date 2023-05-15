@@ -211,23 +211,29 @@ const StatistiquePredefinie = () => {
     ]
 
     return (
-        <div className='w-screen h-fit bg-[#F5F5F5] flex flex-col items-center' >
+        <div className='w-screen h-fit bg-[#F5F5F5] flex flex-col items-center  pb-10' >
             <NavBar />
             <div className='self-start mb-10 ml-24'>
                 <SousPagesController sousPages={sousPages} initialPage={1} />
             </div>
             <Carousel data={statsData} />
-            <div className='mt-10 mb-10 md:flex md:gap-10'>
-                <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Labo' />
-                <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Status' subTitle='Status' />
-                <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
+            <div className='flex gap-16 mt-10'>
+                <div>
+                    <div className='mt-10 mb-10 md:flex md:gap-10'>
+                        <DoughnutChart chartData={laboData} chartOptions={laboOptionsDoughnutChart} title='Pourcentage des doctorants par laboratoire' subTitle='Labo' />
+                        <DoughnutChart chartData={statusData} chartOptions={statusOptionsDoughnutChart} title='Pourcentage des doctorants selon leur Status' subTitle='Status' />
+                    </div>
+                    <div className='gap-10 mb-10 md:flex'>
+                        <GaugeChart chartData={sexeData} chartOptions={sexeOptions} title='Pourcentage des doctorants par sexe' />
+                        <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
+                    </div>
+                </div>
+                <div className='mt-8 -ml-10'><DirecteursStatsTable /></div>
             </div>
-            <div className='gap-4 px-3 mb-10 ml-8 md:flex'>
-                <GaugeChart chartData={typeDoctoratData} chartOptions={typeDoctoratOptions} title='Type du diplome des doctorants' subTitle='Diplome' />
+            <div className='justify-center gap-10 mt-10 md:flex'>
                 <BarChart chartData={barData} chartOptions={optionsBarChart} title='Nombre de Doctorants par nombre d’inscriptions' />
                 <LineChart chartData={lineData} chartOptions={OptionsLineChart} title='Nombre d’inscrits par années' />
             </div>
-            <DirecteursStatsTable />
         </div >
 
     )
