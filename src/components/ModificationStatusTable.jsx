@@ -180,7 +180,7 @@ const ModificationStatusTable = () => {
                     {headerGroup.headers.map(column => column.canFilter ? <React.Fragment key={column.id}>{column.render("Filter")}</React.Fragment> : null)}
                 </div >
             ))}
-            <div className='relative w-2/3 h-0 bg-black'>
+            <div className='relative w-[900px] h-0 bg-black'>
                 <table className="table-fixed" {...getTableProps()}>
                     <thead>
                         {headerGroups.map((headerGroup) => (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import question_mark from '../assets/images/question_mark.svg'
+
 import green_arrow from '../assets/images/green_arrow.svg'
 const QuestionBox = ({ question, answer }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -30,14 +30,14 @@ const QuestionBox = ({ question, answer }) => {
 
     return (
         <div className='relative'>
-            <div className='flex items-center text-start w-[300px] h-[35px] bg-white shadow-lg  cursor-pointer'
+            <div className=' pr-9 flex items-center text-start w-[400px] h-[50px] bg-white shadow-xl  cursor-pointer'
                 onClick={toggleDrawer}
                 style={{
                     borderRadius: isOpen ? '0.5rem 0.5rem  0rem 0rem' : '0.5rem',
                 }}>
-                <span className='ml-5 text-[10px]'>{question}</span>
-                <img src={question_mark} alt="question" className="ml-[5px] w-3 h-3" />
-                <button onClick={toggleDrawer} className="w-5 h-5 ml-auto mr-3 focus:outline-none">
+                <span className='ml-5 text-[15px] font-semibold'>{question}</span>
+
+                <button onClick={toggleDrawer} className="w-5 h-5 absolute right-[2px] mr-3 focus:outline-none">
                     <motion.img
                         src={green_arrow}
                         alt="arrow"
@@ -48,21 +48,21 @@ const QuestionBox = ({ question, answer }) => {
                 </button>
             </div>
             <motion.div
-                className="bg-white w-[300px] rounded-b-[13px] shadow-lg overflow-hidden"
+                className="bg-white w-[400px] rounded-b-[13px] shadow-lg -mt-2 overflow-hidden"
                 variants={variants}
                 initial="closed"
                 animate={isOpen ? 'open' : 'closed'}
                 transition={{ duration: 0.3 }}
             >
                 <motion.div
-                    className={` w-[300px]`}
+                    className={` w-[400px]`}
 
                     variants={boxVariants}
                     onMouseEnter={handleBoxEnter}
                     onMouseLeave={handleBoxLeave}
                 >
                     <div className="p-5 ">
-                        <p className='text-[12px] '  >{answer}
+                        <p className='text-[15px] '  >{answer}
                         </p>
                     </div>
                 </motion.div>
