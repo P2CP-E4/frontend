@@ -37,14 +37,14 @@ const CarteInformationDoctorant = ({ data, handleCloseEvent }) => {
                 <div className='absolute top-6 right-6'> <img src={crois} alt='crois' onClick={handleCloseEvent} className='w-4 ml-auto cursor-pointer' /></div>
                 <div className='flex flex-col'>
                     <span className=" text-2xl font-semibold text-[#03C988] pr-0">Informations personnelles</span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1 pr-0 pt-2">Nom Complet :</span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1 pr-0 pt-2">Nom Complet :</span>
                     <span className='py-1 pr-0 ml-2 text-lg font-semibold text-black'>{data?.nomComplet || 'Aucune'}</span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1 pr-0">Date de naissance :</span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1 pr-0">Date de naissance :</span>
                     <span className='py-1 ml-2 text-lg font-semibold text-black '>{data?.dateNaissance.slice(0, 10).replaceAll('-', '/') || 'Aucune'}</span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1">Sexe : <span className='py-1 ml-2 text-lg font-semibold text-black'>{data.sexe === 'M' ? 'Homme' : 'Femme'}</span></span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1">N° de telephone :</span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1">Sexe : <span className='py-1 ml-2 text-lg font-semibold text-black'>{data.sexe === 'M' ? 'Homme' : 'Femme'}</span></span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1">N° de telephone :</span>
                     <span className='py-1 ml-2 text-lg font-semibold text-black '>{data?.telephone || 'Aucune'}</span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1">Email :</span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1">Email :</span>
                     <span className='py-1 ml-2 text-lg font-semibold text-black '>{data?.email || 'Aucune'}</span>
                     <span className="font-semibold text-[#03C988] pt-5 text-lg py-1 pr-0">Status :</span>
                     <span className='py-1 ml-1 text-lg font-semibold text-black'>{data?.status || 'Aucune'}</span>
@@ -52,19 +52,19 @@ const CarteInformationDoctorant = ({ data, handleCloseEvent }) => {
 
                 <div className='flex flex-col'>
                     <span className="text-2xl font-semibold text-[#03C988] pr-0">Cursus universitaire</span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1 pt-2">Type du doctorant :</span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1 pt-2">Type du doctorant :</span>
                     <span className='py-1 ml-2 text-lg font-semibold text-black'>{data?.typeDoctorat || 'Aucune'}</span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1">Type du diplome :</span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1">Type du diplome :</span>
                     <span className='py-1 ml-2 text-lg font-semibold text-black'>{data?.typeDiplome || 'Aucune'}</span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1">Option :</span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1">Option :</span>
                     <span className='py-1 ml-2 text-lg font-semibold text-black'>{data?.option || 'Aucune'}</span>
                     <div>
-                        <div className="text-[#00337C] font-thin text-lg py-1 ml-1">Nom d'Etablissement d'origine :</div>
+                        <div className="text-[#00337C]  text-lg py-1 ml-1">Nom d'Etablissement d'origine :</div>
                         <div className='py-1 ml-2 text-lg font-semibold text-black'>{data?.etablissementOrigine || 'Aucune'}</div>
-                        <div className="text-[#00337C] font-thin text-lg py-1 ml-1 pt-">Observation :</div>
+                        <div className="text-[#00337C]  text-lg py-1 ml-1 pt-">Observation :</div>
                         <div className='py-1 ml-2 text-lg font-semibold text-black'>{data?.observation || 'Aucune'}</div>
                         <div className='flex justify-start cursor-pointer' onClick={handleClickArrowEvent} >
-                            <h2 className="text-[#00337C] font-thin text-lg py-1 ml-1">Listes des séminaires</h2>
+                            <h2 className="text-[#00337C]  text-lg py-1 ml-1">Listes des séminaires</h2>
                             <button className='justify-start w-5 h-5 mt-2 ml-2 '>
                                 <Arrow state={isListSiminaireOpen} fill='#000000' className='w-3' />
                             </button>
@@ -94,14 +94,14 @@ const CarteInformationDoctorant = ({ data, handleCloseEvent }) => {
                 </div >
                 <div className='flex flex-col'>
                     <span className="text-2xl font-semibold text-[#03C988] pr-0">Information de these</span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1 pt-2">Date de la Première Inscription :</span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1 pt-2">Date de la Première Inscription :</span>
                     <span className='py-1 ml-2 font-semibold text-black'>{data?.premiereInscription.slice(0, 10).replaceAll('-', '/') || 'Aucune'}</span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1">Date enregistrement FCT:<span className='py-1 ml-2 font-semibold text-black'>{data?.FCT?.slice(0, 10).replaceAll('-', '/') || 'Aucune'}</span></span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 pb-2 ml-1">Durrée doctoral :<span className='py-1 ml-2 font-semibold text-black'>{data.totalinscription || 'Aucune'}ans</span></span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 pb-2 ml-1">Laboratoire :<span className='py-1 ml-2 font-semibold text-black'>{data.laboratoire || 'Aucune'}</span></span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1 pb-2">Url du Procès Verbal : <a className='py-1 ml-2 text-lg font-thin text-[#13005A] underline underline-offset-4' href={data?.pv?.url}>{data?.pv?.code || 'Aucune'}</a></span>
-                    <span className="text-[#00337C] font-thin text-lg py-1 ml-1">Intitulé de these :<span className='py-1 ml-2 font-semibold text-black'>{data.intituleeThese || 'Aucune'}</span></span>
-                    <span className="text-[#00337C] flex justify-start font-thin ml-1 text-lg py-1">Directeur principal:</span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1">Date enregistrement FCT:<span className='py-1 ml-2 font-semibold text-black'>{data?.FCT?.slice(0, 10).replaceAll('-', '/') || 'Aucune'}</span></span>
+                    <span className="text-[#00337C]  text-lg py-1 pb-2 ml-1">Durrée doctoral :<span className='py-1 ml-2 font-semibold text-black'>{data.totalinscription || 'Aucune'}ans</span></span>
+                    <span className="text-[#00337C]  text-lg py-1 pb-2 ml-1">Laboratoire :<span className='py-1 ml-2 font-semibold text-black'>{data.laboratoire || 'Aucune'}</span></span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1 pb-2">Url du Procès Verbal : <a className='py-1 ml-2 text-lg  text-[#13005A] underline underline-offset-4' href={data?.pv?.url}>{data?.pv?.code || 'Aucune'}</a></span>
+                    <span className="text-[#00337C]  text-lg py-1 ml-1">Intitulé de these :<span className='py-1 ml-2 font-semibold text-black'>{data.intituleeThese || 'Aucune'}</span></span>
+                    <span className="text-[#00337C] flex justify-start  ml-1 text-lg py-1">Directeur principal:</span>
                     <span className='flex justify-start py-1 ml-2 text-lg font-semibold text-black'>{data?.directeurPrincipal?.nomComplet || 'Aucune'}
                         <img
                             src={more_info_icon}
@@ -114,7 +114,7 @@ const CarteInformationDoctorant = ({ data, handleCloseEvent }) => {
                     {
                         data?.coDirecteur && (
                             <>
-                                <span className="text-[#00337C] flex justify-start font-thin   ml-1 text-lg py-1">Co-Directeur :</span>
+                                <span className="text-[#00337C] flex justify-start ml-1 text-lg py-1">Co-Directeur :</span>
                                 <span className='flex justify-start py-1 ml-2 text-lg font-semibold text-black'>{data?.coDirecteur?.nomComplet || '///'}
                                     <img
                                         src={more_info_icon}

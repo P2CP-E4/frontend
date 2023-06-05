@@ -45,7 +45,7 @@ const CarteAcceuil = ({ title, description, path, assetNumber }) => {
         >
             <div className='flex flex-col relative items-start text-start justify-start w-full h-full bg-[#F3F9FF] rounded-[10px] px-2 pt-4 pb-5  hover:bg-white'>
                 <span className='text-[16px] font-semibold ml-[10px]'>{title}</span>
-                <span className='text-[12.7px]  font-thin ml-[10px] mt-[15px]'>{description}</span>
+                <span className='text-[12.7px] ml-[10px] mt-[15px]'>{description}</span>
                 <img src={selectedAsset} alt="icon" className="absolute w-11 h-11 mt-[140px] ml-[120px]" />
             </div>
         </motion.div>

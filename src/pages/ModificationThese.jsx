@@ -49,7 +49,7 @@ const ModificationPersonalInfo = () => {
                     nomComplet: '',
                 }}>
                 <Form className='w-1/3'>
-                    <FormsSelect name='nomComplet' label='enter le nom complet' options={dropDownOptions} onChange={handleChangeEvent} />
+                    <FormsSelect name='nomComplet' options={dropDownOptions} onChange={handleChangeEvent} />
                 </Form>
             </Formik>
             <div className={`w-full flex justify-center mt-4 ${editedDoctorantInformations ? '' : 'grayscale'}`}>
